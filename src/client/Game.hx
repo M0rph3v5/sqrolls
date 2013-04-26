@@ -25,6 +25,8 @@ class Game {
 		
 		var priority:Int = 0;
 		engine.addSystem(new RenderS(container), priority++);
+		
+		creator.createImage();
 	}
 	
 	function start(){
