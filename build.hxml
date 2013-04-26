@@ -1,0 +1,38 @@
+#-js bin/server.js
+#-debug
+#-main server.ServerMain
+#-cp src
+#-cp libSrc/actuate
+#-cp libSrc/Ash-Haxe/src
+#-cp libSrc/core/src
+#-cp libSrc/ds
+#-cp libSrc/hx2compat
+#-cp libSrc/msgpack-haxe
+#-cp libSrc/cx-src
+#-lib nape
+#-dce full
+
+#--next
+
+-swf bin/site/Client.swf
+-debug
+-D fdb
+-D no-swf-compress
+-D swf-directblit
+-swf-version 11.2
+-swf-header 800:600:60:a0a0a0
+-main client.ClientMain
+-cp src
+-cp libSrc/actuate
+-cp libSrc/Ash-Haxe/src
+-cp libSrc/core/src
+-cp libSrc/ds
+-cp libSrc/hx2compat
+-cp libSrc/msgpack-haxe
+-cp libSrc/cx-src
+-cp libSrc/napeLib
+-swf-lib bin/lib/starling.swc
+--macro patchTypes('client/Starling.patch')
+-swf-lib bin/lib/feathers.swc
+#-cmd python scripts/makeSite.py
+-dce std
