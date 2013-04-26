@@ -45,13 +45,10 @@ private typedef Array3Friend<T> =
  * <p>A three-dimensional array based on a rectangular sequential array.</p>
  * <p><o>Worst-case running time in Big O notation</o></p>
  */
-#if (generic && cpp && haxe3)
+#if (generic && cpp)
 @:generic
 #end
 class Array3<T> implements Collection<T>
-#if (generic && cpp && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -91,10 +88,6 @@ class Array3<T> implements Collection<T>
 		_iterator     = null;
 		key           = HashKey.next();
 		reuseIterator = false;
-		
-		#if (cpp && generic)
-		ArrayUtil.fill(_a, cast null, size());
-		#end
 	}
 	
 	/**
@@ -495,10 +488,6 @@ class Array3<T> implements Collection<T>
 		var t = _a;
 		_a = ArrayUtil.alloc(width * height * depth);
 		
-		#if (cpp && generic)
-		ArrayUtil.fill(_a, cast null, width * height * depth);
-		#end
-		
 		var minX = width  < _w ? width  : _w;
 		var minY = height < _h ? height : _h;
 		var zmin = depth  < _d ? depth  : _d;
@@ -616,7 +605,7 @@ class Array3<T> implements Collection<T>
 	 */
 	public function free():Void
 	{
-		for (i in 0...size()) __set(i, null);
+		for (i in 0...size()) __set(i, cast null);
 		_a = null;
 		_iterator = null;
 	}
@@ -648,7 +637,7 @@ class Array3<T> implements Collection<T>
 		{
 			if (__get(i) == x)
 			{
-				__set(i, null);
+				__set(i, cast null);
 				found = true;
 			}
 		}
@@ -710,19 +699,8 @@ class Array3<T> implements Collection<T>
 	public function toArray():Array<T>
 	{
 		var a:Array<T> = ArrayUtil.alloc(size());
-		
-		#if (cpp && generic)
-		ArrayUtil.fill(a, cast null, size());
-		#end
-		
 		for (i in 0...size())
-		{
-			#if (cpp && generic)
-			untyped a.__unsafe_set(i, __get(i));
-			#else
 			a[i] = __get(i);
-			#end
-		}
 		return a;
 	}
 	
@@ -738,17 +716,6 @@ class Array3<T> implements Collection<T>
 		return a;
 	}
 	#end
-	
-	/**
-	 * Returns a dense array containing all elements in this three-dimensional array.<br/>
-	 * Order: Row-major order (layer-by-layer, row-by-row).
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		for (i in 0...size()) a.pushBack(__get(i));
-		return a;
-	}
 	
 	/**
 	 * Duplicates this three-dimensional array. Supports shallow (structure only) and deep copies (structure & elements).
@@ -788,32 +755,21 @@ class Array3<T> implements Collection<T>
 	
 	inline function __get(i:Int)
 	{
-		#if (cpp && generic)
-		return untyped _a.__unsafe_get(i);
-		#else
 		return _a[i];
-		#end
 	}
 	inline function __set(i:Int, x:T)
 	{
-		#if (cpp && generic)
-		untyped _a.__unsafe_set(i, x);
-		#else
 		_a[i] = x;
-		#end
 	}
 }
 
-#if (generic && cpp && haxe3)
+#if (generic && cpp)
 @:generic
 #end
 #if doc
 private
 #end
 class Array3Iterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && cpp && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:Array3<T>;
 	
@@ -842,11 +798,7 @@ class Array3Iterator<T> implements de.polygonal.ds.Itr<T>
 	
 	inline public function next():T
 	{
-		#if (cpp && generic)
-		return untyped _a.__unsafe_get(_i++);
-		#else
 		return _a[_i++];
-		#end
 	}
 	
 	inline public function remove():Void
@@ -856,15 +808,17 @@ class Array3Iterator<T> implements de.polygonal.ds.Itr<T>
 		D.assert(_i > 0, 'call next() before removing an element');
 		#end
 		
-		#if (cpp && generic)
-		untyped _a.__unsafe_set(_i - 1, null);
-		#else
-		_a[_i - 1] = null;
-		#end
+		_a[_i - 1] = cast null;
 	}
 	
-	inline function __a<T>(f:Array3Friend<T>) return f._a
-	inline function __size<T>(f:Array3Friend<T>) return f._w * f._h * f._d
+	inline function __a<T>(f:Array3Friend<T>)
+	{
+		return f._a;
+	}
+	inline function __size<T>(f:Array3Friend<T>)
+	{
+		return f._w * f._h * f._d;
+	}
 }
 
 /**

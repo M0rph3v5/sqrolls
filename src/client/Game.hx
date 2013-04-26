@@ -24,23 +24,6 @@ class Game {
 		creator = new EntityCreator(engine, graphics);
 		
 		var priority:Int = 0;
-		engine.addSystem(new GameManager(creator), priority++);
-		engine.addSystem(new WorldS(keyboardInput, creator), priority++);
-		
-		engine.addSystem(new CharacterMouseControlS(mouseInput), priority++);
-		engine.addSystem(new CharacterReplayControlS(), priority++);
-		engine.addSystem(new CharacterAIRecordS(), priority++);
-		engine.addSystem(new CharacterAIS(creator), priority++);
-		
-		engine.addSystem(new BugAIS(), priority++);
-		engine.addSystem(new HealthS(), priority++);
-		
-		engine.addSystem(new MotionS(), priority++);
-		engine.addSystem(new PositionS(), priority++);
-		engine.addSystem(new WorldMapS(creator), priority++);
-		
-		engine.addSystem(new AnimationS(), priority++);
-		engine.addSystem(new FlipS(), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		
 		creator.createGame();

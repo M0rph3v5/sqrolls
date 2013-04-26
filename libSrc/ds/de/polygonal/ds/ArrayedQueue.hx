@@ -49,13 +49,10 @@ private typedef ArrayedQueueFriend<T> =
  * <p><o>Worst-case running time in Big O notation</o></p>
  * See <a href="http://lab.polygonal.de/?p=189" target="_blank">http://lab.polygonal.de/?p=189</a></p>
  */
-#if (generic && cpp && haxe3)
+#if (generic && cpp)
 @:generic
 #end
 class ArrayedQueue<T> implements Queue<T>
-#if (generic && cpp && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -133,10 +130,6 @@ class ArrayedQueue<T> implements Queue<T>
 		_iterator     = null;
 		key           = HashKey.next();
 		reuseIterator = false;
-		
-		#if (cpp && generic)
-		ArrayUtil.fill(_a, cast null, _capacity);
-		#end
 	}
 	
 	/**
@@ -671,17 +664,6 @@ class ArrayedQueue<T> implements Queue<T>
 	#end
 	
 	/**
-	 * Returns a dense array containing all elements in this queue.<br/>
-	 * Preserves the natural order of this queue (First-In-First-Out).
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(_size);
-		for (i in 0..._size) a.pushBack(__get((i + _front) % _capacity));
-		return a;
-	}
-	
-	/**
 	 * Duplicates this queue. Supports shallow (structure only) and deep copies (structure & elements).
 	 * @param assign if true, the <code>copier</code> parameter is ignored and primitive elements are copied by value whereas objects are copied by reference.<br/>
 	 * If false, the <em>clone()</em> method is called on each element. <warn>In this case all elements have to implement <em>Cloneable</em>.</warn>
@@ -698,13 +680,7 @@ class ArrayedQueue<T> implements Queue<T>
 		if (assign)
 		{
 			for (i in 0..._size)
-			{
-				#if (cpp && generic)
-				untyped t.__unsafe_set(i, __get(i));
-				#else
 				t[i] = __get(i);
-				#end
-			}
 		}
 		else
 		if (copier == null)
@@ -734,51 +710,31 @@ class ArrayedQueue<T> implements Queue<T>
 	inline function _pack(newSize:Int)
 	{
 		var tmp:Array<T> = ArrayUtil.alloc(newSize);
-		//#if (cpp && generic)
-		//for (i in 0..._size)
-		//{
-			//tmp.__unsafe_set(i, __get(_front++));
-			//if (_front == _capacity) _front = 0;
-		//}
-		//#else
 		for (i in 0..._size)
 		{
 			tmp[i] = __get(_front++);
 			if (_front == _capacity) _front = 0;
 		}
-		//#end
-		
 		_a = tmp;
 	}
 	
 	inline function __get(i:Int)
 	{
-		#if (cpp && generic)
-		return untyped _a.__unsafe_get(i);
-		#else
 		return _a[i];
-		#end
 	}
 	inline function __set(i:Int, x:T)
 	{
-		#if (cpp && generic)
-		untyped _a.__unsafe_set(i, x);
-		#else
 		_a[i] = x;
-		#end
 	}
 }
 
-#if (generic && cpp && haxe3)
+#if (generic && cpp)
 @:generic
 #end
 #if doc
 private
 #end
 class ArrayedQueueIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && cpp && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:ArrayedQueue<T>;
 	
@@ -811,11 +767,7 @@ class ArrayedQueueIterator<T> implements de.polygonal.ds.Itr<T>
 	
 	inline public function next():T
 	{
-		#if (cpp && generic)
-		return untyped _a.__unsafe_get((_i++ + _front) % _capacity);
-		#else
 		return _a[(_i++ + _front) % _capacity];
-		#end
 	}
 	
 	inline public function remove():Void
@@ -823,16 +775,23 @@ class ArrayedQueueIterator<T> implements de.polygonal.ds.Itr<T>
 		#if debug
 		D.assert(_i > 0, 'call next() before removing an element');
 		#end
-		
-		#if (cpp && generic)
-		untyped _f.remove(_a.__unsafe_get(((_i - 1) + _front) % _capacity));
-		#else
 		_f.remove(_a[((_i - 1) + _front) % _capacity]);
-		#end
 	}
 	
-	inline function __a<T>(f:ArrayedQueueFriend<T>) return f._a
-	inline function __front<T>(f:ArrayedQueueFriend<T>) return f._front
-	inline function __size<T>(f:ArrayedQueueFriend<T>) return f._capacity
-	inline function __count<T>(f:ArrayedQueueFriend<T>) return f._size
+	inline function __a<T>(f:ArrayedQueueFriend<T>)
+	{
+		return f._a;
+	}
+	inline function __front<T>(f:ArrayedQueueFriend<T>)
+	{
+		return f._front;
+	}
+	inline function __size<T>(f:ArrayedQueueFriend<T>)
+	{
+		return f._capacity;
+	}
+	inline function __count<T>(f:ArrayedQueueFriend<T>)
+	{
+		return f._size;
+	}
 }

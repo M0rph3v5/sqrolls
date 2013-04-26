@@ -45,13 +45,10 @@ private typedef SLLNodeFriend<T> =
  * <p>See <a href="http://lab.polygonal.de/?p=206" target="_blank">http://lab.polygonal.de/?p=206</a></p>
  * <p><o>Worst-case running time in Big O notation</o></p>
  */
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class SLL<T> implements Collection<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -1071,22 +1068,6 @@ class SLL<T> implements Collection<T>
 	#end
 	
 	/**
-	 * Returns a dense array containing all elements in this singly linked list.<br/>
-	 * The elements are ordered head-to-tail.
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		var node = head;
-		for (i in 0..._size)
-		{
-			a.pushBack(node.val);
-			node = node.next;
-		}
-		return a;
-	}
-	
-	/**
 	 * Duplicates this linked list. Supports shallow (structure only) and deep copies (structure & elements).
 	 * @param assign if true, the <code>copier</code> parameter is ignored and primitive elements are copied by value whereas objects are copied by reference.<br/>
 	 * If false, the <em>clone()</em> method is called on each element. <warn>In this case all elements have to implement <em>Cloneable</em>.</warn>
@@ -1459,20 +1440,23 @@ class SLL<T> implements Collection<T>
 		return val;
 	}
 	
-	inline function __insertAfter(f:SLLNodeFriend<T>, x:SLLNode<T>) f._insertAfter(x)
-	inline function __list(f:SLLNodeFriend<T>, x:SLL<T>) f._list = x
+	inline function __insertAfter(f:SLLNodeFriend<T>, x:SLLNode<T>)
+	{
+		f._insertAfter(x);
+	}
+	inline function __list(f:SLLNodeFriend<T>, x:SLL<T>)
+	{
+		f._list = x;
+	}
 }
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class SLLIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:SLL<T>;
 	var _walker:SLLNode<T>;
@@ -1514,16 +1498,13 @@ class SLLIterator<T> implements de.polygonal.ds.Itr<T>
 	}
 }
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class CircularSLLIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:SLL<T>;
 	var _walker:SLLNode<T>;

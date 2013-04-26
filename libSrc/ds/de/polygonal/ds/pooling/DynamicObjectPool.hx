@@ -319,16 +319,13 @@ class DynamicObjectPool<T>
 	}
 }
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class DynamicObjectPoolIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:DynamicObjectPoolFriend<T>;
 	var _a:Array<T>;
@@ -364,6 +361,12 @@ class DynamicObjectPoolIterator<T> implements de.polygonal.ds.Itr<T>
 		return _a[_i++];
 	}
 	
-	inline function __pool<T>(f:DynamicObjectPoolFriend<T>) return _f._pool
-	inline function __size<T>(f:DynamicObjectPoolFriend<T>) return f._size
+	inline function __pool<T>(f:DynamicObjectPoolFriend<T>)
+	{
+		return _f._pool;
+	}
+	inline function __size<T>(f:DynamicObjectPoolFriend<T>)
+	{
+		return f._size;
+	}
 }

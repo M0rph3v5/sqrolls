@@ -89,7 +89,10 @@ class HeapIterator<T:(Heapable<T>)> implements de.polygonal.ds.Itr<T>
 		_f.remove(_a[_i - 1]);
 	}
 	
-	inline function __a(f:HeapFriend<T>) return f._a
+	inline function __a(f:HeapFriend<T>)
+	{
+		return f._a;
+	}
 }
 
 /**
@@ -623,16 +626,6 @@ class Heap<T:(Heapable<T>)> implements Collection<T>
 	#end
 	
 	/**
-	 * Returns an unordered dense array containing all elements in this heap.
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		for (i in 1..._size + 1) a.pushBack(__get(i));
-		return a;
-	}
-	
-	/**
 	 * Duplicates this heap. Supports shallow (structure only) and deep copies (structure & elements).
 	 * @param assign if true, the <code>copier</code> parameter is ignored and primitive elements are copied by value whereas objects are copied by reference.<br/>
 	 * If false, the <em>clone()</em> method is called on each element. <warn>In this case all elements have to implement <em>Cloneable</em>.</warn>
@@ -764,8 +757,14 @@ class Heap<T:(Heapable<T>)> implements Collection<T>
 		}
 	}
 	
-	inline function __get(i:Int) return _a[i]
-	inline function __set(i:Int, x:T) _a[i] = x
+	inline function __get(i:Int)
+	{
+		return _a[i];
+	}
+	inline function __set(i:Int, x:T)
+	{
+		_a[i] = x;
+	}
 }
 
 private class HeapElementWrapper<T:(Heapable<T>)> implements Heapable<HeapElementWrapper<T>>

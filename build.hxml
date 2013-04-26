@@ -5,7 +5,7 @@
 -D swf-directblit
 -swf-version 11.2
 -swf-header 800:600:60:a0a0a0
--main client/ClientMain
+-main client.ClientMain
 -cp src
 -cp libSrc/actuate
 -cp libSrc/Ash-Haxe/src

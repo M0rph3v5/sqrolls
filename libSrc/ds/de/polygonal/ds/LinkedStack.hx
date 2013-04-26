@@ -46,13 +46,10 @@ private typedef LinkedStackFriend<T> =
  * <p>This is called a FIFO structure (First In, First Out).</p>
  * <p><o>Worst-case running time in Big O notation</o></p>
  */
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class LinkedStack<T> implements Stack<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -741,25 +738,6 @@ class LinkedStack<T> implements Stack<T>
 	#end
 	
 	/**
-	 * Returns a dense array containing all elements in this stack.<br/>
-	 * Preserves the natural order of this stack (First-In-Last-Out).
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		a.fill(cast null, size());
-		
-		var tmp = new Array<T>();
-		var node = _head;
-		for (i in 0..._top)
-		{
-			a.set(_top - i - 1, node.val);
-			node = node.next;
-		}
-		return a;
-	}
-	
-	/**
 	 * Duplicates this stack. Supports shallow (structure only) and deep copies (structure & elements).
 	 * @param assign if true, the <code>copier</code> parameter is ignored and primitive elements are copied by value whereas objects are copied by reference.<br/>
 	 * If false, the <em>clone()</em> method is called on each element. <warn>In this case all elements have to implement <em>Cloneable</em>.</warn>
@@ -875,13 +853,10 @@ class LinkedStack<T> implements Stack<T>
 #if doc
 private
 #end
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class LinkedStackNode<T>
-#if (generic && !haxe3)
-implements haxe.rtti.Generic
-#end
 {
 	public var val:T;
 	public var next:LinkedStackNode<T>;
@@ -900,13 +875,10 @@ implements haxe.rtti.Generic
 #if doc
 private
 #end
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class LinkedStackIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:LinkedStack<T>;
 	var _walker:LinkedStackNode<T>;
@@ -952,9 +924,15 @@ class LinkedStackIterator<T> implements de.polygonal.ds.Itr<T>
 		#end
 	}
 	
-	inline function __head(f:LinkedStackFriend<T>) return f._head
+	inline function __head(f:LinkedStackFriend<T>)
+	{
+		return f._head;
+	}
 	
 	#if flash
-	inline function __remove(f:LinkedStackFriend<T>, x:LinkedStackNode<T>) return f._removeNode(x)
+	inline function __remove(f:LinkedStackFriend<T>, x:LinkedStackNode<T>)
+	{
+		return f._removeNode(x);
+	}
 	#end
 }

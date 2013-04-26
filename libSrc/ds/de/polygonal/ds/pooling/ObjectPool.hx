@@ -330,13 +330,10 @@ class ObjectPool<T> implements Hashable
 #if doc
 private
 #end
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class ObjectPoolIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:ObjectPoolFriend<T>;
 	var _a:Array<T>;
@@ -372,6 +369,12 @@ class ObjectPoolIterator<T> implements de.polygonal.ds.Itr<T>
 		throw 'unsupported operation';
 	}
 	
-	inline function __pool<T>(f:ObjectPoolFriend<T>) return _f._pool
-	inline function __size<T>(f:ObjectPoolFriend<T>) return f._size
+	inline function __pool<T>(f:ObjectPoolFriend<T>)
+	{
+		return _f._pool;
+	}
+	inline function __size<T>(f:ObjectPoolFriend<T>)
+	{
+		return f._size;
+	}
 }

@@ -44,13 +44,10 @@ private typedef LinkedDequeFriend<T> =
  * <p>A deque ("double-ended queue") is a linear list for which all insertions and deletions (and usually all accesses) are made at the ends of the list.</p>
  * <p><o>Worst-case running time in Big O notation</o></p>
  */
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class LinkedDeque<T> implements Deque<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -580,21 +577,6 @@ class LinkedDeque<T> implements Deque<T>
 	#end
 	
 	/**
-	 * Returns a dense array containing all elements in this deque in the natural order.
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		var node = _head;
-		while (node != null)
-		{
-			a.pushBack(node.val);
-			node = node.next;
-		}
-		return a;
-	}
-	
-	/**
 	 * Duplicates this deque. Supports shallow (structure only) and deep copies (structure & elements).
 	 * @param assign if true, the <code>copier</code> parameter is ignored and primitive elements are copied by value whereas objects are copied by reference.<br/>
 	 * If false, the <em>clone()</em> method is called on each element. <warn>In this case all elements have to implement <em>Cloneable</em>.</warn>
@@ -765,16 +747,13 @@ class LinkedDeque<T> implements Deque<T>
 	}
 }
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class LinkedDequeNode<T>
-#if (generic && !haxe3)
-implements haxe.rtti.Generic
-#end
 {
 	public var val:T;
 	public var prev:LinkedDequeNode<T>;
@@ -793,16 +772,13 @@ implements haxe.rtti.Generic
 	}
 }
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class LinkedDequeIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _f:LinkedDeque<T>;
 	var _walker:LinkedDequeNode<T>;
@@ -843,6 +819,12 @@ class LinkedDequeIterator<T> implements de.polygonal.ds.Itr<T>
 		__removeNode(_f, _hook);
 	}
 	
-	inline function __head(f:LinkedDequeFriend<T>) return f._head
-	inline function __removeNode(f:LinkedDequeFriend<T>, x:LinkedDequeNode<T>) f._removeNode(x)
+	inline function __head(f:LinkedDequeFriend<T>)
+	{
+		return f._head;
+	}
+	inline function __removeNode(f:LinkedDequeFriend<T>, x:LinkedDequeNode<T>)
+	{
+		f._removeNode(x);
+	}
 }

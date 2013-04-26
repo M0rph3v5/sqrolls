@@ -447,16 +447,6 @@ class HashMap<K, T> implements Map<K, T>
 	#end
 	
 	/**
-	 * Returns an unordered dense array containing all values in this hash map.
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>(size());
-		for (i in this) a.pushBack(i);
-		return a;
-	}
-	
-	/**
 	 * Duplicates this hash map either by creating a shallow or deep copy.
 	 * @param assign if true, the <code>copier</code> parameter is ignored and
 	 * primitive elements are copied by value whereas objects are copied by reference.<br/>
@@ -538,7 +528,10 @@ class HashMapKeyIterator<K, T> implements de.polygonal.ds.Itr<K>
 		_f.clr(_keys[_i - 1]);
 	}
 	
-	inline function __map(f:HashMapFriend<K, T>) return f._map
+	inline function __map(f:HashMapFriend<K, T>)
+	{
+		return f._map;
+	}
 }
 
 #if doc
@@ -586,5 +579,8 @@ class HashMapValIterator<K, T> implements de.polygonal.ds.Itr<T>
 		_f.remove(untyped _map[_keys[_i - 1]]);
 	}
 	
-	inline function __map(f:HashMapFriend<K, T>) return f._map
+	inline function __map(f:HashMapFriend<K, T>)
+	{
+		return f._map;
+	}
 }

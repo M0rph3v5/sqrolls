@@ -341,7 +341,8 @@ class TestArrayedStack extends haxe.unit.TestCase
 		stack.pop();
 		stack.dispose();
 		var x = untyped stack._a[stack._top];
-		assertEquals(#if (flash && generic) 0 #else null #end, x);
+		var value = #if (flash) 0 #else null #end;
+		assertEquals(value, x);
 	}
 	
 	function testIterator()
@@ -449,15 +450,6 @@ class TestArrayedStack extends haxe.unit.TestCase
 		var a = stack.toArray();
 		assertEquals(a.length, 10);
 		for (i in 0...10) assertEquals(stack.pop(), a[i]);
-	}
-	
-	function testToDenseArray()
-	{
-		var stack = getStack();
-		for (i in 0...10) stack.push(i);
-		var a = stack.toDA();
-		assertEquals(a.size(), 10);
-		for (i in 0...10) assertEquals(stack.pop(), a.get(i));
 	}
 	
 	function testShuffle()

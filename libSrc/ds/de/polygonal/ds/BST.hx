@@ -32,16 +32,13 @@ package de.polygonal.ds;
 import de.polygonal.core.fmt.Sprintf;
 import de.polygonal.core.util.Assert;
 
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 #if doc
 private
 #end
 class BSTIterator<T> implements de.polygonal.ds.Itr<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	var _node:BinaryTreeNode<T>;
 	var _stack:Array<BinaryTreeNode<T>>;
@@ -95,13 +92,10 @@ class BSTIterator<T> implements de.polygonal.ds.Itr<T>
  * <p>A BST automatically arranges <em>BinaryTreeNode</em> objects so the resulting tree is a valid BST.</p>
  * <p><o>Worst-case running time in Big O notation</o></p>
  */
-#if (generic && haxe3)
+#if generic
 @:generic
 #end
 class BST<T:Comparable<T>> implements Collection<T>
-#if (generic && !haxe3)
-, implements haxe.rtti.Generic
-#end
 {
 	/**
 	 * A unique identifier for this object.<br/>
@@ -475,17 +469,6 @@ class BST<T:Comparable<T>> implements Collection<T>
 		return a;
 	}
 	#end
-	
-	/**
-	 * Returns a dense array containing all elements in this BST.<br/>
-	 * The elements are added by applying a preorder traversal.
-	 */
-	public function toDA():DA<T>
-	{
-		var a = new DA<T>();
-		if (_size > 0) _root.preorder(function(node:BinaryTreeNode<T>, userData:Dynamic):Bool { a.pushBack(node.val); return true; });
-		return a;
-	}
 	
 	/**
 	 * Duplicates this subtree. Supports shallow (structure only) and deep copies (structure & elements).

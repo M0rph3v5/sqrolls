@@ -50,8 +50,12 @@ class ArrayUtil
 		var a:Array<T>;
 		#if (flash || js)
 		a = untyped __new__(Array, x);
+		#elseif cpp
+		a = new Array<T>();
+		a[x - 1] = cast null;
 		#else
 		a = new Array<T>();
+		for (i in 0...x) a[i] = null;
 		#end
 		return a;
 	}
@@ -64,6 +68,9 @@ class ArrayUtil
 		#if (flash || js)
 		if (a.length > x)
 			untyped a.length = x;
+		return a;
+		#elseif cpp
+		untyped a.length = x;
 		return a;
 		#else
 		var b = new Array<T>();
@@ -189,13 +196,7 @@ class ArrayUtil
 		if ((l <= max) && comparator(a[l], x) == 0)
 			return l;
 		else
-		{
-			#if (neko && !haxe3)
-			return haxe.Int32.toInt(haxe.Int32.complement(haxe.Int32.ofInt(l)));
-			#else
 			return ~l;
-			#end
-		}
 	}
 	
 	/**
@@ -226,13 +227,7 @@ class ArrayUtil
 		if ((l <= max) && (a[l] == x))
 			return l;
 		else
-		{
-			#if (neko && !haxe3)
-			return haxe.Int32.toInt(haxe.Int32.complement(haxe.Int32.ofInt(l)));
-			#else
 			return ~l;
-			#end
-		}
 	}
 	
 	/**
@@ -263,13 +258,7 @@ class ArrayUtil
 		if ((l <= max) && (a[l] == x))
 			return l;
 		else
-		{
-			#if (neko && !haxe3)
-			return haxe.Int32.toInt(haxe.Int32.complement(haxe.Int32.ofInt(l)));
-			#else
 			return ~l;
-			#end
-		}
 	}
 	
 	/**
