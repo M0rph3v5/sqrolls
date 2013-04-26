@@ -37,15 +37,16 @@ import de.polygonal.core.time.Timeline;
 
 class MainLoop extends Entity
 {
-	public var paused:Bool = true;
+	public var paused:Bool;
 	
-	public function new()
+	public function new(run:Bool)
 	{
 		super();
 		Timebase.attach(this);
+		this.paused = run == false;
 	}
 	
-	override function onFree():Void 
+	override function onFree():Void
 	{
 		Timebase.detach(this);
 	}
@@ -67,7 +68,9 @@ class MainLoop extends Entity
 				
 				Timeline.get().advance();
 				commit();
-				tick(userData);
+				var timeDelta:Float = userData;
+				
+				propagateTick(timeDelta, this);
 				
 				#if verbose
 				var s = Entity.printTopologyStats();
@@ -75,8 +78,6 @@ class MainLoop extends Entity
 				#end
 			
 			case TimebaseEvent.RENDER:
-				if (paused) return;
-				
 				#if (!no_traces && log)
 				//identify draw step
 				var log = de.polygonal.core.Root.log;
@@ -85,7 +86,10 @@ class MainLoop extends Entity
 						handler.setPrefix(de.polygonal.core.fmt.Sprintf.format('r%03d', [Timebase.processedFrames % 1000]));
 				#end
 				
-				draw(userData);
+				if (paused) return;
+				
+				var alpha:Float = userData;
+				propagateDraw(alpha, this);
 		}
 	}
 }

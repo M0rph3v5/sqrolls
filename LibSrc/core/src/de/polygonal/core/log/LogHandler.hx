@@ -215,6 +215,14 @@ class LogHandler implements IObserver
 	}
 	
 	/**
+	 * The current logging format encoded as a bitfield.
+	 */
+	public function getFormat():Int
+	{
+		return _bits;
+	}
+	
+	/**
 	 * Adds extra information to a logging message.<br/>
 	 * Example:<br/><br/>
 	 * <pre class="prettyprint">
@@ -232,7 +240,7 @@ class LogHandler implements IObserver
 	public function setFormat(flags:Int, sep = ':'):Void
 	{
 		if (flags == 0) nulf();
-		else setf(flags);
+		_bits = flags;
 		_separator = sep;
 	}
 	
@@ -300,7 +308,7 @@ class LogHandler implements IObserver
 		
 		if (hasf(NAME))
 		{
-			name = _message.log.getName();
+			name = _message.log.name;
 			nameFormat = '%-20s ';
 			if (hasf(NAME_SHORT))
 			{
@@ -315,7 +323,7 @@ class LogHandler implements IObserver
 		var lineFormat = '%s';
 		
 		if (hasf(LINE))
-			line = Sprintf.format('l.%04d ', [_message.posInfos.lineNumber]);
+			line = Sprintf.format('l%04d ', [_message.posInfos.lineNumber]);
 		
 		var classMethod = '';
 		var classMethodFormat = '%s';
@@ -347,6 +355,6 @@ class LogHandler implements IObserver
 	
 	function init():Void
 	{
-		setf(LogHandler.ID | LogHandler.LEVEL | LogHandler.LINE | LogHandler.CLASS | LogHandler.CLASS_SHORT | LogHandler.NAME_SHORT | LogHandler.METHOD);
+		setf(LogHandler.NAME | LogHandler.LEVEL | LogHandler.LINE | LogHandler.CLASS | LogHandler.CLASS_SHORT | LogHandler.NAME_SHORT | LogHandler.METHOD);
 	}
 }

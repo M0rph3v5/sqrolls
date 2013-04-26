@@ -38,14 +38,14 @@ import de.polygonal.ds.Bits;
 import de.polygonal.ds.HashableItem;
 import de.polygonal.ds.ListSet;
 import de.polygonal.ds.pooling.DynamicObjectPool;
-
-//using de.polygonal.ds.Bits;
+import haxe.ds.Vector;
+import haxe.ds.IntMap;
 
 /**
  * <p>An object with state that is observed by an <em>IObserver</em> implementation.</p>
  * <p>See <a href="http://en.wikipedia.org/wiki/Observer_pattern" target="_blank">http://en.wikipedia.org/wiki/Observer_pattern</a>.</p>
  */
-class Observable extends HashableItem, implements IObservable
+class Observable extends HashableItem implements IObservable
 {
 	static var _nextGUID = 1;
 	static var _registry:ListSet<Observable>;
@@ -168,7 +168,7 @@ class Observable extends HashableItem, implements IObservable
 	var _stack:ArrayedStack<Dynamic>;
 	var _type:Int;
 	var _userData:Dynamic;
-	var _nodeLookup:IntHash<ObserverNode>;
+	var _nodeLookup:IntMap<ObserverNode>;
 	
 	/**
 	 * @param poolSize because observers are stored internally in a linked list it's necessary to create a node object per observer.<br/>
@@ -196,7 +196,7 @@ class Observable extends HashableItem, implements IObservable
 		_stack         = new ArrayedStack<Dynamic>();
 		_type          = 0;
 		_userData      = null;
-		_nodeLookup    = new IntHash();
+		_nodeLookup    = new IntMap();
 	}
 	
 	/**
@@ -282,7 +282,7 @@ class Observable extends HashableItem, implements IObservable
 		_hook          = null;
 		_observer      = null;
 		_observerCount = 0;
-		_nodeLookup    = new IntHash();
+		_nodeLookup    = new IntMap();
 		
 		if (purge)
 		{
@@ -670,11 +670,7 @@ class ObserverNode
 	
 	public var all:Bool;
 	
-	#if flash10
-	public var mask:flash.Vector<Int>;
-	#else
-	public var mask:Array<Int>;
-	#end
+	public var mask:Vector<Int>;
 	
 	public function new()
 	{
@@ -684,12 +680,9 @@ class ObserverNode
 		groupBits = 0;
 		all = false;
 		var k = 1 << ObserverMacro.NUM_GROUP_BITS;
-		#if flash10
-		mask = new flash.Vector<Int>(k, true);
-		#else
-		mask = de.polygonal.ds.ArrayUtil.alloc(k);
+		
+		mask = new Vector<Int>(k);
 		for (i in 0...k) mask[i] = 0;
-		#end
 	}
 }
 
