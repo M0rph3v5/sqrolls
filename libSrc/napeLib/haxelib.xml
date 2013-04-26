@@ -1,0 +1,7 @@
+<project name="nape" url="https://github.com/deltaluca/nape" license="BSD">
+	<user name="deltaluca"/>
+	<tag v="cross"/>
+	<tag v="game"/>
+	<description>Nape 2D Physics engine</description>
+	<version name="2.0.8">Bug fix in LineJoint w/ maxForce previously being ignored.</version>
+</project>
