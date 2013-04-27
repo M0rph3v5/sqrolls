@@ -33,6 +33,7 @@ class Game {
 		engine.addSystem(new CoordS(), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		
+		creator.createImage("bg");
 		creator.createGrid();		
 	}
 	

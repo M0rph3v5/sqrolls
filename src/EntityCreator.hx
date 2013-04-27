@@ -11,8 +11,8 @@ class EntityCreator {
 		this.graphics = graphics;
 	}
 	
-	public function createImage(){
-		var image = new Image(graphics.getTexture("Character Boy"));
+	public function createImage(textureId:String){
+		var image = new Image(graphics.getTexture(textureId));
 		
 		var e = new Entity()
 		.add(new Display(image, new Mat23()))
