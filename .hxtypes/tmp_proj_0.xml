@@ -313,7 +313,6 @@
 	<typedef path="Random" params="" file="src/Imports.hx" module="Imports"><c path="de.polygonal.core.math.random.Random"/></typedef>
 	<typedef path="Tile" params="" file="src/Imports.hx" module="Imports"><c path="components.Tile"/></typedef>
 	<typedef path="GridRenderS" params="" file="src/Imports.hx" module="Imports"><c path="systems.GridRenderS"/></typedef>
-	<typedef path="TileItem" params="" file="src/Imports.hx" module="Imports"><c path="components.TileItem"/></typedef>
 	<typedef path="Socket" params="" file="src/Imports.hx" module="Imports"><c path="flash.net.Socket"/></typedef>
 	<typedef path="Event" params="" file="src/Imports.hx" module="Imports"><c path="flash.events.Event"/></typedef>
 	<typedef path="ProgressEvent" params="" file="src/Imports.hx" module="Imports"><c path="flash.events.ProgressEvent"/></typedef>
@@ -2073,31 +2072,14 @@
 </f></new>
 	</class>
 	<class path="components.Grid" params="" file="src/components/Grid.hx">
-		<tiles public="1"><t path="Array2"><t path="Tile"/></t></tiles>
+		<grid public="1"><t path="Array2"><t path="Tile"/></t></grid>
 		<new public="1" set="method" line="8"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="components.Tile" params="" file="src/components/Tile.hx">
-		<push public="1" set="method" line="19"><f a="tileItem">
-	<t path="TileItem"/>
-	<x path="Void"/>
-</f></push>
-		<stack public="1"><c path="Array"><t path="TileItem"/></c></stack>
+		<stack public="1"><c path="Array"><x path="Int"/></c></stack>
 		<pos public="1"><t path="Vec2"/></pos>
-		<onTileItemAdded public="1"><t path="Signal2">
-	<c path="components.Tile"/>
-	<t path="TileItem"/>
-</t></onTileItemAdded>
-		<onChanged public="1"><t path="Signal1"><c path="components.Tile"/></t></onChanged>
-		<new public="1" set="method" line="12"><f a="pos">
+		<new public="1" set="method" line="9"><f a="pos">
 	<t path="Vec2"/>
-	<x path="Void"/>
-</f></new>
-	</class>
-	<class path="components.TileItem" params="" file="src/components/TileItem.hx">
-		<number public="1"><x path="Int"/></number>
-		<textField public="1"><t path="TextField"/></textField>
-		<new public="1" set="method" line="9"><f a="number">
-	<x path="Int"/>
 	<x path="Void"/>
 </f></new>
 	</class>
@@ -18992,19 +18974,15 @@
 	</class>
 	<class path="systems.GridRenderS" params="" file="src/systems/GridRenderS.hx">
 		<extends path="ash.tools.ListIteratingSystem"><c path="systems.GridRenderN"/></extends>
-		<updateN set="method" line="36"><f a="node:time">
+		<updateN set="method" line="29"><f a="node:time">
 	<c path="systems.GridRenderN"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></updateN>
-		<remove set="method" line="32"><f a="node">
+		<remove set="method" line="25"><f a="node">
 	<c path="systems.GridRenderN"/>
 	<x path="Void"/>
 </f></remove>
-		<onTileChanged set="method" line="25"><f a="tile">
-	<t path="Tile"/>
-	<x path="Void"/>
-</f></onTileChanged>
 		<add set="method" line="18"><f a="node">
 	<c path="systems.GridRenderN"/>
 	<x path="Void"/>
