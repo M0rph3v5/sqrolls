@@ -10,6 +10,7 @@ class ScrollN extends Node<ScrollN>{
 class ScrollS extends ListIteratingSystem<ScrollN>{
 	var mouseInput:MouseInput;
 	var creator:EntityCreator;
+	var engine:Engine;
 	var scrollList:NodeList<ScrollN>;
 	var activeScrollNode:ScrollN;
 	
@@ -20,11 +21,14 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		this.mouseInput.onMouseDown.add(onMouseDown);
 		this.mouseInput.onMouseUp.add(onMouseUp);
 		this.mouseInput.onMouseMove.add(onMouseMove);		
+		
+		this.creator = creator;
 	}	
 			
 	override public function addToEngine(engine:Engine){
 		super.addToEngine(engine);
 		scrollList = engine.getNodeList(ScrollN);		
+		this.engine = engine;
 	}
 		
 	function updateN(node:ScrollN, time:Float){
@@ -36,8 +40,10 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		// figure out coords you need to take				
 		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
 		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
+		trace("xd " + xd + " yd " + yd);
 		if (xd == yd)
 			return;
+		
 		
 		var xb = Math.abs(xd) > Math.abs(yd);
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
@@ -46,10 +52,22 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(Math.abs(xd)) : Std.int(Math.abs(yd)));
 				
 		// keep track of tile items on scroll node
+		for (e in node.scroll.tileItems) {
+			engine.removeEntity(e);
+		}
+		
+		node.scroll.tileItems.splice(0, node.scroll.tileItems.length);
 		
 		// create new tileitems for the ones missing
-		
-		// remove ones that are not needed anymore
+		for (coord in coords) {
+			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
+				if (!t.has(Tile))
+					continue;
+				
+				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), Random.randRange(0, 9), coord);
+				node.scroll.tileItems.push(tileItem);
+			}			
+		}
 		
 	}
 	
@@ -83,6 +101,9 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	}
 	
 	function onMouseUp(pos:Vec2) {
+		if (activeScrollNode == null)
+			return;
+		
 		activeScrollNode.scroll.dragging = false;
 	}
 	
@@ -90,7 +111,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
-		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos);
+		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
 	}
 	
 }

@@ -56,16 +56,18 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createScroll(data:Array<Int>, ?beginPoint:Vec2) {
+	public function createScroll(grid:Grid, data:Array<Int>, ?beginPoint:Vec2) {
 		var image = new Image(graphics.getTexture("Chest Closed"));
 		
 		var e = new Entity()
-		.add(new Display(image, Mat23.scale(0.3, 0.3)))
 		.add(new Coord(beginPoint))
-		.add(new Scroll(data, beginPoint))
+		.add(new Scroll(grid, data, beginPoint))
+				
+		.add(new Display(image, Mat23.scale(0.3, 0.3)))
 		.add(new Transform());
 		
 		engine.addEntity(e);
+		return e;
 	}
 	
 	public function createScoreUI(){
