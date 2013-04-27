@@ -41,8 +41,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
 		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
 		//trace("xd " + xd + " yd " + yd);
-		if (xd == yd)
-			return;
+		//if (xd == yd)
+//			return;
 		
 		var xb = Math.abs(xd) > Math.abs(yd);
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
