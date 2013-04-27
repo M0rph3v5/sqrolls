@@ -28,7 +28,7 @@ class Game {
 		engine.addSystem(new RenderS(container), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
 		
-		creator.createGrid();
+		creator.createGrid();		
 	}
 	
 	function start(){
@@ -37,6 +37,7 @@ class Game {
 		t.onTick.add(function(time:Float){
 			engine.update(time);
 		});
+				
 	}
 }
 

@@ -17,6 +17,18 @@ class GridS extends ListIteratingSystem<GridN>{
 	}
 	
 	function updateN(node:GridN, time:Float){
+		calculateTotalInGrid(node);
+	}
+	
+	function calculateTotalInGrid(node:GridN) {
+		var total = 0;
+		node.grid.tiles.walk(function(current,x,y) {
+			var topTileItem = current.stack[current.stack.length-1];
+			total += topTileItem.number;
+			return current;
+		});
+		node.grid.total = total;
+		trace("total " + total);
 	}
 	
 }
