@@ -23,7 +23,7 @@ class ClientMain {
 
 		Lib.current.stage.color = 0x000000;
 		starling = new Starling(ClientStage, Lib.current.stage);
-		starling.showStats = true;
+		//starling.showStats = true;
 		starling.start();
 	}
 	
