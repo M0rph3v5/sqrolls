@@ -27,6 +27,7 @@ class Game {
 		engine.addSystem(new GridRenderS(container), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
+		engine.addSystem(new ScrollS(mouseInput), priority++);
 		
 		creator.createGrid();		
 	}

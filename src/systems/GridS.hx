@@ -29,8 +29,8 @@ class GridS extends ListIteratingSystem<GridN>{
 	function onMouseDown(pos:Vec2) {
 		
 		var gridPos = gridPositionForStagePosition(pos);
-		if (gridPos != null) {
-			trace("in teh grid pos" + gridPos);
+		if (gridPos != null) {			
+			creator.createScroll([0,1,2], new Vec2(0,0));
 		}
 
 	}
@@ -70,6 +70,7 @@ class GridS extends ListIteratingSystem<GridN>{
 		node.grid.total = total;
 		node.grid.columnTotals = columnTotals;
 		node.grid.rowTotals = rowTotals;
+		
 	}
 	
 	function isStagePositionInGrid(node:GridN, pos:Vec2) {

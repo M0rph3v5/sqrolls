@@ -29,6 +29,8 @@ typedef Random = de.polygonal.core.math.random.Random;
 typedef Tile = components.Tile;
 typedef GridRenderS = systems.GridRenderS;
 typedef TileItem = components.TileItem;
+typedef ScrollS = systems.ScrollS;
+typedef Scroll = components.Scroll;
 
 #if flash
 typedef Socket = flash.net.Socket;
