@@ -61,14 +61,17 @@ class GridS extends ListIteratingSystem<GridN>{
 		var columnTotals = new Array();
 		var rowTotals = new Array();
 		var total = 0;
-		node.grid.tiles.walk(function(current,x,y) {
+		node.grid.tiles.walk(function(current:Array<Entity>,x,y) {
 			var currentColumnTotal = columnTotals[x];
 			var currentRowTotal = rowTotals[y];			
 			
-			var topTileItem = current.stack[current.stack.length-1];			
-			total += topTileItem.number;
-			currentColumnTotal += topTileItem.number;
-			currentRowTotal += topTileItem.number;
+			for(tile in current){
+				if(!tile.has(Tile)) continue;
+				var topTileItem = tile.get(Tile).stack[tile.get(Tile).stack.length-1];
+				total += topTileItem.get(TileItem).number;
+				currentColumnTotal += topTileItem.get(TileItem).number;
+				currentRowTotal += topTileItem.get(TileItem).number;
+			}
 			
 			columnTotals[x] = currentColumnTotal;
 			rowTotals[y] = currentRowTotal;
