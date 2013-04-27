@@ -112,6 +112,10 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			return;
 		
 		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
+		if(Math.abs(activeScrollNode.scroll.endPoint.x - activeScrollNode.scroll.beginPoint.x) < Math.abs(activeScrollNode.scroll.endPoint.y - activeScrollNode.scroll.beginPoint.y)){
+			activeScrollNode.scroll.endPoint.x = activeScrollNode.scroll.beginPoint.x;
+		}else{
+			activeScrollNode.scroll.endPoint.y = activeScrollNode.scroll.beginPoint.y;
+		}
 	}
-	
 }
