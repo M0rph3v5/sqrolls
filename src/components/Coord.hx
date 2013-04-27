@@ -1,5 +1,7 @@
 package components;
 
+using Imports;
+
 class Coord {
 	public var coord:Vec2;
 	

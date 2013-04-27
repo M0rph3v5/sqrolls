@@ -27,10 +27,17 @@ typedef Grid = components.Grid;
 typedef Array2<T> = de.polygonal.ds.Array2<T>;
 typedef Random = de.polygonal.core.math.random.Random;
 typedef Tile = components.Tile;
-typedef GridRenderS = systems.GridRenderS;
 typedef TileItem = components.TileItem;
 typedef ScrollS = systems.ScrollS;
 typedef Scroll = components.Scroll;
+typedef GridCitizen = components.GridCitizen;
+typedef TileCitizen = components.TileCitizen;
+typedef Coord = components.Coord;
+typedef TileItemRender = components.TileItemRender;
+typedef GridCitizenS = systems.GridCitizenS;
+typedef TileCitizenS = systems.TileCitizenS;
+typedef TileItemRenderS = systems.TileItemRenderS;
+typedef CoordS = systems.CoordS;
 
 #if flash
 typedef Socket = flash.net.Socket;

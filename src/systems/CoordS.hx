@@ -1,8 +1,10 @@
 package systems;
 
+using Imports;
+
 class CoordN extends Node<CoordN>{
 	public var coord:Coord;
-	public var transform:Tansform;
+	public var transform:Transform;
 }
 
 class CoordS extends ListIteratingSystem<CoordN>{

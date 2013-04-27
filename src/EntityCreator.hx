@@ -61,7 +61,7 @@ class EntityCreator {
 		
 		var e = new Entity()
 		.add(new Display(image, Mat23.scale(0.3, 0.3)))
-		.add(new Coord());
+		.add(new Coord())
 		.add(new Scroll(data, beginPoint))
 		.add(new Transform());
 		
