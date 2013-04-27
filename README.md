@@ -1,6 +1,3 @@
-sqrolls
+Sqrolls, #LD26 repo
 =======
 
-#LD26 repo
-
-loltest
