@@ -19,6 +19,7 @@ class Scroll {
 		this.beginPoint = beginPoint;
 		this.endPoint = beginPoint.copy();
 		this.grid = grid;
+		this.data = data;
 		tileItems = new Array();
 	}
 }

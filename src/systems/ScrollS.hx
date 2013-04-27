@@ -57,14 +57,16 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		node.scroll.tileItems.splice(0, node.scroll.tileItems.length);
 		
 		// create new tileitems for the ones missing
+		var index = 0;
 		for (coord in coords) {
 			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
 				if (!t.has(Tile))
 					continue;
 				
-				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), Random.randRange(0, 9), coord);
+				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
-			}			
+			}
+			index++;
 		}
 		
 	}
