@@ -23,7 +23,8 @@ class EntityCreator {
 	
 	public function createGrid(){
 		var e = new Entity()
-		.add(new Grid());
+		.add(new Grid())
+		.add(new Transform());
 		
 		engine.addEntity(e);
 	}

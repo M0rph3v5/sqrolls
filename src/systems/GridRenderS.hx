@@ -4,6 +4,7 @@ using Imports;
 
 class GridRenderN extends Node<GridRenderN>{
 	public var grid:Grid;
+	public var transform:Transform;
 }
 
 class GridRenderS extends ListIteratingSystem<GridRenderN>{
