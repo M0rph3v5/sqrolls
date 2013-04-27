@@ -11,6 +11,6 @@ class CoordS extends ListIteratingSystem<CoordN>{
 	}
 	
 	function updateN(node:CoordN, time:Float){
-		transform.position = 
+		node.transform.position = Utils.positionForCoord(node.coord.coord);
 	}
 }
