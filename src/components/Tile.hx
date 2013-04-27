@@ -12,6 +12,8 @@ class Tile {
 	public function new(pos:Vec2){
 		this.pos = pos;
 		stack = new Array<TileItem>();
+		onChanged = new Signal1();
+		onTileItemAdded = new Signal2();
 	}
 	
 	public function push(tileItem:TileItem){
