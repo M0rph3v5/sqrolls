@@ -5,7 +5,6 @@ using Imports;
 class EntityCreator {
 	var engine:Engine;
 	var graphics:Graphics;
-	var world:Entity;
 	
 	public function new(engine:Engine, graphics:Graphics){
 		this.engine = engine;
@@ -18,6 +17,13 @@ class EntityCreator {
 		var e = new Entity()
 		.add(new Display(image, new Mat23()))
 		.add(new Transform());
+		
+		engine.addEntity(e);
+	}
+	
+	public function createGrid(){
+		var e = new Entity()
+		.add(new Grid());
 		
 		engine.addEntity(e);
 	}

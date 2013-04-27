@@ -17,7 +17,6 @@ class MouseInput {
 		});
 		stage.addEventListener(MouseEvent.RIGHT_CLICK, function(e:MouseEvent){
 			onRightClick.dispatch(new Vec2(e.stageX, e.stageY));
-		});
-		
+		});		
 	}
 }

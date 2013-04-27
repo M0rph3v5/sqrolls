@@ -22,6 +22,14 @@ typedef M = de.polygonal.core.math.Mathematics;
 typedef Space = nape.space.Space;
 typedef Body = nape.phys.Body;
 
+typedef GridS = systems.GridS;
+typedef Grid = components.Grid;
+typedef Array2<T> = de.polygonal.ds.Array2<T>;
+typedef Random = de.polygonal.core.math.random.Random;
+typedef Tile = components.Tile;
+typedef GridRenderS = systems.GridRenderS;
+typedef TileItem = components.TileItem;
+
 #if flash
 typedef Socket = flash.net.Socket;
 typedef Event = flash.events.Event;
@@ -48,4 +56,5 @@ typedef Image = starling.display.Image;
 typedef MouseEvent = flash.events.MouseEvent;
 typedef KeyboardEvent = flash.events.KeyboardEvent;
 typedef Keyboard = flash.ui.Keyboard;
+typedef TextField = starling.text.TextField;
 #end
