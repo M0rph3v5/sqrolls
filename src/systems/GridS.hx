@@ -31,7 +31,8 @@ class GridS extends ListIteratingSystem<GridN>{
 		for (node in gridList) {
 	
 			var coord = Utils.coordForPosition(pos, node.grid);
-			creator.createScroll(node.grid, [0,1,2], coord);		
+			if (coord != null)
+				creator.createScroll(node.grid, [0,1,2], coord);		
 		}
 
 	}

@@ -44,13 +44,12 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (xd == yd)
 			return;
 		
-		
 		var xb = Math.abs(xd) > Math.abs(yd);
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
 		if (increment.length > 0)
 			increment.length = 1;
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(Math.abs(xd)) : Std.int(Math.abs(yd)));
-				
+
 		// keep track of tile items on scroll node
 		for (e in node.scroll.tileItems) {
 			engine.removeEntity(e);
@@ -59,14 +58,16 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		node.scroll.tileItems.splice(0, node.scroll.tileItems.length);
 		
 		// create new tileitems for the ones missing
+		var index = 0;
 		for (coord in coords) {
 			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
 				if (!t.has(Tile))
 					continue;
 				
-				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), Random.randRange(0, 9), coord);
+				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
-			}			
+			}
+			index++;
 		}
 		
 	}
@@ -77,11 +78,11 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var currentPosition = start.copy();
 		var positions = new Array();
 		
-		for (i in 0...length) {
+		for (i in 0...length) {	
 			currentPosition.x += increment.x;
 			currentPosition.y += increment.y;
 			
-			positions.push(currentPosition.copy());			
+			positions.push(currentPosition.copy());
 		}
 		
 		return positions;
@@ -111,7 +112,9 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
-		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
+		var targetEndPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
+		if (targetEndPoint != null)
+			activeScrollNode.scroll.endPoint = targetEndPoint;
 		if(Math.abs(activeScrollNode.scroll.endPoint.x - activeScrollNode.scroll.beginPoint.x) < Math.abs(activeScrollNode.scroll.endPoint.y - activeScrollNode.scroll.beginPoint.y)){
 			activeScrollNode.scroll.endPoint.x = activeScrollNode.scroll.beginPoint.x;
 		}else{

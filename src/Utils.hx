@@ -5,9 +5,9 @@ class Utils {
 		var x = Math.floor((pos.x - 76) / 85);
 		var y = Math.floor((pos.y - 183) / 85);
 		
-		if (x < 0 || x > grid.columns)
+		if (x < 0 || x >= grid.columns)
 			return null;
-		if (y < 0 || y > grid.rows)
+		if (y < 0 || y >= grid.rows)
 			return null;
 			
 		return new Vec2(x, y);
