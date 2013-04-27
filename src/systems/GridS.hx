@@ -101,6 +101,4 @@ class GridS extends ListIteratingSystem<GridN>{
 		return null;
 	}
 	
-	
-	
 }
