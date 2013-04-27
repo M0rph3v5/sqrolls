@@ -18,8 +18,7 @@ class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
 		node.tileItemRender.tf = new TextField(50,50,node.tileItem.number+"");
 		node.tileItemRender.tf.color = 0xffffff;
 		node.tileItemRender.displayObjectContainer.addChild(node.tileItemRender.tf);
-		node.transform.transform.tx = node.gridCitizen.pos.x * 50;
-		node.transform.transform.ty = node.gridCitizen.pos.y * 50;
+		node.transform.position = Utils.positionForCoord(node.gridCitizen.pos);
 	}
 	
 	public function remove(node:TileItemRenderN){
