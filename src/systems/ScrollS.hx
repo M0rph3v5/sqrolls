@@ -40,17 +40,15 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		// figure out coords you need to take				
 		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
 		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
-		trace("xd " + xd + " yd " + yd);
 		if (xd == yd)
 			return;
-		
 		
 		var xb = Math.abs(xd) > Math.abs(yd);
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
 		if (increment.length > 0)
 			increment.length = 1;
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(Math.abs(xd)) : Std.int(Math.abs(yd)));
-				
+
 		// keep track of tile items on scroll node
 		for (e in node.scroll.tileItems) {
 			engine.removeEntity(e);
@@ -77,11 +75,11 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var currentPosition = start.copy();
 		var positions = new Array();
 		
-		for (i in 0...length) {
+		for (i in 0...length) {	
 			currentPosition.x += increment.x;
 			currentPosition.y += increment.y;
 			
-			positions.push(currentPosition.copy());			
+			positions.push(currentPosition.copy());
 		}
 		
 		return positions;
@@ -111,7 +109,9 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
-		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
+		var targetEndPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
+		if (targetEndPoint != null)
+			activeScrollNode.scroll.endPoint = targetEndPoint;
 	}
 	
 }
