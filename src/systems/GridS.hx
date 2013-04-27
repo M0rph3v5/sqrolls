@@ -28,9 +28,14 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 	function onMouseDown(pos:Vec2) {
 		
-		var gridPos = gridPositionForStagePosition(pos);
-		if (gridPos != null) {			
-			creator.createScroll([0,1,2], Utils.coordForPosition(pos));
+		for (node in gridList) {
+		
+			if (!isStagePositionInGrid(node, pos)) 
+				continue;		
+			
+			var coord = Utils.coordForPosition(pos, node.grid);
+			creator.createScroll(node.grid, [0,1,2], coord);
+		
 		}
 
 	}
@@ -88,17 +93,6 @@ class GridS extends ListIteratingSystem<GridN>{
 		var gridPosition = node.transform.position;
 		var gridRectangle = new Rectangle(gridPosition.x, gridPosition.y, node.grid.width(), node.grid.height());
 		return gridRectangle.containsPoint(pos.toPoint());
-	}
-	
-	function gridPositionForStagePosition(pos:Vec2) {
-		for (node in gridList) {
-			calculateTotalsInGrid(node);			
-			
-			if (!isStagePositionInGrid(node, pos)) 
-				continue;		
-			return new Vec2(pos.x - node.transform.position.x, pos.y - node.transform.position.y);		 
-		}
-		return null;
 	}
 	
 }

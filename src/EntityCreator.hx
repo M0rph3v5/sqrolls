@@ -56,7 +56,7 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createScroll(data:Array<Int>, ?beginPoint:Vec2) {
+	public function createScroll(grid:Grid, data:Array<Int>, ?beginPoint:Vec2) {
 		var dpo = new Sprite();
 		
 		var e = new Entity()
@@ -65,8 +65,10 @@ class EntityCreator {
 		.add(new ScrollRender(dpo))
 		.add(new Transform())
 		.add(new Display(dpo, Mat23.scale(0.3, 0.3)));
+
 		
 		engine.addEntity(e);
+		return e;
 	}
 	
 	public function createScoreUI(grid:Grid){
