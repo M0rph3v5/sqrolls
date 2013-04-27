@@ -50,6 +50,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
+		var posz = Utils.coordForPosition(pos);
+		trace(posz);
 		activeScrollNode.transform.position = pos;
 	}
 	
