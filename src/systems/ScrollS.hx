@@ -77,6 +77,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		
 		var currentPosition = start.copy();
 		var positions = new Array();
+		positions.push(start.copy());
 		
 		for (i in 0...length) {	
 			currentPosition.x += increment.x;
