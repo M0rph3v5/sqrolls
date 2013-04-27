@@ -14,10 +14,20 @@ class GridS extends ListIteratingSystem<GridN>{
 		super(GridN, updateN);
 		this.creator = creator;
 		this.mouseInput = mouseInput;
+		this.mouseInput.onMouseDown.add(onMouseDown);
+		this.mouseInput.onMouseUp.add(onMouseUp);
+	}
+	
+	function onMouseDown(pos:Vec2) {
+		trace("down");
+	}
+	
+	function onMouseUp(pos:Vec2) {
+		trace("up");
 	}
 	
 	function updateN(node:GridN, time:Float){
-		calculateTotalInGrid(node);
+		//calculateTotalInGrid(node);
 	}
 	
 	function calculateTotalInGrid(node:GridN) {
@@ -28,7 +38,10 @@ class GridS extends ListIteratingSystem<GridN>{
 			return current;
 		});
 		node.grid.total = total;
-		trace("total " + total);
+	}
+	
+	function canStartDraggingAtPosition(pos:Vec2) { 
+		
 	}
 	
 }
