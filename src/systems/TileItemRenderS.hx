@@ -15,8 +15,9 @@ class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
 	}
 	
 	public function add(node:TileItemRenderN){
-		node.tileItemRender.tf = new TextField(50,50,node.tileItem.number+"");
+		node.tileItemRender.tf = new TextField(85,85,node.tileItem.number+"");
 		node.tileItemRender.tf.color = 0xffffff;
+		node.tileItemRender.tf.fontSize = 30;
 		node.tileItemRender.displayObjectContainer.addChild(node.tileItemRender.tf);
 		node.transform.position = Utils.positionForCoord(node.gridCitizen.pos);
 	}
