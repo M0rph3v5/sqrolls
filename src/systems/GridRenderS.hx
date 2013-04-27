@@ -26,11 +26,11 @@ class GridRenderS extends ListIteratingSystem<GridRenderN>{
 	}
 	
 	function onTileItemAdded(tile:Tile, tileItem:TileItem){
-		tileItem.textField = new TextField(50, 50, tileItem.number + "");
+		/*tileItem.textField = new TextField(50, 50, tileItem.number + "");
 		tileItem.textField.x = tile.pos.x * 50;
 		tileItem.textField.y = tile.pos.y * 50;
 		tileItem.textField.color = 0xffffff;
-		container.addChild(tileItem.textField);
+		container.addChild(tileItem.textField);*/
 	}
 	
 	function remove(node:GridRenderN){

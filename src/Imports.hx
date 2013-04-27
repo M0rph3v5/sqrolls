@@ -29,6 +29,8 @@ typedef Random = de.polygonal.core.math.random.Random;
 typedef Tile = components.Tile;
 typedef GridRenderS = systems.GridRenderS;
 typedef TileItem = components.TileItem;
+typedef GridCitizen = components.GridCitizen;
+typedef TileCitizen = components.TileCitizen;
 
 #if flash
 typedef Socket = flash.net.Socket;
