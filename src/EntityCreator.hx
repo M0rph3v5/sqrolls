@@ -67,4 +67,8 @@ class EntityCreator {
 		
 		engine.addEntity(e);
 	}
+	
+	public function createScoreUI(){
+		var e = new Entity();
+	}
 }

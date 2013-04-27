@@ -52,7 +52,7 @@ class GridS extends ListIteratingSystem<GridN>{
 	}
 	
 	function updateN(node:GridN, time:Float){
-	
+		calculateTotalsInGrid(node);
 	}
 	
 	function calculateTotalsInGrid(node:GridN) {
