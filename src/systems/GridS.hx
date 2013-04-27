@@ -13,7 +13,7 @@ class GridS extends ListIteratingSystem<GridN>{
 	var gridList:NodeList<GridN>;
 	
 	public function new(creator:EntityCreator, mouseInput:MouseInput){
-		super(GridN, updateN);
+		super(GridN, updateN, add);
 		this.creator = creator;
 		this.mouseInput = mouseInput;
 		this.mouseInput.onMouseDown.add(onMouseDown);
@@ -43,6 +43,14 @@ class GridS extends ListIteratingSystem<GridN>{
 		
 	}
 	
+	function add(node:GridN){
+		node.grid.tiles.walk(function(current, x, y){
+			var newTile = creator.createTile(node.grid, new Vec2(x,y));
+			creator.createTileItem(node.grid, newTile.get(Tile), Random.randRange(0, 9), new Vec2(x,y));
+			return current;
+		});
+	}
+	
 	function updateN(node:GridN, time:Float){
 	
 	}
@@ -53,14 +61,17 @@ class GridS extends ListIteratingSystem<GridN>{
 		var columnTotals = new Array();
 		var rowTotals = new Array();
 		var total = 0;
-		node.grid.tiles.walk(function(current,x,y) {
+		node.grid.tiles.walk(function(current:Array<Entity>,x,y) {
 			var currentColumnTotal = columnTotals[x];
 			var currentRowTotal = rowTotals[y];			
 			
-			var topTileItem = current.stack[current.stack.length-1];			
-			total += topTileItem.number;
-			currentColumnTotal += topTileItem.number;
-			currentRowTotal += topTileItem.number;
+			for(tile in current){
+				if(!tile.has(Tile)) continue;
+				var topTileItem = tile.get(Tile).stack[tile.get(Tile).stack.length-1];
+				total += topTileItem.get(TileItem).number;
+				currentColumnTotal += topTileItem.get(TileItem).number;
+				currentRowTotal += topTileItem.get(TileItem).number;
+			}
 			
 			columnTotals[x] = currentColumnTotal;
 			rowTotals[y] = currentRowTotal;

@@ -19,6 +19,7 @@ class EntityCreator {
 		.add(new Transform());
 		
 		engine.addEntity(e);
+		return e;
 	}
 	
 	public function createGrid(){
@@ -27,6 +28,32 @@ class EntityCreator {
 		.add(new Transform());
 		
 		engine.addEntity(e);
+		return e;
+	}
+	
+	public function createTile(grid:Grid, pos:Vec2){
+		var e = new Entity()
+		.add(new GridCitizen(grid, pos))
+		.add(new Tile());
+		
+		engine.addEntity(e);
+		return e;
+	}
+	
+	public function createTileItem(grid:Grid, tile:Tile, number:Int, pos:Vec2){
+		var dpo = new Sprite();
+				
+		var e = new Entity()
+		.add(new TileCitizen(tile))
+		.add(new GridCitizen(grid, pos))
+		.add(new TileItem(number))
+		.add(new TileItemRender(dpo))
+		
+		.add(new Transform())
+		.add(new Display(dpo, new Mat23()));
+		
+		engine.addEntity(e);
+		return e;
 	}
 	
 	public function createScroll(data:Array<Int>, ?beginPoint:Vec2) {
