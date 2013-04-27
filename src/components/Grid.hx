@@ -6,7 +6,7 @@ class Grid {
 	public var tiles:Array2<Array<Entity>>;
 	public var columns:Int = 6;	 
 	public var rows:Int = 6;
-	public var tileSize:Int = 50;
+	public var tileSize:Int = 85;
 	
 	public var total:Int;
 	public var columnTotals:Array<Int>;
