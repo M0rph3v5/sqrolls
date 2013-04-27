@@ -9,10 +9,11 @@ class ScrollN extends Node<ScrollN>{
 
 class ScrollS extends ListIteratingSystem<ScrollN>{
 	var mouseInput:MouseInput;
+	var creator:EntityCreator;
 	var scrollList:NodeList<ScrollN>;
 	var activeScrollNode:ScrollN;
 	
-	public function new(mouseInput:MouseInput){
+	public function new(creator:EntityCreator, mouseInput:MouseInput){
 		super(ScrollN, updateN, add, remove);
 		
 		this.mouseInput = mouseInput;		
@@ -27,7 +28,45 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	}
 		
 	function updateN(node:ScrollN, time:Float){
-		// do update rendering of the scroll?
+		
+		if (!node.scroll.dragging)
+			return;
+		
+		// create tile items for everything in between begin & endpoint
+		// figure out coords you need to take				
+		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
+		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
+		if (xd == yd)
+			return;
+		
+		var xb = Math.abs(xd) > Math.abs(yd);
+		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
+		if (increment.length > 0)
+			increment.length = 1;
+		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(Math.abs(xd)) : Std.int(Math.abs(yd)));
+				
+		// keep track of tile items on scroll node
+		
+		// create new tileitems for the ones missing
+		
+		// remove ones that are not needed anymore
+		
+	}
+	
+	function ray(start:Vec2, increment:Vec2, length:Int) {
+		//trace("start point " + start + " increment " + increment + " length " + length);
+		
+		var currentPosition = start.copy();
+		var positions = new Array();
+		
+		for (i in 0...length) {
+			currentPosition.x += increment.x;
+			currentPosition.y += increment.y;
+			
+			positions.push(currentPosition.copy());			
+		}
+		
+		return positions;
 	}
 	
 	function add(node:ScrollN){
@@ -38,7 +77,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	function remove(node:ScrollN){
 		
 	}
-			
+
 	function onMouseDown(pos:Vec2) {
 		
 	}
@@ -51,7 +90,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
-		activeScrollNode.coord.coord = Utils.coordForPosition(pos);
+		activeScrollNode.scroll.endPoint = Utils.coordForPosition(pos);
 	}
 	
 }
