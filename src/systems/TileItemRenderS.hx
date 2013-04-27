@@ -3,11 +3,9 @@ package systems;
 using Imports;
 
 class TileItemRenderN extends Node<TileItemRenderN>{
-	public var tileCitizen:TileCitizen;
 	public var gridCitizen:GridCitizen;
 	public var tileItem:TileItem;
 	public var tileItemRender:TileItemRender;
-	public var display:Display;
 	public var transform:Transform;
 }
 
