@@ -29,8 +29,8 @@ class GridS extends ListIteratingSystem<GridN>{
 	function onMouseDown(pos:Vec2) {
 		
 		var gridPos = gridPositionForStagePosition(pos);
-		if (gridPos != null) {
-			trace("in teh grid pos" + gridPos);
+		if (gridPos != null) {			
+			creator.createScroll([0,1,2], new Vec2(0,0));
 		}
 
 	}
@@ -52,26 +52,33 @@ class GridS extends ListIteratingSystem<GridN>{
 	}
 	
 	function updateN(node:GridN, time:Float){
-		
+	
 	}
 	
 	function calculateTotalsInGrid(node:GridN) {
-		// columns / row totals
-		node.grid.tiles.walk(function(current,x,y) {			
-			return current;
-		});
 				
 		// total total
+		var columnTotals = new Array();
+		var rowTotals = new Array();
 		var total = 0;
-		node.grid.tiles.walk(function(current:Array<Entity>,x,y) {
-			for(e in current){
-				if(!e.has(Tile)) continue;
-				var topTileItem = e.get(Tile).stack[e.get(Tile).stack.length-1];
-				total += topTileItem.number;
-			}
+		node.grid.tiles.walk(function(current,x,y) {
+			var currentColumnTotal = columnTotals[x];
+			var currentRowTotal = rowTotals[y];			
+			
+			var topTileItem = current.stack[current.stack.length-1];			
+			total += topTileItem.number;
+			currentColumnTotal += topTileItem.number;
+			currentRowTotal += topTileItem.number;
+			
+			columnTotals[x] = currentColumnTotal;
+			rowTotals[y] = currentRowTotal;
+			
 			return current;
 		});
 		node.grid.total = total;
+		node.grid.columnTotals = columnTotals;
+		node.grid.rowTotals = rowTotals;
+		
 	}
 	
 	function isStagePositionInGrid(node:GridN, pos:Vec2) {
@@ -82,6 +89,8 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 	function gridPositionForStagePosition(pos:Vec2) {
 		for (node in gridList) {
+			calculateTotalsInGrid(node);			
+			
 			if (!isStagePositionInGrid(node, pos)) 
 				continue;		
 			return new Vec2(pos.x - node.transform.position.x, pos.y - node.transform.position.y);		 
