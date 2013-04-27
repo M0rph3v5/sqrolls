@@ -6,8 +6,8 @@ package graphics;
 
 using Imports;
 
-@:bitmap("bin/Assets.png") class Assets extends BitmapData{public function new(){super(1024, 1024);}}
-@:file("bin/Assets.xml") class AssetsXml extends ByteArray{}
+@:bitmap("assets/Assets.png") class Assets extends BitmapData{public function new(){super(1024, 1024);}}
+@:file("assets/Assets.xml") class AssetsXml extends ByteArray{}
 class Graphics {
 	var texture:Texture;
 	var xml:XML;
