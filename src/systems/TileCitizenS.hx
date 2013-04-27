@@ -12,11 +12,11 @@ class TileCitizenS extends ListIteratingSystem<TileCitizenN>{
 	}
 	
 	public function add(node:TileCitizenN){
-		tileCitizen.tile.stack.push(node);
+		node.tileCitizen.tile.stack.push(node.entity);
 	}
 	
 	public function remove(node:TileCitizenN){
-		tileCitizen.tile.stack.remove(node);
+		node.tileCitizen.tile.stack.remove(node.entity);
 	}
 	
 	public function updateN(node:TileCitizenN, time:Float){

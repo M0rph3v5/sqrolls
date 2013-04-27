@@ -30,6 +30,10 @@ typedef Tile = components.Tile;
 typedef TileItem = components.TileItem;
 typedef GridCitizen = components.GridCitizen;
 typedef TileCitizen = components.TileCitizen;
+typedef TileCitizenS = systems.TileCitizenS;
+typedef GridCitizenS = systems.GridCitizenS;
+typedef TileItemRender = components.TileItemRender;
+typedef TileItemRenderS = systems.TileItemRenderS;
 
 #if flash
 typedef Socket = flash.net.Socket;

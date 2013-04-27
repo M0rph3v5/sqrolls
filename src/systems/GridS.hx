@@ -44,7 +44,11 @@ class GridS extends ListIteratingSystem<GridN>{
 	}
 	
 	function add(node:GridN){
-		
+		node.grid.tiles.walk(function(current, x, y){
+			var newTile = creator.createTile(node.grid, new Vec2(x,y));
+			creator.createTileItem(node.grid, newTile.get(Tile), Random.randRange(0, 9), new Vec2(x,y));
+			return current;
+		});
 	}
 	
 	function updateN(node:GridN, time:Float){

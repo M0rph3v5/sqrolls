@@ -12,11 +12,14 @@ class GridCitizenS extends ListIteratingSystem<GridCitizenN>{
 	}
 	
 	public function add(node:GridCitizenN){
-		gridCitizen.grid.tiles.push(node.entity);
+		
+		var gc = node.gridCitizen;
+		gc.grid.tiles.get(Std.int(gc.pos.x), Std.int(gc.pos.y)).push(node.entity);
 	}
 	
 	public function remove(node:GridCitizenN){
-		gridCitizen.grid.tiles.remove(node.entity);
+		var gc = node.gridCitizen;
+		gc.grid.tiles.get(Std.int(gc.pos.x), Std.int(gc.pos.y)).remove(node.entity);
 	}
 	
 	public function updateN(node:GridCitizenN, time:Float){
