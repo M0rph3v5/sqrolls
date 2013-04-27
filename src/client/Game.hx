@@ -27,6 +27,7 @@ class Game {
 		engine.addSystem(new RenderS(container), priority++);
 		
 		creator.createImage();
+		trace("asdf");
 	}
 	
 	function start(){
