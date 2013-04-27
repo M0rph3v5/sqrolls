@@ -18,6 +18,7 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 	public function add(node:ScrollRenderN){
 		node.scrollRender.image = new Image(graphics.getTexture("scroll-open"));
 		node.scrollRender.displayObjectContainer.addChild(node.scrollRender.image);
+		
 	}
 	
 	public function remove(node:ScrollRenderN){
@@ -28,13 +29,20 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 		var transform:Mat23 = new Mat23();
 		transform = transform.concat(Mat23.scale(((node.scroll.tileItems.length + 1) * 85) / node.scrollRender.image.texture.width, 1));
 
+		transform = transform.concat(Mat23.translation(-85.0/2, -85.0/2));
 		if(node.scroll.beginPoint.x == node.scroll.endPoint.x){
-			transform = transform.concat(Mat23.translation(-85.0/2, -85.0/2));
-			transform = transform.concat(Mat23.rotation(Math.PI / 2)); 
-			transform = transform.concat(Mat23.translation(85.0/2, 85.0/2));
+			if(node.scroll.beginPoint.y <= node.scroll.endPoint.y){
+				transform = transform.concat(Mat23.rotation(Math.PI / 2));
+			}else{
+				transform = transform.concat(Mat23.rotation(-Math.PI / 2));
+			}
 		}else{
-			node.scrollRender.image.rotation = 0;
+			if(node.scroll.beginPoint.x <= node.scroll.endPoint.x){
+			}else{
+				transform = transform.concat(Mat23.rotation(Math.PI));
+			}
 		}
+		transform = transform.concat(Mat23.translation(85.0/2, 85.0/2));
 		
 		transform.toMatrix(node.scrollRender.image.transformationMatrix);
 	}
