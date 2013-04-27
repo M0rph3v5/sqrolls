@@ -29,12 +29,14 @@ class Game {
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
 		engine.addSystem(new ScrollS(mouseInput), priority++);
 		
+		engine.addSystem(new ScoreUIRenderS(), priority++);
 		engine.addSystem(new TileItemRenderS(), priority++);
 		engine.addSystem(new CoordS(), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		
 		creator.createImage("bg");
-		creator.createGrid();		
+		var ge = creator.createGrid();		
+		creator.createScoreUI(ge.get(Grid));
 	}
 	
 	function start(){

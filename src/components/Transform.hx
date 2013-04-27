@@ -14,7 +14,8 @@ class Transform {
 		return pos;
 	}
 	
-	public function new(){
-		transform = new Mat23();
+	public function new(?transform:Mat23){
+		if(transform == null) transform = new Mat23();
+		this.transform = transform;
 	}
 }

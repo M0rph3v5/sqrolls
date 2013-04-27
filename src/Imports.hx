@@ -38,6 +38,9 @@ typedef GridCitizenS = systems.GridCitizenS;
 typedef TileCitizenS = systems.TileCitizenS;
 typedef TileItemRenderS = systems.TileItemRenderS;
 typedef CoordS = systems.CoordS;
+typedef ScoreUIRender = components.ScoreUIRender;
+typedef ScoreUIRenderS = systems.ScoreUIRenderS;
+
 
 #if flash
 typedef Socket = flash.net.Socket;

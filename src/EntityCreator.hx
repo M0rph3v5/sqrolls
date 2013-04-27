@@ -68,7 +68,15 @@ class EntityCreator {
 		engine.addEntity(e);
 	}
 	
-	public function createScoreUI(){
-		var e = new Entity();
+	public function createScoreUI(grid:Grid){
+		var dpo = new Sprite();
+		
+		var e = new Entity()
+		.add(new ScoreUIRender(dpo, grid))
+		
+		.add(new Transform())
+		.add(new Display(dpo, Mat23.translation(575, 675)));
+		
+		engine.addEntity(e);
 	}
 }
