@@ -22,9 +22,12 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 	function calculateTotalInGrid(node:GridN) {
 		var total = 0;
-		node.grid.tiles.walk(function(current,x,y) {
-			var topTileItem = current.stack[current.stack.length-1];
-			total += topTileItem.number;
+		node.grid.tiles.walk(function(current:Array<Entity>,x,y) {
+			for(e in current){
+				if(!e.has(Tile)) continue;
+				var topTileItem = e.get(Tile).stack[e.get(Tile).stack.length-1];
+				total += topTileItem.number;
+			}
 			return current;
 		});
 		node.grid.total = total;

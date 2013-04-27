@@ -11,9 +11,4 @@ class Tile {
 		stack = new Array<TileItem>();
 		onTileItemAdded = new Signal2();
 	}
-	
-	public function push(tileItem:TileItem){
-		stack.push(tileItem);
-		onTileItemAdded.dispatch(this, tileItem);
-	}
 }

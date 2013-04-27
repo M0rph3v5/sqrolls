@@ -24,9 +24,8 @@ class Game {
 		creator = new EntityCreator(engine, graphics);
 		
 		var priority:Int = 0;
-		engine.addSystem(new GridRenderS(container), priority++);
-		engine.addSystem(new RenderS(container), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
+		engine.addSystem(new RenderS(container), priority++);
 		
 		creator.createGrid();		
 	}

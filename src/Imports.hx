@@ -27,7 +27,6 @@ typedef Grid = components.Grid;
 typedef Array2<T> = de.polygonal.ds.Array2<T>;
 typedef Random = de.polygonal.core.math.random.Random;
 typedef Tile = components.Tile;
-typedef GridRenderS = systems.GridRenderS;
 typedef TileItem = components.TileItem;
 typedef GridCitizen = components.GridCitizen;
 typedef TileCitizen = components.TileCitizen;
