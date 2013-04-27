@@ -4,6 +4,7 @@ using Imports;
 class ScrollN extends Node<ScrollN>{
 	public var scroll:Scroll;
 	public var transform:Transform;
+	public var coord:Coord;
 }
 
 class ScrollS extends ListIteratingSystem<ScrollN>{
@@ -50,9 +51,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
 		
-		var posz = Utils.coordForPosition(pos);
-		trace(posz);
-		activeScrollNode.transform.position = pos;
+		activeScrollNode.coord.coord = Utils.coordForPosition(pos);
 	}
 	
 }

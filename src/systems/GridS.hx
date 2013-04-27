@@ -30,7 +30,7 @@ class GridS extends ListIteratingSystem<GridN>{
 		
 		var gridPos = gridPositionForStagePosition(pos);
 		if (gridPos != null) {			
-			creator.createScroll([0,1,2], new Vec2(0,0));
+			creator.createScroll([0,1,2], Utils.coordForPosition(pos));
 		}
 
 	}
