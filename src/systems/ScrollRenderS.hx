@@ -19,6 +19,12 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 		node.scrollRender.image = new Image(graphics.getTexture("scroll-open"));
 		node.scrollRender.displayObjectContainer.addChild(node.scrollRender.image);
 		
+		node.scrollRender.image.color = switch(Random.randRange(0,2)){
+			case(0):0xffd0d0;
+			case(1):0xd0ffd0;
+			case(2):0xd0d0ff;
+			case(_):0;
+		}
 	}
 	
 	public function remove(node:ScrollRenderN){
