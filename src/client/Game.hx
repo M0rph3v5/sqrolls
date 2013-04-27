@@ -29,6 +29,7 @@ class Game {
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
 		engine.addSystem(new ScrollS(creator, mouseInput), priority++);
 		
+		engine.addSystem(new ScrollRenderS(graphics), priority++);
 		engine.addSystem(new ScoreUIRenderS(), priority++);
 		engine.addSystem(new TileItemRenderS(), priority++);
 		engine.addSystem(new CoordS(), priority++);

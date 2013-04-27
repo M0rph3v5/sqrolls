@@ -61,11 +61,10 @@ class EntityCreator {
 		
 		var e = new Entity()
 		.add(new Coord(beginPoint))
-		.add(new Scroll(data, beginPoint))
+		.add(new Scroll(grid, data, beginPoint))
 		.add(new ScrollRender(dpo))
 		.add(new Transform())
-		.add(new Display(dpo, Mat23.scale(0.3, 0.3)));
-
+		.add(new Display(dpo, new Mat23()));
 		
 		engine.addEntity(e);
 		return e;

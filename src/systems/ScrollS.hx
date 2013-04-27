@@ -40,7 +40,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		// figure out coords you need to take				
 		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
 		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
-		trace("xd " + xd + " yd " + yd);
+		//trace("xd " + xd + " yd " + yd);
 		if (xd == yd)
 			return;
 		
