@@ -11,9 +11,13 @@ class GridS extends ListIteratingSystem<GridN>{
 	var mouseInput:MouseInput;
 	
 	public function new(creator:EntityCreator, mouseInput:MouseInput){
-		super(GridN, updateN);
+		super(GridN, updateN, add);
 		this.creator = creator;
 		this.mouseInput = mouseInput;
+	}
+	
+	function add(node:GridN){
+		
 	}
 	
 	function updateN(node:GridN, time:Float){
