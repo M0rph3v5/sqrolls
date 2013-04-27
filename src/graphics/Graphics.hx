@@ -21,7 +21,6 @@ class Graphics {
 	}
 	
 	public function getTexture(id:String):Texture{
-		trace(id);
 		return textureAtlas.getTexture(id);
 	}
 }

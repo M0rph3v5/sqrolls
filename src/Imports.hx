@@ -40,6 +40,8 @@ typedef TileItemRenderS = systems.TileItemRenderS;
 typedef CoordS = systems.CoordS;
 typedef ScoreUIRender = components.ScoreUIRender;
 typedef ScoreUIRenderS = systems.ScoreUIRenderS;
+typedef ScrollRenderS = systems.ScrollRenderS;
+typedef ScrollRender = components.ScrollRender;
 
 
 #if flash

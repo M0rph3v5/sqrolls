@@ -12,7 +12,6 @@ class ScoreUIRenderS extends ListIteratingSystem<ScoreUIRenderN>{
 	}
 	
 	public function add(node:ScoreUIRenderN){
-		trace("!!!!!");
 		node.scoreUIRender.tf = new TextField(50,50,node.scoreUIRender.grid.total + "sdfkjasldfjasldfj");
 		node.scoreUIRender.tf.color = 0xffffff;
 		node.scoreUIRender.displayObjectContainer.addChild(node.scoreUIRender.tf);

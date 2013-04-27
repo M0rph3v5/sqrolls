@@ -57,13 +57,14 @@ class EntityCreator {
 	}
 	
 	public function createScroll(data:Array<Int>, ?beginPoint:Vec2) {
-		var image = new Image(graphics.getTexture("Chest Closed"));
+		var dpo = new Sprite();
 		
 		var e = new Entity()
-		.add(new Display(image, Mat23.scale(0.3, 0.3)))
 		.add(new Coord(beginPoint))
 		.add(new Scroll(data, beginPoint))
-		.add(new Transform());
+		.add(new ScrollRender(dpo))
+		.add(new Transform())
+		.add(new Display(dpo, Mat23.scale(0.3, 0.3)));
 		
 		engine.addEntity(e);
 	}
