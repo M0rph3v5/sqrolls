@@ -30,7 +30,7 @@ class GoalS extends ListIteratingSystem<GoalN>{
 		for(x in 0...node.gameCitizen.game.grid.tiles.getW()){
 			for(y in 0...node.gameCitizen.game.grid.tiles.getH()){
 				for(i in node.gameCitizen.game.grid.tiles.get(x,y)){
-					trace("asdf");
+					//trace("asdf");
 					if(!i.has(Tile)) continue;
 					if(i.get(Tile).stack.length == 0) continue;
 					var tileNumber = i.get(Tile).stack[i.get(Tile).stack.length - 1].get(TileItem);

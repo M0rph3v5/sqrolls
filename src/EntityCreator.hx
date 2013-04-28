@@ -61,7 +61,7 @@ class EntityCreator {
 		.add(new ScrollInventoryItemRender(dpo))
 		
 		.add(transform)
-		.add(new Display(dpo, new Mat23(), 9));
+		.add(new Display(dpo, Mat23.scale(0.5, 0.5), 9));
 		
 		engine.addEntity(e);
 		return e;

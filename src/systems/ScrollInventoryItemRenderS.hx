@@ -97,8 +97,8 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.tf);		
 			
 			var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);
-			node.transform.transform.tx = index * 80 + 85;
-			node.transform.transform.ty = 82;
+			node.transform.transform.tx = index * 85 + 50;
+			node.transform.transform.ty = 75;
 		} else {
 			mouseSlaveNode = node;
 		}
