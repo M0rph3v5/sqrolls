@@ -62,15 +62,19 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createGoalRender(game:Game){
+	public function createGoal(game:Game, goal:Array<Int>, x:Float, y:Float){
 		var dpo = new Sprite();
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
+		.add(new Goal(goal))
 		.add(new GoalRender(dpo))
 		
 		.add(new Transform())
-		.add(new Display(dpo, new Mat23(), 999));
+		.add(new Display(dpo, Mat23.translation(x,y), 1000));
+		
+		engine.addEntity(e);
+		return e;
 	}
 	
 	public function createGrid(game:Game){

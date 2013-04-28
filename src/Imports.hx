@@ -55,6 +55,8 @@ typedef ScrollInventoryItemRender = components.ScrollInventoryItemRender;
 typedef ScrollInventoryItemRenderS = systems.ScrollInventoryItemRenderS;
 typedef GoalRender = components.GoalRender;
 typedef GoalRenderS = systems.GoalRenderS;
+typedef Goal = components.Goal;
+typedef GoalS = systems.GoalS;
 
 #if flash
 typedef Socket = flash.net.Socket;

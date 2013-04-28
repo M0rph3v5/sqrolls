@@ -16,12 +16,11 @@ class LevelGen {
 		
 		grid = new Array2(6,6);
 		scrolls = [[1,2,3,4,5], [5,4,3,2,1]];
-		
-		generate();
 	}
 	
-	public function generate():Array2<Int>{
+	public function generate(){
 		goals = [[5,4,4],[1,2,5],[1,2]];
+		return;
 		
 		var dirX = Random.randRange(0,1);
 		var dirY = 1 - dirX;
@@ -62,8 +61,6 @@ class LevelGen {
 		}
 		
 		trace(grid);
-		
-		return null;
 	}
 	
 	function addScroll(startX:Int, startY:Int, dirX:Int, dirY:Int, scroll:Array<Int>, length:Int){

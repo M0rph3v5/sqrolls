@@ -3,6 +3,7 @@ package systems;
 using Imports;
 
 class GoalRenderN extends Node<GoalRenderN>{
+	public var goal:Goal;
 	public var goalRender:GoalRender;
 	public var gameCitizen:GameCitizen;
 }
@@ -16,7 +17,10 @@ class GoalRenderS extends ListIteratingSystem<GoalRenderN>{
 	}
 	
 	function add(node:GoalRenderN){
-		
+		var tf:TextField = new TextField(85,85,node.goal.goal.toString());
+		tf.hAlign = starling.utils.HAlign.LEFT;
+		tf.fontSize = 30;
+		node.goalRender.dpo.addChild(tf);
 	}
 	
 	function remove(node:GoalRenderN){

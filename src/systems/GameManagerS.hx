@@ -29,19 +29,12 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 	}
 	
 	function genLevel(node:GameManagerN){
-/*		node.grid.tiles.walk(function(current, x, y){
-			for(e in current){
-				if(!e.has(Tile)) continue;
-				creator.createTileItem(node.gameCitizen.game, node.grid, e.get(Tile), Random.randRange(0, 9), new Vec2(x,y));
-			}
-			return current;
-		});
-		 * 
-		 */
-		
 		var levelgen = new LevelGen(6,6);
 		levelgen.generate();
-		
+	
+		for(i in 0...levelgen.goals.length){
+			creator.createGoal(node.game, levelgen.goals[i], 700, 200 + 50 * i);	
+		}
 	}
 	
 	function remove(node:GameManagerN){
