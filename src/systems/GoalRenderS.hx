@@ -17,7 +17,7 @@ class GoalRenderS extends ListIteratingSystem<GoalRenderN>{
 	}
 	
 	function add(node:GoalRenderN){
-		var tf:TextField = new TextField(85,85,node.goal.goal.toString());
+		var tf:TextField = node.goalRender.tf = new TextField(200,40,"");
 		tf.hAlign = starling.utils.HAlign.LEFT;
 		tf.fontSize = 30;
 		node.goalRender.dpo.addChild(tf);
@@ -28,6 +28,7 @@ class GoalRenderS extends ListIteratingSystem<GoalRenderN>{
 	}
 	
 	function updateN(node:GoalRenderN, time:Float){
-		
+		var achievedText:String = node.goal.achieved ? "X" : " ";
+		node.goalRender.tf.text = '[$achievedText] ${node.goal.goal.toString()}'; 
 	}
 }
