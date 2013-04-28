@@ -14,7 +14,7 @@ class Utils {
 	}
 
 	public static function positionForCoord(pos:Vec2) {
-		return new Vec2(pos.x * 85 + 50, pos.y * 85 + 183);
+		return new Vec2(pos.x * 85 + 42, pos.y * 85 + 178);
 	}
 	
 }
