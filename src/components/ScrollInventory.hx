@@ -1,9 +1,11 @@
 package components;
 
+using Imports;
+
 class ScrollInventory {
-	public var availableScrolls:Array<Array<Int>>;
+	public var items:Array<Entity>;
 	
-	public function new(availableScrolls:Array<Array<Int>>) {
-		this.availableScrolls = availableScrolls;
+	public function new() {
+		items = new Array();
 	}
 }
