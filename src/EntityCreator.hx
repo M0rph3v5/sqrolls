@@ -30,7 +30,7 @@ class EntityCreator {
 		
 		return e;
 	}
-	
+		
 	public function createGrid(game:Game){
 		var e = new Entity()
 		.add(new GameCitizen(game))
