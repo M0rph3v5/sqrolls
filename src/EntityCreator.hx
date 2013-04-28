@@ -46,13 +46,13 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int) {
+	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int, mouseSlave:Bool) {
 		var dpo = new Sprite();		
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
 		.add(new ScrollInventoryCitizen(inventory))
-		.add(new ScrollInventoryItem(data, count))
+		.add(new ScrollInventoryItem(data, count, mouseSlave))
 		.add(new ScrollInventoryItemRender(dpo))
 		
 		.add(new Transform())
