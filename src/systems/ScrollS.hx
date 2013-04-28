@@ -111,6 +111,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			// check scroll at position
 			for (node in scrollList) {
 				var coord = Utils.coordForPosition(pos, node.scroll.grid);
+				if (coord == null)
+					break;
 				
 				// check if scroll has tileitems at that coord
 				for (tileEntity in node.scroll.tileItems) {

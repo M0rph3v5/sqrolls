@@ -45,6 +45,9 @@ typedef ScrollRender = components.ScrollRender;
 typedef GameManagerS = systems.GameManagerS;
 typedef Game = components.Game;
 typedef GameCitizen = components.GameCitizen;
+typedef ScrollInventory = components.ScrollInventory;
+typedef ScrollInventoryRender = components.ScrollInventoryRender;
+typedef ScrollInventoryRenderS = systems.ScrollInventoryRenderS;
 
 #if flash
 typedef Socket = flash.net.Socket;

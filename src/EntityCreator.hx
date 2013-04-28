@@ -31,6 +31,21 @@ class EntityCreator {
 		return e;
 	}
 	
+	public function createInventory(game:Game) {
+		var dpo = new Sprite();
+		
+		var e = new Entity()
+		.add(new GameCitizen(game))
+		.add(new ScrollInventory([[1,2,3,4,5,0], [5,4,3,2,1,0], [0,0,0,0,0,0]]))
+		.add(new ScrollInventoryRender(dpo))
+		
+		.add(new Transform())
+		.add(new Display(dpo, new Mat23(), 999));
+				
+		engine.addEntity(e);
+		return e;
+	}
+	
 	public function createGrid(game:Game){
 		var e = new Entity()
 		.add(new GameCitizen(game))
