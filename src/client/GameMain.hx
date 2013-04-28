@@ -32,7 +32,7 @@ class GameMain {
 		
 		engine.addSystem(new ScrollRenderS(graphics), priority++);
 		engine.addSystem(new ScrollInventoryRenderS(graphics), priority++);
-		engine.addSystem(new ScrollInventoryItemRenderS(graphics), priority++);
+		engine.addSystem(new ScrollInventoryItemRenderS(graphics, mouseInput, creator), priority++);
 		engine.addSystem(new ScrollInventoryCitizenS(), priority++);
 		engine.addSystem(new ScoreUIRenderS(), priority++);
 		engine.addSystem(new TileItemRenderS(), priority++);
