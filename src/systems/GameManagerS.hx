@@ -34,7 +34,9 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		 * 
 		 */
 		
-		new LevelGen(6,6);
+		var levelgen = new LevelGen(6,6);
+		levelgen.generate();
+		
 	}
 	
 	function remove(node:GameManagerN){
