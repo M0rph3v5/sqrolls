@@ -65,7 +65,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 				
 				activeScroll = itemNode.scrollInventoryItem;
 				activeScroll.count--;
-				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
+				creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
 				itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 			}
 		}
@@ -96,7 +96,9 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.tf.fontSize = 30;
 			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.tf);		
 			
-			var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);
+			//var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);
+			var index = node.scrollInventoryCitizen.index;
+			//index = Random.randRange(1,10);
 			node.transform.transform.tx = index * 85 + 50;
 			node.transform.transform.ty = 75;
 		} else {

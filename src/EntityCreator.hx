@@ -46,7 +46,7 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int, mouseSlave:Bool, ?pos:Vec2) {
+	public function createInventoryItem(index:Int, game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int, mouseSlave:Bool, ?pos:Vec2) {
 		if (pos == null)
 			pos = new Vec2(0,0);
 		
@@ -56,7 +56,7 @@ class EntityCreator {
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
-		.add(new ScrollInventoryCitizen(inventory))
+		.add(new ScrollInventoryCitizen(inventory, index))
 		.add(new ScrollInventoryItem(data, count, mouseSlave))
 		.add(new ScrollInventoryItemRender(dpo))
 		
