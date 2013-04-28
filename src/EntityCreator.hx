@@ -31,6 +31,37 @@ class EntityCreator {
 		return e;
 	}
 		
+	public function createInventory(game:Game) {
+		var dpo = new Sprite();
+		
+		var e = new Entity()
+		.add(new GameCitizen(game))
+		.add(new ScrollInventory())
+		.add(new ScrollInventoryRender(dpo))
+		
+		.add(new Transform())
+		.add(new Display(dpo, new Mat23(), 999));
+				
+		engine.addEntity(e);
+		return e;
+	}
+	
+	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int) {
+		var dpo = new Sprite();		
+		
+		var e = new Entity()
+		.add(new GameCitizen(game))
+		.add(new ScrollInventoryCitizen(inventory))
+		.add(new ScrollInventoryItem(data, count))
+		.add(new ScrollInventoryItemRender(dpo))
+		
+		.add(new Transform())
+		.add(new Display(dpo, new Mat23(), 999));
+		
+		engine.addEntity(e);
+		return e;
+	}
+	
 	public function createGrid(game:Game){
 		var e = new Entity()
 		.add(new GameCitizen(game))
