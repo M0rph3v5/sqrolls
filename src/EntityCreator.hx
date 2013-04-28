@@ -62,6 +62,17 @@ class EntityCreator {
 		return e;
 	}
 	
+	public function createGoalRender(game:Game){
+		var dpo = new Sprite();
+		
+		var e = new Entity()
+		.add(new GameCitizen(game))
+		.add(new GoalRender(dpo))
+		
+		.add(new Transform())
+		.add(new Display(dpo, new Mat23(), 999));
+	}
+	
 	public function createGrid(game:Game){
 		var e = new Entity()
 		.add(new GameCitizen(game))

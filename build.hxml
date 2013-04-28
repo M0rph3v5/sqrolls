@@ -4,7 +4,7 @@
 -D no-swf-compress
 -D swf-directblit
 -swf-version 11.2
--swf-header 800:800:60:a0a0a0
+-swf-header 948:800:60:a0a0a0
 -main client.ClientMain
 -cp src
 -cp libSrc/actuate

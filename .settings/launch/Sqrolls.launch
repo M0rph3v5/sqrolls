@@ -3,7 +3,7 @@
 <booleanAttribute key="KILL_PREVIOUS_VIEWER" value="true"/>
 <stringAttribute key="MAIN_CLASS" value="bin/site/index.html"/>
 <intAttribute key="PLAYER_HEIGHT" value="800"/>
-<intAttribute key="PLAYER_WIDTH" value="800"/>
+<intAttribute key="PLAYER_WIDTH" value="948"/>
 <stringAttribute key="PROJECT_NAME" value="Sqrolls"/>
 <stringAttribute key="START_SWF_WITH" value="External SWF Viewer"/>
 </launchConfiguration>

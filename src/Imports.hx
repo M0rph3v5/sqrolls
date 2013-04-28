@@ -53,6 +53,8 @@ typedef ScrollInventoryCitizen = components.ScrollInventoryCitizen;
 typedef ScrollInventoryCitizenS = systems.ScrollInventoryCitizenS;
 typedef ScrollInventoryItemRender = components.ScrollInventoryItemRender;
 typedef ScrollInventoryItemRenderS = systems.ScrollInventoryItemRenderS;
+typedef GoalRender = components.GoalRender;
+typedef GoalRenderS = systems.GoalRenderS;
 
 #if flash
 typedef Socket = flash.net.Socket;

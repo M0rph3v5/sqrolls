@@ -31,6 +31,7 @@ class GameMain {
 		engine.addSystem(new GameManagerS(creator), priority++);
 		
 		engine.addSystem(new ScrollRenderS(graphics), priority++);
+		engine.addSystem(new GoalRenderS(graphics), priority++);
 		engine.addSystem(new ScrollInventoryRenderS(graphics), priority++);
 		engine.addSystem(new ScrollInventoryItemRenderS(graphics, mouseInput, creator), priority++);
 		engine.addSystem(new ScrollInventoryCitizenS(), priority++);
@@ -40,9 +41,6 @@ class GameMain {
 		engine.addSystem(new RenderS(container), priority++);
 		
 		var g = creator.createGame();
-		creator.createImage("bg");
-		var ge = creator.createGrid(g.get(Game));		
-		creator.createScoreUI(g.get(Game), ge.get(Grid));
 	}
 	
 	function start(){
