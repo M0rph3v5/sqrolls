@@ -54,6 +54,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 				if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
 					activeScroll.count++;
 					activeScroll = null;
+					itemNode.gameCitizen.game.activeScrollInventoryItem = null;
 				}
 				
 				if (mouseSlaveNode != null) {
