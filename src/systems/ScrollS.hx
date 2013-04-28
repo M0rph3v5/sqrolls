@@ -137,10 +137,13 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 				engine.removeEntity(nodeToRemove.entity);
 		}
 		
-		if (activeScrollNode != null)						
+		if (activeScrollNode != null) {						
 			activeScrollNode.scroll.dragging = false;
+			activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
+		}
 		
 		moved = false;
+		
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {
