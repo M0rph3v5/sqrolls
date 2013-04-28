@@ -42,7 +42,9 @@ typedef ScoreUIRender = components.ScoreUIRender;
 typedef ScoreUIRenderS = systems.ScoreUIRenderS;
 typedef ScrollRenderS = systems.ScrollRenderS;
 typedef ScrollRender = components.ScrollRender;
-
+typedef GameManagerS = systems.GameManagerS;
+typedef Game = components.Game;
+typedef GameCitizen = components.GameCitizen;
 
 #if flash
 typedef Socket = flash.net.Socket;

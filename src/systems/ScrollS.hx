@@ -5,6 +5,7 @@ class ScrollN extends Node<ScrollN>{
 	public var scroll:Scroll;
 	public var transform:Transform;
 	public var coord:Coord;
+	public var gameCitizen:GameCitizen;
 }
 
 class ScrollS extends ListIteratingSystem<ScrollN>{
@@ -62,7 +63,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 				if (!t.has(Tile))
 					continue;
 				
-				var tileItem = creator.createTileItem(node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
+				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
 			}
 			index++;

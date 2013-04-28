@@ -2,7 +2,7 @@ package client;
 
 using Imports;
 
-class Game {
+class GameMain {
 	var container:DisplayObjectContainer;
 	var engine:Engine;
 	var graphics:Graphics;
@@ -28,6 +28,7 @@ class Game {
 		engine.addSystem(new TileCitizenS(), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
 		engine.addSystem(new ScrollS(creator, mouseInput), priority++);
+		engine.addSystem(new GameManagerS(creator), priority++);
 		
 		engine.addSystem(new ScrollRenderS(graphics), priority++);
 		engine.addSystem(new ScoreUIRenderS(), priority++);
@@ -35,9 +36,10 @@ class Game {
 		engine.addSystem(new CoordS(), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		
+		var g = creator.createGame();
 		creator.createImage("bg");
-		var ge = creator.createGrid();		
-		creator.createScoreUI(ge.get(Grid));
+		var ge = creator.createGrid(g.get(Game));		
+		creator.createScoreUI(g.get(Game), ge.get(Grid));
 	}
 	
 	function start(){

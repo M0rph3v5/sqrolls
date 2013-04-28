@@ -5,6 +5,7 @@ using Imports;
 class GridN extends Node<GridN>{
 	public var grid:Grid;
 	public var transform:Transform;
+	public var gameCitizen:GameCitizen;
 }
 
 class GridS extends ListIteratingSystem<GridN>{
@@ -32,7 +33,7 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 			var coord = Utils.coordForPosition(pos, node.grid);
 			if (coord != null)
-				creator.createScroll(node.grid, [0,1,2,3,4,5,6], coord);		
+				creator.createScroll(node.gameCitizen.game, node.grid, [0,1,2,3,4,5,6], coord);		
 		}
 
 	}
@@ -47,8 +48,8 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 	function add(node:GridN){
 		node.grid.tiles.walk(function(current, x, y){
-			var newTile = creator.createTile(node.grid, new Vec2(x,y));
-			creator.createTileItem(node.grid, newTile.get(Tile), Random.randRange(0, 9), new Vec2(x,y));
+			var newTile = creator.createTile(node.gameCitizen.game, node.grid, new Vec2(x,y));
+			//creator.createTileItem(node.grid, newTile.get(Tile), Random.randRange(0, 9), new Vec2(x,y));
 			return current;
 		});
 	}
@@ -70,6 +71,7 @@ class GridS extends ListIteratingSystem<GridN>{
 			for(tile in current){
 				if(!tile.has(Tile)) continue;
 				var topTileItem = tile.get(Tile).stack[tile.get(Tile).stack.length-1];
+				if(topTileItem == null) continue;
 				total += topTileItem.get(TileItem).number;
 				currentColumnTotal += topTileItem.get(TileItem).number;
 				currentRowTotal += topTileItem.get(TileItem).number;

@@ -22,8 +22,18 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createGrid(){
+	public function createGame(){
 		var e = new Entity()
+		.add(new Game());
+		
+		engine.addEntity(e);
+		
+		return e;
+	}
+	
+	public function createGrid(game:Game){
+		var e = new Entity()
+		.add(new GameCitizen(game))
 		.add(new Grid())
 		.add(new Transform());
 		
@@ -31,8 +41,9 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createTile(grid:Grid, pos:Vec2){
+	public function createTile(game:Game,grid:Grid, pos:Vec2){
 		var e = new Entity()
+		.add(new GameCitizen(game))
 		.add(new GridCitizen(grid, pos))
 		.add(new Tile());
 		
@@ -40,10 +51,11 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createTileItem(grid:Grid, tile:Tile, number:Int, pos:Vec2){
+	public function createTileItem(game:Game,grid:Grid, tile:Tile, number:Int, pos:Vec2){
 		var dpo = new Sprite();
 				
 		var e = new Entity()
+		.add(new GameCitizen(game))
 		.add(new TileCitizen(tile))
 		.add(new GridCitizen(grid, pos))
 		.add(new TileItem(number))
@@ -56,10 +68,11 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createScroll(grid:Grid, data:Array<Int>, ?beginPoint:Vec2) {
+	public function createScroll(game:Game, grid:Grid, data:Array<Int>, ?beginPoint:Vec2) {
 		var dpo = new Sprite();
 		
 		var e = new Entity()
+		.add(new GameCitizen(game))
 		.add(new Coord(beginPoint))
 		.add(new Scroll(grid, data, beginPoint))
 		.add(new ScrollRender(dpo))
@@ -70,10 +83,11 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createScoreUI(grid:Grid){
+	public function createScoreUI(game:Game, grid:Grid){
 		var dpo = new Sprite();
 		
 		var e = new Entity()
+		.add(new GameCitizen(game))
 		.add(new ScoreUIRender(dpo, grid))
 		
 		.add(new Transform())
