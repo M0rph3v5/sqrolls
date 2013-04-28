@@ -59,12 +59,13 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		
 		// create new tileitems for the ones missing
 		var index = 0;
+		var lastIndex = coords.length-1;
 		for (coord in coords) {
 			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
 				if (!t.has(Tile))
 					continue;
 				
-				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
+				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), index == lastIndex ? 0 : node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
 			}
 			index++;
