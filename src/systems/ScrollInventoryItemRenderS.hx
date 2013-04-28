@@ -65,7 +65,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 				
 				activeScroll = itemNode.scrollInventoryItem;
 				activeScroll.count--;
-				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, itemNode.scrollInventoryItem.count, true);
+				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
 				itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 			}
 		}
