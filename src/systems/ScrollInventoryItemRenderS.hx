@@ -14,7 +14,6 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	var graphics:Graphics;
 	var mouseInput:MouseInput;
 	var itemList:NodeList<ScrollInventoryItemRenderN>;
-	var activeScrollNode:ScrollInventoryItemRenderN;
 	var mouseSlaveNode:ScrollInventoryItemRenderN;
 	var creator:EntityCreator;
 	var engine:Engine;
@@ -48,22 +47,23 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			
 			var rect = new Rectangle(itemNode.transform.position.x, itemNode.transform.position.y, 85, 85);
 			if(rect.contains(pos.x, pos.y)) {
-				trace(rect);
+				
+				var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;
 				
 				// check the last one
-				if (activeScrollNode != null) { // if it's still active, refund cus i'm selecting a new one.
-					activeScrollNode.scrollInventoryItem.count++;
-					activeScrollNode = null;
+				if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
+					activeScroll.count++;
+					activeScroll = null;
 				}
 				
 				if (mouseSlaveNode != null) {
 					engine.removeEntity(mouseSlaveNode.entity);
 				}
 				
-				activeScrollNode = itemNode;
-				activeScrollNode.scrollInventoryItem.count--;
+				activeScroll = itemNode.scrollInventoryItem;
+				activeScroll.count--;
 				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, itemNode.scrollInventoryItem.count, true);
-				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = activeScrollNode.scrollInventoryItem;
+				itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 			}
 		}
 	}
@@ -107,7 +107,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	}
 	
 	public function updateN(node:ScrollInventoryItemRenderN, time:Float){
-		if (!node.scrollInventoryItem.mouseSlave)
+		if (!node.scrollInventoryItem.mouseSlave) {
 			node.scrollInventoryItemRender.tf.text = node.scrollInventoryItem.count + "";
+		} else {
+			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
+				engine.removeEntity(mouseSlaveNode.entity);
+			}
+		}
 	}
 }

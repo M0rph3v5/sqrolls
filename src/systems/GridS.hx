@@ -43,7 +43,7 @@ class GridS extends ListIteratingSystem<GridN>{
 		
 		for (node in gridList) {
 			var coord = Utils.coordForPosition(pos, node.grid);
-			if (coord != null) {
+			if (coord != null && node.gameCitizen.game.activeScrollInventoryItem != null) {
 				creator.createScroll(node.gameCitizen.game, node.grid, node.gameCitizen.game.activeScrollInventoryItem.data, coord);
 				lastScrollCoord = coord;
 				break;
