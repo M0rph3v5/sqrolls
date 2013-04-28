@@ -105,8 +105,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	
 	function onMouseUp(pos:Vec2) {
 		if (!moved) { // intended to remove / pickup a scroll
-			trace("remove somethign");
-			
 			var nodeToRemove = null;
 			
 			// check scroll at position
