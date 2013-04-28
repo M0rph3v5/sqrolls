@@ -12,6 +12,8 @@ class GridS extends ListIteratingSystem<GridN>{
 	var mouseInput:MouseInput;
 	var gridList:NodeList<GridN>;
 	
+	var lastScrollCoord:Vec2;
+	
 	public function new(creator:EntityCreator, mouseInput:MouseInput){
 		super(GridN, updateN, add);
 		this.creator = creator;
@@ -28,21 +30,24 @@ class GridS extends ListIteratingSystem<GridN>{
 	
 	function onMouseDown(pos:Vec2) {
 		
-		for (node in gridList) {
-	
-			var coord = Utils.coordForPosition(pos, node.grid);
-			if (coord != null)
-				creator.createScroll(node.grid, [0,1,2,3,4,5,6], coord);		
-		}
-
 	}
 	
 	function onMouseUp(pos:Vec2) {
-		
+		lastScrollCoord = null;
 	}
 	
-	function onMouseMove(pos:Vec2) {
+	function onMouseMove(pos:Vec2, mouseDown:Bool) {
+		if (lastScrollCoord != null || !mouseDown) 
+			return;
 		
+		for (node in gridList) {
+			var coord = Utils.coordForPosition(pos, node.grid);
+			if (coord != null) {
+				creator.createScroll(node.grid, [0,1,2,3,4,5,6], coord);
+				lastScrollCoord = coord;
+				break;
+			}
+		}		
 	}
 	
 	function add(node:GridN){
