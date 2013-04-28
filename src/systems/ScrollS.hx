@@ -139,9 +139,11 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			}
 		}
 		
-		if (activeScrollNode != null) {						
+		if (activeScrollNode != null) {
 			activeScrollNode.scroll.dragging = false;
-			activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
+			
+			if (moved)
+				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
 		}
 		
 		moved = false;
