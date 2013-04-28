@@ -15,6 +15,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	var scrollList:NodeList<ScrollN>;
 	var activeScrollNode:ScrollN;
 	
+	var moved:Bool = false;
+	
 	public function new(creator:EntityCreator, mouseInput:MouseInput){
 		super(ScrollN, updateN, add, remove);
 		
@@ -41,7 +43,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		// figure out coords you need to take				
 		var xd = -Std.int(node.scroll.beginPoint.x - node.scroll.endPoint.x);
 		var yd = -Std.int(node.scroll.beginPoint.y - node.scroll.endPoint.y);
-		//trace("xd " + xd + " yd " + yd);
 
 		var xb = Math.abs(xd) > Math.abs(yd);
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
@@ -90,11 +91,13 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	
 	function add(node:ScrollN){
 		activeScrollNode = node;
-		activeScrollNode.scroll.dragging = true;
+		activeScrollNode.scroll.dragging = true;		
 	}
 	
 	function remove(node:ScrollN){
-		
+		for (tileEntity in node.scroll.tileItems) {
+			engine.removeEntity(tileEntity);
+		}
 	}
 
 	function onMouseDown(pos:Vec2) {
@@ -102,15 +105,47 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	}
 	
 	function onMouseUp(pos:Vec2) {
-		if (activeScrollNode == null)
-			return;
+		if (!moved) { // intended to remove / pickup a scroll
+			var nodeToRemove = null;
+			
+			// check scroll at position
+			for (node in scrollList) {
+				var coord = Utils.coordForPosition(pos, node.scroll.grid);
+				
+				// check if scroll has tileitems at that coord
+				for (tileEntity in node.scroll.tileItems) {
+					var gridCitizen = tileEntity.get(GridCitizen);
+					if (Vec2.distance(coord, gridCitizen.pos) != 0)
+						continue;
+					
+					var tileCitizen = tileEntity.get(TileCitizen);
+					var stack : Array<Entity> = tileCitizen.tile.stack;
+					if(stack[stack.length-1] == tileEntity) {
+						nodeToRemove = node;
+						break;
+					}
+				}
+				
+				if (nodeToRemove != null) {
+					break;
+				}
+			}
+			
+			if (nodeToRemove != null)			
+				engine.removeEntity(nodeToRemove.entity);
+		}
 		
-		activeScrollNode.scroll.dragging = false;
+		if (activeScrollNode != null)						
+			activeScrollNode.scroll.dragging = false;
+		
+		moved = false;
 	}
 	
-	function onMouseMove(pos:Vec2) {
+	function onMouseMove(pos:Vec2, mouseDown:Bool) {
 		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
 			return;
+			
+		moved = true;
 		
 		var targetEndPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
 		if (targetEndPoint != null)
