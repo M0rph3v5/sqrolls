@@ -21,24 +21,43 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	}
 	
 	function updateN(node:GoalN, time:Float){
-		/*node.gameCitizen.game.grid.tiles.walk(function(current:Array<Entity>,x,y){
-			for(tile in current){
-				
-			}
-		});*/
+		var achieved:Bool = false;
+
+		node.gameCitizen.game.grid.tiles.walk(function(current:Array<Entity>,x,y){
+			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 1, 0);
+			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, -1, 0);
+			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, -1);
+			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, 1);
+			
+			return current;
+		});
 		
-		for(x in 0...node.gameCitizen.game.grid.tiles.getW()){
-			for(y in 0...node.gameCitizen.game.grid.tiles.getH()){
-				for(i in node.gameCitizen.game.grid.tiles.get(x,y)){
-					trace("asdf");
-					if(!i.has(Tile)) continue;
-					if(i.get(Tile).stack.length == 0) continue;
-					var tileNumber = i.get(Tile).stack[i.get(Tile).stack.length - 1].get(TileItem);
-					if(tileNumber == node.goal.goal[0]){
-						trace("HI");
-					}
-				}
-			}
+		node.goal.achieved = achieved;
+	}
+	
+	function checkRay(grid:Grid, goal:Array<Int>, startX:Int, startY:Int, dirX:Int, dirY:Int):Bool{
+		for(i in 0...goal.length){
+			if(startX < 0 || startX > 5) return false;
+			if(startY < 0 || startY > 5) return false;
+			
+			var topTileItem = getTileItem(grid, startX, startY);
+			if(topTileItem == null) return false;
+			
+			if(topTileItem.get(TileItem).number != goal[i]) return false; 
+			
+			startX += dirX;
+			startY += dirY;
 		}
+		
+		return true;
+	}
+	
+	function getTileItem(grid:Grid, x:Int, y:Int):Entity{
+		var current = grid.tiles.get(x,y);
+		for(tile in current){
+			if(!tile.has(Tile)) continue;
+			return tile.get(Tile).stack[tile.get(Tile).stack.length-1];
+		}
+		return null;
 	}
 }
