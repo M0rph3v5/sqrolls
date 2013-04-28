@@ -33,7 +33,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		scrollList = engine.getNodeList(ScrollN);		
 		this.engine = engine;
 	}
-		
+			
 	function updateN(node:ScrollN, time:Float){
 		
 		if (!node.scroll.dragging)
@@ -133,17 +133,20 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 				}
 			}
 			
-			if (nodeToRemove != null)			
+			if (nodeToRemove != null) {	
+				nodeToRemove.gameCitizen.game.refund = nodeToRemove.scroll.data[0];
 				engine.removeEntity(nodeToRemove.entity);
+			}
 		}
 		
-		if (activeScrollNode != null) {						
+		if (activeScrollNode != null) {
 			activeScrollNode.scroll.dragging = false;
-			activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
+			
+			if (moved)
+				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
 		}
 		
 		moved = false;
-		
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {

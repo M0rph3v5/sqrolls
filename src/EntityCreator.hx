@@ -40,14 +40,19 @@ class EntityCreator {
 		.add(new ScrollInventoryRender(dpo))
 		
 		.add(new Transform())
-		.add(new Display(dpo, new Mat23(), 999));
+		.add(new Display(dpo, new Mat23(), 9));
 				
 		engine.addEntity(e);
 		return e;
 	}
 	
-	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int, mouseSlave:Bool) {
-		var dpo = new Sprite();		
+	public function createInventoryItem(game:Game, inventory:ScrollInventory, data:Array<Int>, count:Int, mouseSlave:Bool, ?pos:Vec2) {
+		if (pos == null)
+			pos = new Vec2(0,0);
+		
+		var dpo = new Sprite();
+		var transform = new Transform();
+		transform.position = pos;		
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
@@ -55,8 +60,8 @@ class EntityCreator {
 		.add(new ScrollInventoryItem(data, count, mouseSlave))
 		.add(new ScrollInventoryItemRender(dpo))
 		
-		.add(new Transform())
-		.add(new Display(dpo, new Mat23(), 999));
+		.add(transform)
+		.add(new Display(dpo, new Mat23(), 9));
 		
 		engine.addEntity(e);
 		return e;

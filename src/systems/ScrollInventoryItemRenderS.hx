@@ -60,9 +60,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 					engine.removeEntity(mouseSlaveNode.entity);
 				}
 				
+				if (itemNode.scrollInventoryItem.count <= 0)
+					break;
+				
 				activeScroll = itemNode.scrollInventoryItem;
 				activeScroll.count--;
-				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, itemNode.scrollInventoryItem.count, true);
+				creator.createInventoryItem(itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
 				itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 			}
 		}
@@ -107,7 +110,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	}
 	
 	public function updateN(node:ScrollInventoryItemRenderN, time:Float){
+		
 		if (!node.scrollInventoryItem.mouseSlave) {
+			if (node.gameCitizen.game.refund > -1 && node.gameCitizen.game.refund == node.scrollInventoryItem.data[0]) {
+				node.scrollInventoryItem.count++;	
+				node.gameCitizen.game.refund = -1;			
+			}
 			node.scrollInventoryItemRender.tf.text = node.scrollInventoryItem.count + "";
 		} else {
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
