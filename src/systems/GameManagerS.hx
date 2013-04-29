@@ -79,5 +79,6 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		}
 		
 		node.game.achieved = allGoalsComplete;
+		//trace(allGoalsComplete);
 	}
 }
