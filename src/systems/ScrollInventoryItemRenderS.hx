@@ -95,7 +95,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		}
 		node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.image);
 		
-		if (!node.scrollInventoryItem.mouseSlave) {			
+		if (!node.scrollInventoryItem.mouseSlave) {
+			node.scrollInventoryItemRender.notAllowedImage = new Image(graphics.getTexture("not-allowed"));
+			node.scrollInventoryItemRender.notAllowedImage.x = 14;
+			node.scrollInventoryItemRender.notAllowedImage.y = 14;
+			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.notAllowedImage);
+						
 			var x = 40;
 			var y = 4;
 			node.scrollInventoryItemRender.invEmptyImage = new Image(graphics.getTexture("inventory-unavailable-scroll-indicator"));
@@ -118,7 +123,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			//var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);
 			var index = node.scrollInventoryCitizen.index;
 			//index = Random.randRange(1,10);
-			node.transform.transform.tx = index * 85 + 50;
+			node.transform.transform.tx = index * 84 + 50;
 			node.transform.transform.ty = 75;
 		} else {
 			mouseSlaveNode = node;
@@ -143,6 +148,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.invImage.visible = node.scrollInventoryItem.count != 0;
 			
 			node.scrollInventoryItemRender.image.visible = node.scrollInventoryItem.count != 0;
+			node.scrollInventoryItemRender.notAllowedImage.visible = node.scrollInventoryItem.count == 0; 
 		} else {
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
 				engine.removeEntity(mouseSlaveNode.entity);
