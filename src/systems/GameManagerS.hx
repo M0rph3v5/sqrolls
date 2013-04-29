@@ -20,12 +20,13 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		creator.createImage("bg");
 		node.game.grid = creator.createGrid(node.game).get(Grid);		
 		//creator.createScoreUI(node.game, node.game.grid);
+		creator.createNextLevelButton(node.game, 500, 300);
 		
 		var inventoryEntity = creator.createInventory(node.game);
 		var inventory:ScrollInventory = inventoryEntity.get(ScrollInventory);
-		creator.createInventoryItem(0, node.game, inventory, [1,2,3,4,5], 4, false);
-		creator.createInventoryItem(1, node.game, inventory, [5,4,3,2,1], 4, false);
-		creator.createInventoryItem(2, node.game, inventory, [0,0,0,0,0], 1, false);
+		creator.createInventoryItem(0, node.game, inventory, [1,2,3,4], levelgen.scrollAmounts[0], false);
+		creator.createInventoryItem(1, node.game, inventory, [4,3,2,1], levelgen.scrollAmounts[1], false);
+		creator.createInventoryItem(2, node.game, inventory, [0,0,0,0], levelgen.zeroScrollAmount, false);
 			
 		// put teh static numbers on the board
 		levelgen.outGrid.walk(function(current,x,y){
@@ -67,6 +68,14 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 	}
 	
 	function updateN(node:GameManagerN, time:Float){
+		var allGoalsComplete:Bool = true;
+		for(goal in node.game.goals){
+			if(!goal.get(Goal).achieved){
+				allGoalsComplete = false;
+				break;
+			}
+		}
 		
+		trace(allGoalsComplete);
 	}
 }

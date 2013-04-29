@@ -94,7 +94,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		if (node.scrollInventoryItem.data[0] != 0) {
 			node.scrollInventoryItemRender.image.color = switch(node.scrollInventoryItem.data[0]) {				
 				case(1):Game.greenColor; // to scroll
-				case(5):Game.blueColor; // reverse scroll
+				case(4):Game.blueColor; // reverse scroll
 				case(_):0;
 			}
 		}

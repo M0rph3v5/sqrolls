@@ -42,24 +42,28 @@ class LevelGen {
 	
 	public var goals: Array<Array<Int>>;
 	public var outGrid:Array2<Int>;
+	public var scrollAmounts:Array<Int>;
+	public var zeroScrollAmount:Int;
 
 	public function new(){
 		this.c = new GenConfig();
 		c.width = 4;
 		c.height = 4;
-		c.scrolls = [[1,2,3,4,5], [5,4,3,2,1]];
-		c.zeroScroll = [0,0,0,0,0];
+		c.scrolls = [[1,2,3,4], [4,3,2,1]];
+		c.zeroScroll = [0,0,0,0];
 		
-		c.numScrolls = 4;
+		c.numScrolls = 1;
 		c.numBlanks = 1;
 		c.numConvenient = 1;
-		c.convenients = [1,2,3,4,5];
+		c.convenients = [1,2,3,4];
 		c.numInconvenient = 1;
-		c.inconvenients = [2,3,4];
+		c.inconvenients = [2,3];
 		
-		grid = new Array2(c.width,c.height);
 		goals = new Array();
 		outGrid = new Array2(c.width,c.height);
+		scrollAmounts = new Array();
+
+		grid = new Array2(c.width,c.height);
 		
 		empty = new Array();
 		occupied = new Array();
@@ -88,7 +92,9 @@ class LevelGen {
 				start = potentialScrollStarts[Random.randRange(0, potentialScrollStarts.length-1)];
 			}
 			
-			var scroll = c.scrolls[Random.randRange(0, c.scrolls.length - 1)];
+			var r = Random.randRange(0, c.scrolls.length - 1);
+			var scroll = c.scrolls[r];
+			scrollAmounts[r]++;
 			addNextScroll(start, scroll);
 		}
 		
@@ -97,6 +103,7 @@ class LevelGen {
 		for(i in 0...c.numBlanks){
 			var start = empty[Random.randRange(0, empty.length-1)];
 			addNextScroll(start, c.zeroScroll, false);
+			zeroScrollAmount++;
 		}
 		
 		//trace(grid);

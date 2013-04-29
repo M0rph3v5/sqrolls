@@ -10,7 +10,7 @@ class Game {
 	public var goals:Array<Entity>;
 	public var refund:Int = -1;
 	public var grid:Grid;
-
+	
 	public function new(){
 		goals = new Array();
 	}
