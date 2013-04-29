@@ -20,6 +20,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		creator.createImage("bg");
 		node.game.grid = creator.createGrid(node.game).get(Grid);		
 		//creator.createScoreUI(node.game, node.game.grid);
+		creator.createNextLevelButton(node.game, 500, 300);
 		
 		var inventoryEntity = creator.createInventory(node.game);
 		var inventory:ScrollInventory = inventoryEntity.get(ScrollInventory);

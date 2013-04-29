@@ -58,6 +58,10 @@ typedef GoalRenderS = systems.GoalRenderS;
 typedef Goal = components.Goal;
 typedef GoalS = systems.GoalS;
 typedef DA<T> = de.polygonal.ds.DA<T>;
+typedef Button = components.Button;
+typedef NextLevelButton = components.NextLevelButton;
+typedef ButtonS = systems.ButtonS;
+typedef NextLevelButtonS = systems.NextLevelButtonS;
 
 #if flash
 typedef Socket = flash.net.Socket;

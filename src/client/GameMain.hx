@@ -24,6 +24,8 @@ class GameMain {
 		creator = new EntityCreator(engine, graphics);
 		
 		var priority:Int = 0;
+		engine.addSystem(new ButtonS(), priority++);
+		engine.addSystem(new NextLevelButtonS(), priority++);
 		engine.addSystem(new GridCitizenS(), priority++);
 		engine.addSystem(new TileCitizenS(), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
