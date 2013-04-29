@@ -45,19 +45,47 @@ class LevelGen {
 	public var scrollAmounts:Array<Int>;
 	public var zeroScrollAmount:Int;
 
-	public function new(){
+	public function new(level:Int){
 		this.c = new GenConfig();
-		c.width = 4;
-		c.height = 4;
-		c.scrolls = [[1,2,3,4], [4,3,2,1]];
-		c.zeroScroll = [0,0,0,0];
 		
-		c.numScrolls = 1;
-		c.numBlanks = 1;
-		c.numConvenient = 1;
-		c.convenients = [1,2,3,4];
-		c.numInconvenient = 1;
-		c.inconvenients = [2,3];
+		switch(level){
+			case 0:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 1;
+				c.numBlanks = 0;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 0;
+				c.inconvenients = [2,3];
+			case 1:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 1;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 1;
+				c.inconvenients = [2,3];
+			case _:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 2;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 1;
+				c.inconvenients = [2,3];
+		}
 		
 		goals = new Array();
 		outGrid = new Array2(c.width,c.height);

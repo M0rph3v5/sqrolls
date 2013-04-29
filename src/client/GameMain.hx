@@ -28,11 +28,11 @@ class GameMain {
 		engine.addSystem(new NextLevelButtonS(graphics), priority++);
 		engine.addSystem(new GridCitizenS(), priority++);
 		engine.addSystem(new TileCitizenS(), priority++);
-		engine.addSystem(new GameCitizenS(), priority++);
 		engine.addSystem(new GridS(creator, mouseInput), priority++);
 		engine.addSystem(new ScrollS(creator, mouseInput), priority++);
 		engine.addSystem(new GoalS(), priority++);
 		engine.addSystem(new GameManagerS(creator), priority++);
+		engine.addSystem(new GameCitizenS(), priority++);
 		
 		engine.addSystem(new ScrollRenderS(graphics), priority++);
 		engine.addSystem(new GoalRenderS(graphics), priority++);
