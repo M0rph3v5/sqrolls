@@ -94,8 +94,8 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	
 	function checkRay(grid:Grid, goal:Array<Int>, startX:Int, startY:Int, dirX:Int, dirY:Int):Bool{
 		for(i in 0...goal.length){
-			if(startX < 0 || startX > 5) return false;
-			if(startY < 0 || startY > 5) return false;
+			if(startX < 0 || startX > 4) return false;
+			if(startY < 0 || startY > 4) return false;
 			
 			var topTileItem = getTileItem(grid, startX, startY);
 			if(topTileItem == null) return false;
