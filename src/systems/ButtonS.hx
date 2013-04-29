@@ -9,8 +9,11 @@ class ButtonN extends Node<ButtonN>{
 }
 
 class ButtonS extends ListIteratingSystem<ButtonN>{
-	public function new(){
+	var mouseInput:MouseInput;
+	
+	public function new(mouseInput:MouseInput){
 		super(ButtonN, updateN);
+		this.mouseInput = mouseInput;
 	}
 	
 	function updateN(node:ButtonN, time:Float){

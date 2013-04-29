@@ -60,7 +60,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			creator.createGoal(node.game, levelgen.goals[i], 450, 215 + 55 * i); // 640 on last bg
 		}
 		
-		creator.createNextLevelButton(node.game, 500, 215 + 25 + 55 * levelgen.goals.length);
+		creator.createNextLevelButton(node.game, 490, Math.max(450, 215 + 25 + 55 * levelgen.goals.length));
 	
 		return levelgen;
 	}
