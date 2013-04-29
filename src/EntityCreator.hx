@@ -76,7 +76,7 @@ class EntityCreator {
 		.add(new GoalRender(dpo))
 		
 		.add(new Transform())
-		.add(new Display(dpo, Mat23.translation(x,y), 1000));
+		.add(new Display(dpo, Mat23.translation(x,y), 5));
 		
 		engine.addEntity(e);
 		return e;
