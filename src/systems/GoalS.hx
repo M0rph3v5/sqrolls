@@ -25,9 +25,9 @@ class GoalS extends ListIteratingSystem<GoalN>{
 
 		node.gameCitizen.game.grid.tiles.walk(function(current:Array<Entity>,x,y){
 			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 1, 0);
-			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, -1, 0);
-			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, -1);
-			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, 1);
+			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, -1, 0);
+			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, -1);
+			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, 1);
 			
 			return current;
 		});

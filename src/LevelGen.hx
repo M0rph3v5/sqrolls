@@ -58,6 +58,7 @@ class LevelGen {
 		c.inconvenients = [2,3,4];
 		
 		grid = new Array2(c.width,c.height);
+		goals = new Array();
 		outGrid = new Array2(c.width,c.height);
 		
 		empty = new Array();
@@ -73,14 +74,6 @@ class LevelGen {
 	}
 	
 	public function generate(){
-		goals = [];
-		
-		var i = 6;
-		while(i-- > 0) {
-			grid.set(Random.randRange(0,5),Random.randRange(0,5),Random.randRange(1,5));		
-		}
-		
-		
 		trace(grid);
 		
 		for(i in 0...c.numScrolls){
@@ -167,6 +160,13 @@ class LevelGen {
 			}
 			if(goal != null && goal.length > 0) goals.push(goal);
 		}
+		
+		var da = new DA<Array<Int>>();
+		for(g in goals){
+			da.pushBack(g);			
+		}
+		da.shuffle();
+		goals = da.toArray();
 		
 		trace(goals);
 	}

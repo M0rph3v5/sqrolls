@@ -28,7 +28,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		creator.createInventoryItem(2, node.game, inventory, [0,0,0,0,0], 1, false);
 			
 		// put teh static numbers on the board
-		levelgen.grid.walk(function(current,x,y){
+		levelgen.outGrid.walk(function(current,x,y){
 			if (current == 0)
 				return current;
 			
@@ -49,8 +49,6 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		for(i in 0...levelgen.goals.length){
 			creator.createGoal(node.game, levelgen.goals[i], 700, 200 + 50 * i);
 		}
-	
-		trace(levelgen.grid);
 	
 		return levelgen;
 	}
