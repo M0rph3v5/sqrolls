@@ -67,6 +67,14 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 	}
 	
 	function updateN(node:GameManagerN, time:Float){
+		var allGoalsComplete:Bool = true;
+		for(goal in node.game.goals){
+			if(!goal.get(Goal).achieved){
+				allGoalsComplete = false;
+				break;
+			}
+		}
 		
+		trace(allGoalsComplete);
 	}
 }

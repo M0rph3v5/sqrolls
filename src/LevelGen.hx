@@ -52,7 +52,7 @@ class LevelGen {
 		c.scrolls = [[1,2,3,4], [4,3,2,1]];
 		c.zeroScroll = [0,0,0,0];
 		
-		c.numScrolls = 4;
+		c.numScrolls = 1;
 		c.numBlanks = 1;
 		c.numConvenient = 1;
 		c.convenients = [1,2,3,4];
