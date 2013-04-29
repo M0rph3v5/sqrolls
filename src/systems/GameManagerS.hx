@@ -43,9 +43,18 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 	}
 	
 	function genLevel(node:GameManagerN){
-		var levelgen = new LevelGen(6,6);
-		levelgen.generate();
-	
+		var levelgen : LevelGen = null;
+		var bestScore : Float = -9999;
+		for(i in 0...20){
+			var l = new LevelGen();
+			var s : Float = l.generate();
+						
+			if(s > bestScore){
+				levelgen = l;
+				bestScore = s;
+			}
+		}
+		
 		for(i in 0...levelgen.goals.length){
 			creator.createGoal(node.game, levelgen.goals[i], 700, 200 + 50 * i);
 		}

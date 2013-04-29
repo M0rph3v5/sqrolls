@@ -43,7 +43,7 @@ class LevelGen {
 	public var goals: Array<Array<Int>>;
 	public var outGrid:Array2<Int>;
 
-	public function new(width:Int, height:Int){
+	public function new(){
 		this.c = new GenConfig();
 		c.width = 4;
 		c.height = 4;
@@ -73,8 +73,8 @@ class LevelGen {
 		potentialScrollStarts = new Array();
 	}
 	
-	public function generate(){
-		trace(grid);
+	public function generate() : Float{
+		//trace(grid);
 		
 		for(i in 0...c.numScrolls){
 			var start:Point;
@@ -92,14 +92,14 @@ class LevelGen {
 			addNextScroll(start, scroll);
 		}
 		
-		trace(grid);
+		//trace(grid);
 		
 		for(i in 0...c.numBlanks){
 			var start = empty[Random.randRange(0, empty.length-1)];
 			addNextScroll(start, c.zeroScroll, false);
 		}
 		
-		trace(grid);
+		//trace(grid);
 		
 		for( i in 0...c.numInconvenient){
 			var p:Point;
@@ -111,7 +111,7 @@ class LevelGen {
 			outGrid.set(p.x,p.y,grid.get(p.x,p.y));
 		}
 		
-		trace(grid);
+		//trace(grid);
 		
 		for( i in 0...c.numConvenient){
 			var p:Point;
@@ -124,7 +124,7 @@ class LevelGen {
 			outGrid.set(p.x,p.y,grid.get(p.x,p.y));
 		}
 
-		trace(grid);
+		//trace(grid);
 		for(y in 0...c.height){
 			var foundFirst:Bool = false;
 			var goal:Array<Int> = null;
@@ -168,7 +168,15 @@ class LevelGen {
 		da.shuffle();
 		goals = da.toArray();
 		
-		trace(goals);
+		//////
+		
+		var score:Float = 0;
+		for(goal in goals){
+			if(goal.length == 1){
+				score -= 1;
+			}
+		}
+		return score;
 	}
 	
 	inline function addNextScroll(start:Point, scroll:Array<Int>, addPotentials = true){
