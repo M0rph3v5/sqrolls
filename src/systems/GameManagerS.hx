@@ -90,7 +90,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		
 		if(node.game.nextLevelButtonPressed){
 			engine.removeEntity(node.entity);
-			creator.createGame();	
+			creator.createGame(node.game.level + 1);	
 		}
 	}
 }

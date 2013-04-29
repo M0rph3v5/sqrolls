@@ -14,7 +14,10 @@ class Game {
 	public var achieved:Bool = false;
 	public var nextLevelButtonPressed:Bool = true;
 	
-	public function new(){
+	public var level:Int;
+	
+	public function new(level:Int){
 		goals = new Array();
+		this.level = level;
 	}
 }

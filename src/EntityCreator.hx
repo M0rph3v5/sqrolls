@@ -23,9 +23,9 @@ class EntityCreator {
 		return e;
 	}
 	
-	public function createGame(){
+	public function createGame(level:Int){
 		var e = new Entity()
-		.add(new Game());
+		.add(new Game(level));
 		
 		engine.addEntity(e);
 		
