@@ -24,8 +24,8 @@ class ButtonS extends ListIteratingSystem<ButtonN>{
 		node.button.pressed = false;
 		
 		if(mouseInput.lastMousePos != null && node.button.area.contains(mouseInput.lastMousePos.x, mouseInput.lastMousePos.y)) {	
-			node.button.down = true;
-			node.button.pressed = mouseInput.mouseDown;
+			node.button.mouseOver = true;
+			node.button.down = mouseInput.mouseDown;
 			if(released){
 				node.button.pressed = true;
 			}
