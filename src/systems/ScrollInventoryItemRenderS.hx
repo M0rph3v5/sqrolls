@@ -20,7 +20,6 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	var creator:EntityCreator;
 	var engine:Engine;
 	
-	
 	public function new(graphics:Graphics, mouseInput:MouseInput, creator:EntityCreator){
 		super(ScrollInventoryItemRenderN, updateN, add, remove);
 		this.graphics = graphics;
@@ -83,7 +82,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	
 	function putActiveScrollBackInInventory(itemNode:ScrollInventoryItemRenderN) {
 		var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;		
-				
+		
 		// check the last one
 		if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
 			activeScroll.count++;
