@@ -56,7 +56,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		}
 		
 		for(i in 0...levelgen.goals.length){
-			creator.createGoal(node.game, levelgen.goals[i], 640, 215 + 55 * i);
+			creator.createGoal(node.game, levelgen.goals[i], 450, 215 + 55 * i); // 640 on last bg
 		}
 	
 		return levelgen;

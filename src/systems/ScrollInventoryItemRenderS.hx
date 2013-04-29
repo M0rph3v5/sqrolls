@@ -109,10 +109,10 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			
 			node.scrollInventoryItemRender.tf = new TextField(85,85,node.scrollInventoryItem.count+"");
 			node.scrollInventoryItemRender.tf.color = 0xffffff;
-			node.scrollInventoryItemRender.tf.fontSize = 12;
+			node.scrollInventoryItemRender.tf.fontSize = 13;
 			node.scrollInventoryItemRender.tf.fontName = "Courgette Regular";
-			node.scrollInventoryItemRender.tf.x = x;
-			node.scrollInventoryItemRender.tf.y = y;
+			node.scrollInventoryItemRender.tf.x = x - 31;
+			node.scrollInventoryItemRender.tf.y = y - 30;
 			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.tf);		
 			
 			//var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);
@@ -138,6 +138,11 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 				node.gameCitizen.game.refund = -1;			
 			}
 			node.scrollInventoryItemRender.tf.text = node.scrollInventoryItem.count + "";
+			node.scrollInventoryItemRender.tf.color =node.scrollInventoryItem.count == 0 ? 0x11111 : 0xffffff;
+			node.scrollInventoryItemRender.invEmptyImage.visible = node.scrollInventoryItem.count == 0;
+			node.scrollInventoryItemRender.invImage.visible = node.scrollInventoryItem.count != 0;
+			
+			node.scrollInventoryItemRender.image.visible = node.scrollInventoryItem.count != 0;
 		} else {
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
 				engine.removeEntity(mouseSlaveNode.entity);
