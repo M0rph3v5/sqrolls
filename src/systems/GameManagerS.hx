@@ -20,7 +20,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		creator.createImage("bg");
 		node.game.grid = creator.createGrid(node.game).get(Grid);		
 		//creator.createScoreUI(node.game, node.game.grid);
-		creator.createNextLevelButton(node.game, 500, 300);
+		
 		
 		var inventoryEntity = creator.createInventory(node.game);
 		var inventory:ScrollInventory = inventoryEntity.get(ScrollInventory);
@@ -59,6 +59,8 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		for(i in 0...levelgen.goals.length){
 			creator.createGoal(node.game, levelgen.goals[i], 450, 215 + 55 * i); // 640 on last bg
 		}
+		
+		creator.createNextLevelButton(node.game, 500, 215 + 25 + 55 * levelgen.goals.length);
 	
 		return levelgen;
 	}
