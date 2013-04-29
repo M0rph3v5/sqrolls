@@ -4,8 +4,8 @@ using Imports;
 
 class Grid {
 	public var tiles:Array2<Array<Entity>>;
-	public var columns:Int = 6;	 
-	public var rows:Int = 6;
+	public var columns:Int = 4;	 
+	public var rows:Int = 4;
 	public var tileSize:Int = 85;
 	
 	public var total:Int;

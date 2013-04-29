@@ -10,6 +10,8 @@ class ScrollInventoryItemRender {
 	public var invEmptyImage:Image;
 	public var invImage:Image;
 	
+	public var notAllowedImage:Image;
+	
 	public function new(dpo:DisplayObjectContainer){
 		this.displayObjectContainer = dpo;
 	}
