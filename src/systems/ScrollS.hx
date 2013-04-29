@@ -16,6 +16,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	var activeScrollNode:ScrollN;
 	
 	var moved:Bool = false;
+	var lastCoords = null;
 	
 	public function new(creator:EntityCreator, mouseInput:MouseInput){
 		super(ScrollN, updateN, add, remove);
@@ -52,6 +53,10 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var xdistance = Math.min(Math.abs(xd),4);
 		var ydistance = Math.min(Math.abs(yd),4);
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(xdistance) : Std.int(ydistance) );
+		
+		if (lastCoords != null && coords.toString() == lastCoords.toString()) {
+			return;
+		}
 
 		// keep track of tile items on scroll node
 		for (e in node.scroll.tileItems) {
@@ -73,6 +78,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			}
 			index++;
 		}
+		lastCoords = coords;
 		
 	}
 	
