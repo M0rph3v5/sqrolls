@@ -62,6 +62,7 @@ typedef Button = components.Button;
 typedef NextLevelButton = components.NextLevelButton;
 typedef ButtonS = systems.ButtonS;
 typedef NextLevelButtonS = systems.NextLevelButtonS;
+typedef GameCitizenS = systems.GameCitizenS;
 
 #if flash
 typedef Socket = flash.net.Socket;

@@ -7,6 +7,7 @@ class GameManagerN extends Node<GameManagerN>{
 }
 
 class GameManagerS extends ListIteratingSystem<GameManagerN>{
+	var engine:Engine;
 	var creator:EntityCreator;
 	
 	public function new(creator:EntityCreator){
@@ -14,10 +15,15 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		this.creator = creator;
 	}
 	
+	override public function addToEngine(engine:Engine){
+		super.addToEngine(engine);
+		this.engine = engine;
+	}
+	
 	function add(node:GameManagerN){
 		var levelgen = genLevel(node);
 		
-		creator.createImage("bg");
+		creator.createBackgroundImage("bg", node.game);
 		node.game.grid = creator.createGrid(node.game).get(Grid);		
 		//creator.createScoreUI(node.game, node.game.grid);
 		
@@ -81,6 +87,10 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		}
 		
 		node.game.achieved = allGoalsComplete;
-		//trace(allGoalsComplete);
+		
+		if(node.game.nextLevelButtonPressed){
+			engine.removeEntity(node.entity);
+			creator.createGame();	
+		}
 	}
 }
