@@ -76,6 +76,6 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			}
 		}
 		
-		trace(allGoalsComplete);
+		//trace(allGoalsComplete);
 	}
 }

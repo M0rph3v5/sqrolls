@@ -46,20 +46,41 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		
 		// check if hitting one of the invetory items
 		for (itemNode in itemList) {
-			if (itemNode.scrollInventoryItem.mouseSlave)
-			 continue;
+			if (itemNode.scrollInventoryItem.mouseSlave) {
+				continue;
+			}
 			
 			var rect = new Rectangle(itemNode.transform.position.x, itemNode.transform.position.y, 85, 85);
-			if(rect.contains(pos.x, pos.y)) {
-				
-				selectScrollNode(itemNode, pos);
+			if(rect.contains(pos.x, pos.y)) {	
+				var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;
+				if (activeScroll != null && activeScroll.data[0] == itemNode.scrollInventoryItem.data[0]) {
+					putActiveScrollBackInInventory(itemNode);
+				} else {
+					selectScrollNode(itemNode, pos);				
+				}
+							
 			}
 		}
 	}
 	
 	function selectScrollNode(itemNode:ScrollInventoryItemRenderN, pos:Vec2, ?refund:Bool = false) {
 		var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;
+
+		putActiveScrollBackInInventory(itemNode);
 		
+		if (itemNode.scrollInventoryItem.count <= 0 && !refund)
+			return;
+		
+		activeScroll = itemNode.scrollInventoryItem;
+		if (!refund)
+			activeScroll.count--;
+		creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
+		itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
+	}
+	
+	function putActiveScrollBackInInventory(itemNode:ScrollInventoryItemRenderN) {
+		var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;		
+				
 		// check the last one
 		if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
 			activeScroll.count++;
@@ -71,14 +92,6 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			engine.removeEntity(mouseSlaveNode.entity);
 		}
 		
-		if (itemNode.scrollInventoryItem.count <= 0 && !refund)
-			return;
-		
-		activeScroll = itemNode.scrollInventoryItem;
-		if (!refund)
-			activeScroll.count--;
-		creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
-		itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {
