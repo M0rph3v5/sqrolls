@@ -4,10 +4,13 @@ class GenConfig{
 	public var width:Int;
 	public var height:Int;
 	public var scrolls:Array<Array<Int>>;
+	public var zeroScroll:Array<Int>;
 	public var numScrolls:Int;
 	public var numBlanks:Int;
 	public var numConvenient:Int;
+	public var convenients:Array<Int>;
 	public var numInconvenient:Int;
+	public var inconvenients:Array<Int>;
 	
 	public function new(){
 	
@@ -40,14 +43,17 @@ class LevelGen {
 
 	public function new(width:Int, height:Int){
 		this.c = new GenConfig();
-		c.width = 8;
-		c.height = 8;
+		c.width = 4;
+		c.height = 4;
 		c.scrolls = [[1,2,3,4,5], [5,4,3,2,1]];
+		c.zeroScroll = [0,0,0,0,0];
 		
-		c.numScrolls = 2;
+		c.numScrolls = 4;
 		c.numBlanks = 1;
 		c.numInconvenient = 1;
+		c.convenients = [1,2,3,4,5];
 		c.numConvenient = 1;
+		c.inconvenients = [2,3,4];
 		
 		grid = new Array2(c.width,c.height);
 		
@@ -65,30 +71,50 @@ class LevelGen {
 	public function generate(){
 		goals = [];
 		
-		for(i in 0...c.numScrolls){
-			addNextScroll();
-		}
 		trace(grid);
-	}
-	
-	inline function addNextScroll(){
-		var start:Point;
-		if(potentialScrollStarts.length == 0){
-			if(empty.length == 0){
-				start = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+		
+		for(i in 0...c.numScrolls){
+			var start:Point;
+			if(potentialScrollStarts.length == 0){
+				if(empty.length == 0){
+					start = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+				}else{
+					start = empty[Random.randRange(0, empty.length-1)];
+				} 
 			}else{
-				start = empty[Random.randRange(0, empty.length-1)];
-			} 
-		}else{
-			start = potentialScrollStarts[Random.randRange(0, potentialScrollStarts.length-1)];
+				start = potentialScrollStarts[Random.randRange(0, potentialScrollStarts.length-1)];
+			}
+			
+			var scroll = c.scrolls[Random.randRange(0, c.scrolls.length - 1)];
+			addNextScroll(start, scroll);
 		}
 		
+		trace(grid);
+		
+		for(i in 0...c.numBlanks){
+			var start = empty[Random.randRange(0, empty.length-1)];
+			addNextScroll(start, c.zeroScroll);
+		}
+		
+		trace(grid);
+		
+		for( i in 0...c.numConvenient){
+			var p:Point;
+			if(empty.length == 0){
+				p = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+			}else{
+				p = empty[Random.randRange(0, empty.length-1)];
+			}
+			setGrid()
+		}
+	}
+	
+	inline function addNextScroll(start:Point, scroll:Array<Int>){
 		var dirX = Random.randRange(0,1);
 		var dirY = 1 - dirX;
 		
 		var startD = dirX == 1 ? start.x : start.y;
 			
-		var scroll = c.scrolls[Random.randRange(0, c.scrolls.length - 1)];
 		var randomLength = Random.randRange(2,M.min(scroll.length, c.width));
 
 		var min = M.max(startD-randomLength+1, 0);
@@ -110,8 +136,7 @@ class LevelGen {
 		var i:Int = 0;
 		
 		for(i in 0...length){
-			grid.set(startX, startY, scroll[i]);
-			removeEmpty(startX, startY);
+			setGrid(startX, startY, scroll[i]);
 			addPotentialScrollStart(startX - 1, startY);
 			addPotentialScrollStart(startX + 1, startY);
 			addPotentialScrollStart(startX, startY - 1);
@@ -119,6 +144,11 @@ class LevelGen {
 			startX += dirX;
 			startY += dirY;
 		}
+	}
+	
+	inline function setGrid(x:Int, y:Int, value:Int){
+		grid.set(x, y, value);
+		removeEmpty(x, y);
 	}
 	
 	inline function addPotentialScrollStart(x:Int, y:Int){
