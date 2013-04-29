@@ -36,10 +36,12 @@ class LevelGen {
 	public var grid: Array2<Int>;
 
 	public var empty : Array<Point>;
+	public var occupied : Array<Point>;
  	public var emptyGrid : Array2<Point>;
 	public var potentialScrollStarts : Array<Point>;
 	
 	public var goals: Array<Array<Int>>;
+	public var outGrid:Array2<Int>;
 
 	public function new(width:Int, height:Int){
 		this.c = new GenConfig();
@@ -50,14 +52,16 @@ class LevelGen {
 		
 		c.numScrolls = 4;
 		c.numBlanks = 1;
-		c.numInconvenient = 1;
-		c.convenients = [1,2,3,4,5];
 		c.numConvenient = 1;
+		c.convenients = [1,2,3,4,5];
+		c.numInconvenient = 1;
 		c.inconvenients = [2,3,4];
 		
 		grid = new Array2(c.width,c.height);
+		outGrid = new Array2(c.width,c.height);
 		
 		empty = new Array();
+		occupied = new Array();
 		emptyGrid = new Array2(c.width, c.height);
 		emptyGrid.walk(function(current,x,y){
 			var p = new Point(x,y);
@@ -93,7 +97,19 @@ class LevelGen {
 		
 		for(i in 0...c.numBlanks){
 			var start = empty[Random.randRange(0, empty.length-1)];
-			addNextScroll(start, c.zeroScroll);
+			addNextScroll(start, c.zeroScroll, false);
+		}
+		
+		trace(grid);
+		
+		for( i in 0...c.numInconvenient){
+			var p:Point;
+			if(occupied.length == 0){
+				p = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+			}else{
+				p = occupied[Random.randRange(0, occupied.length-1)];
+			}
+			outGrid.set(p.x,p.y,grid.get(p.x,p.y));
 		}
 		
 		trace(grid);
@@ -105,11 +121,51 @@ class LevelGen {
 			}else{
 				p = empty[Random.randRange(0, empty.length-1)];
 			}
-			setGrid()
+			setGrid(p.x, p.y, c.convenients[Random.randRange(0,c.convenients.length-1)]);
+			outGrid.set(p.x,p.y,grid.get(p.x,p.y));
 		}
+
+		trace(grid);
+		for(y in 0...c.height){
+			var foundFirst:Bool = false;
+			var goal:Array<Int> = null;
+			for(x in 0...c.width){
+				if(foundFirst && emptyGrid.get(x,y) != null){
+					var moreComming:Bool = false;
+					for(i in x...c.width){
+						if(emptyGrid.get(i,y) == null && grid.get(i,y) != 0){
+							moreComming = true;
+							break;
+						}
+					}
+					if(!moreComming){
+						break;
+					}
+					setGrid(x, y, c.convenients[Random.randRange(0,c.convenients.length-1)]);
+					outGrid.set(x,y,grid.get(x,y));
+				}
+				
+				if(foundFirst && grid.get(x,y) == 0){
+					if(goal != null && goal.length > 0) goals.push(goal);
+					goal = new Array();
+				}
+				
+				if(emptyGrid.get(x,y) == null && grid.get(x,y) != 0){
+					if(!foundFirst){
+						foundFirst = true;
+						goal = new Array();	
+					}
+					
+					goal.push(grid.get(x,y));
+				}
+			}
+			if(goal != null && goal.length > 0) goals.push(goal);
+		}
+		
+		trace(goals);
 	}
 	
-	inline function addNextScroll(start:Point, scroll:Array<Int>){
+	inline function addNextScroll(start:Point, scroll:Array<Int>, addPotentials = true){
 		var dirX = Random.randRange(0,1);
 		var dirY = 1 - dirX;
 		
@@ -126,21 +182,23 @@ class LevelGen {
 		start.y = dirY == 1 ? startD : start.y; 
 
 		if(Random.randRange(0,1) == 0){
-			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength);
+			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength, addPotentials);
 		}else{
-			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength);
+			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength, addPotentials);
 		}
 	}
 	
-	inline function addScroll(startX:Int, startY:Int, dirX:Int, dirY:Int, scroll:Array<Int>, length:Int){
+	inline function addScroll(startX:Int, startY:Int, dirX:Int, dirY:Int, scroll:Array<Int>, length:Int, addPotentials:Bool){
 		var i:Int = 0;
 		
 		for(i in 0...length){
 			setGrid(startX, startY, scroll[i]);
-			addPotentialScrollStart(startX - 1, startY);
-			addPotentialScrollStart(startX + 1, startY);
-			addPotentialScrollStart(startX, startY - 1);
-			addPotentialScrollStart(startX, startY + 1);
+			if(addPotentials){
+				addPotentialScrollStart(startX - 1, startY);
+				addPotentialScrollStart(startX + 1, startY);
+				addPotentialScrollStart(startX, startY - 1);
+				addPotentialScrollStart(startX, startY + 1);
+			}
 			startX += dirX;
 			startY += dirY;
 		}
@@ -161,6 +219,7 @@ class LevelGen {
 		if(!M.inRange(x,0,c.width-1) || !M.inRange(y,0,c.height-1)) return;
 		if(emptyGrid.get(x,y) == null) return;
 		empty.remove(emptyGrid.get(x,y));
+		occupied.push(emptyGrid.get(x,y));
 		potentialScrollStarts.remove(emptyGrid.get(x,y));
 		emptyGrid.set(x,y,null);
 	}
