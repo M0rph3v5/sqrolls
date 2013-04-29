@@ -13,6 +13,6 @@ class Button {
 	public var area : Rectangle;
 	
 	public function new(rect:Rectangle){
-		this.area = new Rectangle();
+		this.area = rect;
 	}
 }

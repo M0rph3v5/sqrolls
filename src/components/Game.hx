@@ -12,6 +12,7 @@ class Game {
 	public var grid:Grid;
 	
 	public var achieved:Bool = false;
+	public var nextLevelButtonPressed:Bool = true;
 	
 	public function new(){
 		goals = new Array();
