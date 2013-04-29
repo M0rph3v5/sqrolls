@@ -78,6 +78,6 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			}
 		}
 		
-		trace(allGoalsComplete);
+		node.game.achieved = allGoalsComplete;
 	}
 }

@@ -11,6 +11,8 @@ class Game {
 	public var refund:Int = -1;
 	public var grid:Grid;
 	
+	public var achieved:Bool = false;
+	
 	public function new(){
 		goals = new Array();
 	}

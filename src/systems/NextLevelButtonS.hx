@@ -30,6 +30,7 @@ class NextLevelButtonS extends ListIteratingSystem<NextLevelButtonN>{
 	}
 	
 	function updateN(node:NextLevelButtonN, time:Float){
-		
+		node.nextLevelButton.enabled.visible = node.gameCitizen.game.achieved;
+		node.nextLevelButton.disabled.visible = !node.gameCitizen.game.achieved;
 	}
 }
