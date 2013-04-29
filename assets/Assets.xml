@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:bd41fc58e84de0126fd725b6b2cfbd91$ -->
+<!-- $TexturePacker:SmartUpdate:cbf22693daf87c6220c0e4914391622a$ -->
 <TextureAtlas imagePath="Assets.png">
     <SubTexture name="Brown Block" x="494" y="1164" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Character Boy" x="423" y="1141" width="67" height="89" frameX="-17" frameY="-62" frameWidth="101" frameHeight="171"/>

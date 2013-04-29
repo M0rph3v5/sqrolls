@@ -34,9 +34,9 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 	
 	public function updateN(node:ScrollRenderN, time:Float){
 		var transform:Mat23 = new Mat23();
-		transform = transform.concat(Mat23.scale(((node.scroll.tileItems.length) * 85) / node.scrollRender.image.texture.width, 1));
+		transform = transform.concat(Mat23.scale(((node.scroll.tileItems.length) * 84) / node.scrollRender.image.texture.width, 1));
 
-		transform = transform.concat(Mat23.translation(-85.0/2, -85.0/2));
+		transform = transform.concat(Mat23.translation(-84.0/2, -84.0/2));
 		if(node.scroll.beginPoint.x == node.scroll.endPoint.x){
 			if(node.scroll.beginPoint.y <= node.scroll.endPoint.y){
 				transform = transform.concat(Mat23.rotation(Math.PI / 2));
@@ -49,7 +49,7 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 				transform = transform.concat(Mat23.rotation(Math.PI));
 			}
 		}
-		transform = transform.concat(Mat23.translation(85.0/2, 85.0/2));
+		transform = transform.concat(Mat23.translation(84.0/2, 84.0/2));
 		
 		transform.toMatrix(node.scrollRender.image.transformationMatrix);
 	}
