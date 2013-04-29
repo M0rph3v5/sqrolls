@@ -8,8 +8,19 @@ class GoalN extends Node<GoalN>{
 }
 
 class GoalS extends ListIteratingSystem<GoalN>{
+	var goalNodeList:NodeList<GoalN>;
+	
 	public function new(){
 		super(GoalN, updateN, add, remove);
+	}	
+				
+	override public function addToEngine(engine:Engine){
+		super.addToEngine(engine);
+		goalNodeList = engine.getNodeList(GoalN);		
+	}
+	
+	override public function update(time:Float) {
+		super.update(time);
 	}
 	
 	function add(node:GoalN){
@@ -23,12 +34,56 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	function updateN(node:GoalN, time:Float){
 		var achieved:Bool = false;
 
+		var achievedArray = new Array2(node.gameCitizen.game.grid.columns,node.gameCitizen.game.grid.rows);
+		achievedArray.fill(0);
+		
 		node.gameCitizen.game.grid.tiles.walk(function(current:Array<Entity>,x,y){
-			achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 1, 0);
-			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, -1, 0);
-			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, -1);
-			//achieved = achieved || checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, 0, 1);
 			
+			var directions = [[1,0]];
+			for (direction in directions) {
+				if (achievedArray.get(x,y) == 1)
+					continue;
+				
+				var tileAchieved = false;
+				var dx = direction[0];
+				var dy = direction[1];
+				
+				tileAchieved = checkRay(node.gameCitizen.game.grid, node.goal.goal, x, y, dx, dy);
+				achievedArray.set(x,y,tileAchieved?1:0);
+				
+				if (tileAchieved) { // mark the remaining of the achieved goal true
+					achieved = tileAchieved;
+					
+					var tx = x;
+					var ty = y;
+					for (i in 0...node.goal.goal.length-1) {				
+						tx += dx;
+						ty += dy;						
+						achievedArray.set(tx,ty,tileAchieved?1:0);						
+					}					
+				}
+				
+			}
+			return current;
+		});
+		
+		achievedArray.walk(function(current,x,y){			
+			var tileItemEntity = getTileItem(node.gameCitizen.game.grid, x, y);
+			if (tileItemEntity != null) {
+				var item:TileItem = tileItemEntity.get(TileItem);
+				if (current == 1) {
+					if(Lambda.has(item.goals, node.entity))
+						return current;
+					item.goals.push(node.entity);
+					item.achieved = true;
+				} else {
+					if(!Lambda.has(item.goals, node.entity))
+						return current;
+					item.goals.remove(node.entity);
+					if (item.goals.length == 0) // if i was the last goal to posses this one, allow to set false
+						item.achieved = false;
+				}
+			}
 			return current;
 		});
 		
@@ -53,6 +108,9 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	}
 	
 	function getTileItem(grid:Grid, x:Int, y:Int):Entity{
+		if (x < 0 || x >= grid.columns) return null;
+		if (y < 0 || y >= grid.rows) return null;
+		
 		var current = grid.tiles.get(x,y);
 		for(tile in current){
 			if(!tile.has(Tile)) continue;
