@@ -20,6 +20,12 @@ class LevelGen {
 	
 	public function generate(){
 		goals = [[5,4,4],[1,2,5],[1,2]];
+		
+		var i = 6;
+		while(i-- > 0) {
+			grid.set(Random.randRange(0,5),Random.randRange(0,5),Random.randRange(1,5));		
+		}
+		
 		return;
 		
 		var dirX = Random.randRange(0,1);
