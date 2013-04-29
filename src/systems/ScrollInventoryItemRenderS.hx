@@ -17,9 +17,9 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 	var graphics:Graphics;
 	var mouseInput:MouseInput;
 	var itemList:NodeList<ScrollInventoryItemRenderN>;
-	var mouseSlaveNode:ScrollInventoryItemRenderN;
 	var creator:EntityCreator;
 	var engine:Engine;
+	
 	
 	public function new(graphics:Graphics, mouseInput:MouseInput, creator:EntityCreator){
 		super(ScrollInventoryItemRenderN, updateN, add, remove);
@@ -91,19 +91,23 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			itemNode.gameCitizen.game.activeScrollInventoryItem = null;
 		}
 		
-		if (mouseSlaveNode != null) {
-			engine.removeEntity(mouseSlaveNode.entity);
+		for (inode in itemList) {
+			if (inode.scrollInventoryItem.mouseSlave) {
+				engine.removeEntity(inode.entity);
+				break;	
+			}
 		}
-		
+
 		SoundManager.get_instance().release();
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {
-		if (mouseSlaveNode == null) {
-			return;
+		for (inode in itemList) {
+			if (inode.scrollInventoryItem.mouseSlave) {
+				inode.transform.position = pos;
+				break;
+			}
 		}
-		
-		mouseSlaveNode.transform.position = pos;
 	}
 	
 	public function add(node:ScrollInventoryItemRenderN){
@@ -147,13 +151,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			//index = Random.randRange(1,10);
 			node.transform.transform.tx = index * 84 + 50;
 			node.transform.transform.ty = 75;
-		} else {
-			mouseSlaveNode = node;
-		}
+		} 
 		
 	}
 	
 	public function remove(node:ScrollInventoryItemRenderN){
+
 		//node.scrollInventoryItemRender.displayObjectContainer.removeChild(node.scrollInventoryItemRender.image);
 	}
 	
@@ -173,7 +176,12 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.notAllowedImage.visible = node.scrollInventoryItem.count == 0; 
 		} else {
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
-				engine.removeEntity(mouseSlaveNode.entity);
+				for (inode in itemList) {
+					if (inode.scrollInventoryItem.mouseSlave) {
+					engine.removeEntity(inode.entity);
+					break;	
+				}
+		}
 			}
 		}
 	}
