@@ -80,6 +80,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		}
 		lastCoords = coords;
 		
+		SoundManager.get_instance().unfurl();
 	}
 	
 	function ray(start:Vec2, increment:Vec2, length:Int) {
@@ -115,6 +116,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	}
 	
 	function onMouseUp(pos:Vec2) {
+		SoundManager.get_instance().stopUnfurl();
+		
 		if (!moved) { // intended to remove / pickup a scroll
 			var nodeToRemove = null;
 			
@@ -152,8 +155,10 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		if (activeScrollNode != null) {
 			activeScrollNode.scroll.dragging = false;
 			
-			if (moved)
-				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;			
+			if (moved) {
+				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;
+				SoundManager.get_instance().release();
+			}			
 		}
 		
 		moved = false;

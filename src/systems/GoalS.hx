@@ -21,6 +21,32 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	
 	override public function update(time:Float) {
 		super.update(time);
+		
+		var total = Lambda.count(goalNodeList);
+		var index = 0;
+		
+		var achievedCount = 0;
+		for (node in goalNodeList) {
+			if (node.goal.achieved)
+				achievedCount++;
+			
+			index++;
+			
+			if (index == total) {
+				
+				if (achievedCount == total) {
+					if (!node.gameCitizen.game.goalsComplete) { // wasn't before
+						SoundManager.get_instance().levelComplete();
+					}
+					node.gameCitizen.game.goalsComplete = true;	
+				} else {
+					node.gameCitizen.game.goalsComplete = false;	
+				}
+				
+			}
+		}
+		
+
 	}
 	
 	function add(node:GoalN){
@@ -88,6 +114,10 @@ class GoalS extends ListIteratingSystem<GoalN>{
 			}
 			return current;
 		});
+		
+		if (!node.goal.achieved && achieved) {
+			SoundManager.get_instance().goalComplete();
+		}
 		
 		node.goal.achieved = achieved;
 	}

@@ -92,5 +92,7 @@ typedef Keyboard = flash.ui.Keyboard;
 typedef TextField = starling.text.TextField;
 typedef Rectangle = flash.geom.Rectangle;
 typedef BlurFilter = starling.filters.BlurFilter;
-
+typedef Sound = flash.media.Sound;
+typedef SoundTransform = flash.media.SoundTransform;
+typedef SoundChannel = flash.media.SoundChannel;
 #end
