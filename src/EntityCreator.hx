@@ -152,8 +152,8 @@ class EntityCreator {
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
-		//.add(new NextLevelButton(dpo))
-		//.add(new Button())
+		.add(new NextLevelButton(dpo))
+		.add(new Button())
 		
 		.add(new Transform())
 		.add(new Display(dpo, Mat23.translation(x,y), 1));
