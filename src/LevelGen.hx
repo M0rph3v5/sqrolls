@@ -75,6 +75,12 @@ class LevelGen {
 	public function generate(){
 		goals = [];
 		
+		var i = 6;
+		while(i-- > 0) {
+			grid.set(Random.randRange(0,5),Random.randRange(0,5),Random.randRange(1,5));		
+		}
+		
+		
 		trace(grid);
 		
 		for(i in 0...c.numScrolls){
