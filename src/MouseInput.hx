@@ -10,6 +10,7 @@ class MouseInput {
 	public var onMouseDown:Signal1<Vec2>;
 	public var onMouseUp:Signal1<Vec2>;
 	public var onMouseMove:Signal2<Vec2, Bool>;
+	public var lastMousePos:Vec2;
 	
 	var mouseDown:Bool = false;
 	
@@ -35,7 +36,9 @@ class MouseInput {
 			onMouseUp.dispatch(new Vec2(e.stageX, e.stageY));
 		});
 		stage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent) {
-			onMouseMove.dispatch(new Vec2(e.stageX, e.stageY), mouseDown);
+			var pos = new Vec2(e.stageX, e.stageY);
+			onMouseMove.dispatch(pos, mouseDown);
+			lastMousePos = pos;
 		});
 	}
 }

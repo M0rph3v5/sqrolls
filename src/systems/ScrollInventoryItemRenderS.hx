@@ -52,28 +52,33 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			var rect = new Rectangle(itemNode.transform.position.x, itemNode.transform.position.y, 85, 85);
 			if(rect.contains(pos.x, pos.y)) {
 				
-				var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;
-				
-				// check the last one
-				if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
-					activeScroll.count++;
-					activeScroll = null;
-					itemNode.gameCitizen.game.activeScrollInventoryItem = null;
-				}
-				
-				if (mouseSlaveNode != null) {
-					engine.removeEntity(mouseSlaveNode.entity);
-				}
-				
-				if (itemNode.scrollInventoryItem.count <= 0)
-					break;
-				
-				activeScroll = itemNode.scrollInventoryItem;
-				activeScroll.count--;
-				creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
-				itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
+				selectScrollNode(itemNode, pos);
 			}
 		}
+	}
+	
+	function selectScrollNode(itemNode:ScrollInventoryItemRenderN, pos:Vec2, ?refund:Bool = false) {
+		var activeScroll = itemNode.gameCitizen.game.activeScrollInventoryItem;
+		
+		// check the last one
+		if (activeScroll != null) { // if it's still active, refund cus i'm selecting a new one.
+			activeScroll.count++;
+			activeScroll = null;
+			itemNode.gameCitizen.game.activeScrollInventoryItem = null;
+		}
+		
+		if (mouseSlaveNode != null) {
+			engine.removeEntity(mouseSlaveNode.entity);
+		}
+		
+		if (itemNode.scrollInventoryItem.count <= 0 && !refund)
+			return;
+		
+		activeScroll = itemNode.scrollInventoryItem;
+		if (!refund)
+			activeScroll.count--;
+		creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
+		itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {
@@ -139,7 +144,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		
 		if (!node.scrollInventoryItem.mouseSlave) {
 			if (node.gameCitizen.game.refund > -1 && node.gameCitizen.game.refund == node.scrollInventoryItem.data[0]) {
-				node.scrollInventoryItem.count++;	
+				selectScrollNode(node, mouseInput.lastMousePos, true);
 				node.gameCitizen.game.refund = -1;			
 			}
 			node.scrollInventoryItemRender.tf.text = node.scrollInventoryItem.count + "";
