@@ -86,4 +86,6 @@ typedef KeyboardEvent = flash.events.KeyboardEvent;
 typedef Keyboard = flash.ui.Keyboard;
 typedef TextField = starling.text.TextField;
 typedef Rectangle = flash.geom.Rectangle;
+typedef BlurFilter = starling.filters.BlurFilter;
+
 #end

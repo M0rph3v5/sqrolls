@@ -10,21 +10,31 @@ class TileItemRenderN extends Node<TileItemRenderN>{
 }
 
 class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
-	public function new(){
+	var graphics:Graphics;
+	
+	public function new(graphics:Graphics){
 		super(TileItemRenderN, updateN, add, remove);
+		this.graphics = graphics;
 	}
 	
 	public function add(node:TileItemRenderN){
 		
-		node.tileItemRender.tf = new TextField(85,85, node.tileItem.number == 0 ? "" : node.tileItem.number+"");
-		node.tileItemRender.tf.color = 0xffffff;
-		node.tileItemRender.tf.fontSize = 30;
-		node.tileItemRender.displayObjectContainer.addChild(node.tileItemRender.tf);
-		node.transform.position = Utils.positionForCoord(node.gridCitizen.pos);
+		if (node.tileItem.number == 0)
+			return;
+		
+		node.tileItemRender.image = new Image(graphics.getTextureSymbolForNumber(node.tileItem.number));
+		node.tileItemRender.displayObjectContainer.addChild(node.tileItemRender.image);
+		
+		//node.tileItemRender.displayObjectContainer.filter = BlurFilter.createGlow(0xffffff, 0.5); 
+				
+		var pos = Utils.positionForCoord(node.gridCitizen.pos);
+		pos.x += 18;
+		pos.y += 18;
+		node.transform.position = pos;
 	}
 	
 	public function remove(node:TileItemRenderN){
-		node.tileItemRender.displayObjectContainer.removeChild(node.tileItemRender.tf);
+//		node.tileItemRender.displayObjectContainer.removeChild(node.tileItemRender.tf);
 	}
 	
 	public function updateN(node:TileItemRenderN, time:Float){

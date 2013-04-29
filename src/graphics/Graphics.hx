@@ -23,5 +23,10 @@ class Graphics {
 	public function getTexture(id:String):Texture{
 		return textureAtlas.getTexture(id);
 	}
+	
+	public function getTextureSymbolForNumber(number:Int):Texture {
+		var textureId = "symbol-brush" + number;		
+		return textureAtlas.getTexture(textureId);
+	}
 }
 

@@ -21,8 +21,8 @@ class ScrollRenderS extends ListIteratingSystem<ScrollRenderN>{
 		
 		if (node.scroll.data[0] != 0) {
 			node.scrollRender.image.color = switch(node.scroll.data[0]){
-				case(1):0x8aff00; // to scroll
-				case(5):0x0d8fea; // reverse scroll
+				case(1):Game.greenColor; // to scroll
+				case(5):Game.blueColor; // reverse scroll
 				case(_):0;
 			}
 		}

@@ -3,12 +3,15 @@ package components;
 using Imports;
 
 class Game {
+	public static var greenColor:Int = 0x8aff00;
+	public static var blueColor:Int = 0x0d8fea;
+	
 	public var activeScrollInventoryItem:ScrollInventoryItem = null;
 	public var goals:Array<Entity>;
 	public var refund:Int = -1;
 	public var grid:Grid;
 
 	public function new(){
-		goals = new Array();	
+		goals = new Array();
 	}
 }
