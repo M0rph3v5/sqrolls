@@ -147,13 +147,13 @@ class EntityCreator {
 		engine.addEntity(e);
 	}
 	
-	public function createNextLevelButton(game:Game, x:Float, y:Float){
+	public function createNextLevelButton(game:Game, x:Float, y:Float, rect:Rectangle){
 		var dpo = new Sprite();
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
 		.add(new NextLevelButton(dpo))
-		.add(new Button())
+		.add(new Button(rect))
 		
 		.add(new Transform())
 		.add(new Display(dpo, Mat23.translation(x,y), 1));

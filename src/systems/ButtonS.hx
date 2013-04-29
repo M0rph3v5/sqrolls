@@ -17,6 +17,20 @@ class ButtonS extends ListIteratingSystem<ButtonN>{
 	}
 	
 	function updateN(node:ButtonN, time:Float){
+		var released = !mouseInput.mouseDown && node.button.wasDown;
 		
+		node.button.down = false;
+		node.button.mouseOver = false;
+		node.button.pressed = false;
+		
+		if(node.button.area.contains(mouseInput.lastMousePos.x, mouseInput.lastMousePos.y)) {	
+			node.button.down = true;
+			node.button.pressed = mouseInput.mouseDown;
+			if(released){
+				node.button.pressed = true;
+			}
+		}
+		
+		node.button.wasDown = mouseInput.mouseDown;
 	}
 }

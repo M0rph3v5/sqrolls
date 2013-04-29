@@ -1,13 +1,18 @@
 package components;
 
+using Imports;
+
 class Button {
 	public var mouseOver:Bool;
-	public var mouseDown:Bool;
+	public var down:Bool;
+	
 	public var pressed:Bool;
 	
-	//public var area : Rectangle;
+	public var wasDown:Bool;
 	
-	public function new(){
+	public var area : Rectangle;
+	
+	public function new(rect:Rectangle){
 		this.area = new Rectangle();
 	}
 }
