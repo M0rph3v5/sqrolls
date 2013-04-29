@@ -39,7 +39,7 @@ class GoalS extends ListIteratingSystem<GoalN>{
 		
 		node.gameCitizen.game.grid.tiles.walk(function(current:Array<Entity>,x,y){
 			
-			var directions = [[1,0]];
+			var directions = [[1,0],[0,1]];
 			for (direction in directions) {
 				if (achievedArray.get(x,y) == 1)
 					continue;
@@ -58,7 +58,7 @@ class GoalS extends ListIteratingSystem<GoalN>{
 					var ty = y;
 					for (i in 0...node.goal.goal.length-1) {				
 						tx += dx;
-						ty += dy;						
+						ty += dy;
 						achievedArray.set(tx,ty,tileAchieved?1:0);						
 					}					
 				}
@@ -66,6 +66,8 @@ class GoalS extends ListIteratingSystem<GoalN>{
 			}
 			return current;
 		});
+		
+		//trace(achievedArray);
 		
 		achievedArray.walk(function(current,x,y){			
 			var tileItemEntity = getTileItem(node.gameCitizen.game.grid, x, y);
