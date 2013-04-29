@@ -58,7 +58,7 @@ class GoalS extends ListIteratingSystem<GoalN>{
 					var ty = y;
 					for (i in 0...node.goal.goal.length-1) {				
 						tx += dx;
-						ty += dy;						
+						ty += dy;
 						achievedArray.set(tx,ty,tileAchieved?1:0);						
 					}					
 				}

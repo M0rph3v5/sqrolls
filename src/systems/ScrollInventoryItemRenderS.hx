@@ -2,6 +2,9 @@ package systems;
 
 using Imports;
 
+@:font("assets/Sqrolls/Courgette-Regular.ttf") class MyFont extends flash.text.Font {	 
+}
+
 class ScrollInventoryItemRenderN extends Node<ScrollInventoryItemRenderN>{
 	public var scrollInventoryItemRender:ScrollInventoryItemRender;
 	public var scrollInventoryItem:ScrollInventoryItem;
@@ -26,6 +29,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		this.mouseInput.onMouseDown.add(onMouseDown);
 		this.mouseInput.onMouseUp.add(onMouseUp);
 		this.mouseInput.onMouseMove.add(onMouseMove);
+		
 	}
 	
 	override public function addToEngine(engine:Engine){
@@ -92,9 +96,23 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.image);
 		
 		if (!node.scrollInventoryItem.mouseSlave) {			
+			var x = 40;
+			var y = 4;
+			node.scrollInventoryItemRender.invEmptyImage = new Image(graphics.getTexture("inventory-unavailable-scroll-indicator"));
+			node.scrollInventoryItemRender.invEmptyImage.x = x;
+			node.scrollInventoryItemRender.invEmptyImage.y = y;
+			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.invEmptyImage);
+			node.scrollInventoryItemRender.invImage = new Image(graphics.getTexture("inventory-available-scroll-indicator"));
+			node.scrollInventoryItemRender.invImage.x = x;
+			node.scrollInventoryItemRender.invImage.y = y;
+			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.invImage);
+			
 			node.scrollInventoryItemRender.tf = new TextField(85,85,node.scrollInventoryItem.count+"");
 			node.scrollInventoryItemRender.tf.color = 0xffffff;
-			node.scrollInventoryItemRender.tf.fontSize = 30;
+			node.scrollInventoryItemRender.tf.fontSize = 12;
+			node.scrollInventoryItemRender.tf.fontName = "Courgette Regular";
+			node.scrollInventoryItemRender.tf.x = x;
+			node.scrollInventoryItemRender.tf.y = y;
 			node.scrollInventoryItemRender.displayObjectContainer.addChild(node.scrollInventoryItemRender.tf);		
 			
 			//var index = Lambda.indexOf(node.scrollInventoryCitizen.scrollInventory.items, node.entity);

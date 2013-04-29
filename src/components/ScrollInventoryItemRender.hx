@@ -7,6 +7,9 @@ class ScrollInventoryItemRender {
 	public var image:Image;
 	public var tf:TextField;
 	
+	public var invEmptyImage:Image;
+	public var invImage:Image;
+	
 	public function new(dpo:DisplayObjectContainer){
 		this.displayObjectContainer = dpo;
 	}
