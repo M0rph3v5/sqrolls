@@ -36,20 +36,18 @@ class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
 	
 	public function remove(node:TileItemRenderN){
 //		node.tileItemRender.displayObjectContainer.removeChild(node.tileItemRender.tf);
-
-		if (node.tileItemRender.animationState == 1) { // in transition
-			Actuate.stop(node.tileItemRender.displayObjectContainer.filter);
-		}
+		Actuate.stop(node.tileItemRender.displayObjectContainer.filter);
 	}
 	
 	public function updateN(node:TileItemRenderN, time:Float){
 		
-		if ((node.tileItem.achieved && node.tileItemRender.animationState == 0) || (!node.tileItem.achieved && node.tileItemRender.animationState == 2)) { 
+		if ((node.tileItem.achieved && node.tileItemRender.animationState == 0) || (!node.tileItem.achieved && node.tileItemRender.animationState == 2)) {
 			node.tileItemRender.animationState = 1;
 			
 			var filter = cast(node.tileItemRender.displayObjectContainer.filter, BlurFilter);
-			Actuate.update(filter.setUniformColor, 2, [true, 0xffffff, node.tileItem.achieved?0.0:1.0], [true, 0xffffff, node.tileItem.achieved?1.0:0.0]).onComplete(function() {
-				node.tileItemRender.animationState = 2;
+			var achievedAtThisPoint = node.tileItem.achieved;
+			Actuate.update(filter.setUniformColor, 0.3, [true, 0xffffff, achievedAtThisPoint?0.0:1.0], [true, 0xffffff, achievedAtThisPoint?1.0:0.0]).onComplete(function() {
+				node.tileItemRender.animationState = achievedAtThisPoint?2:0;
 			});
 		}
 	}
