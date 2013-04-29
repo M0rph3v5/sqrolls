@@ -190,7 +190,11 @@ class LevelGen {
 		if(Random.randRange(0,1) == 0){
 			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength, addPotentials);
 		}else{
-			addScroll(start.x, start.y, dirX, dirY, scroll, randomLength, addPotentials);
+			if(dirX == 1){
+				addScroll(start.x + randomLength - 1, start.y, dirX * -1, dirY, scroll, randomLength, addPotentials);
+			}else{
+				addScroll(start.x, start.y + randomLength - 1, dirX, dirY * -1, scroll, randomLength, addPotentials);
+			}
 		}
 	}
 	
