@@ -46,7 +46,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		
 		// check if hitting one of the invetory items
 		for (itemNode in itemList) {
-			if (itemNode.scrollInventoryItem.mouseSlave) {
+			if (itemNode.scrollInventoryItem.mouseSlave) { // skip the cursor thingey
 				continue;
 			}
 			
@@ -58,7 +58,6 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 				} else {
 					selectScrollNode(itemNode, pos);				
 				}
-							
 			}
 		}
 	}
@@ -68,14 +67,18 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 
 		putActiveScrollBackInInventory(itemNode);
 		
-		if (itemNode.scrollInventoryItem.count <= 0 && !refund)
+		if (itemNode.scrollInventoryItem.count <= 0 && !refund) {
+			SoundManager.get_instance().error();			
 			return;
+		}
 		
 		activeScroll = itemNode.scrollInventoryItem;
 		if (!refund)
 			activeScroll.count--;
 		creator.createInventoryItem(0, itemNode.gameCitizen.game, itemNode.scrollInventoryCitizen.scrollInventory, itemNode.scrollInventoryItem.data, 0, true, pos);
 		itemNode.gameCitizen.game.activeScrollInventoryItem = activeScroll;
+		
+		SoundManager.get_instance().take();
 	}
 	
 	function putActiveScrollBackInInventory(itemNode:ScrollInventoryItemRenderN) {
@@ -92,6 +95,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			engine.removeEntity(mouseSlaveNode.entity);
 		}
 		
+		SoundManager.get_instance().release();
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {

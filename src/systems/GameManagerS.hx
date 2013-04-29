@@ -47,6 +47,8 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			}
 			return current;
 		});
+		
+		SoundManager.get_instance();
 	}
 	
 	function genLevel(node:GameManagerN){
