@@ -9,11 +9,28 @@ class ButtonN extends Node<ButtonN>{
 }
 
 class ButtonS extends ListIteratingSystem<ButtonN>{
-	public function new(){
+	var mouseInput:MouseInput;
+	
+	public function new(mouseInput:MouseInput){
 		super(ButtonN, updateN);
+		this.mouseInput = mouseInput;
 	}
 	
 	function updateN(node:ButtonN, time:Float){
+		var released = !mouseInput.mouseDown && node.button.wasDown;
 		
+		node.button.down = false;
+		node.button.mouseOver = false;
+		node.button.pressed = false;
+		
+		if(mouseInput.lastMousePos != null && node.button.area.contains(mouseInput.lastMousePos.x, mouseInput.lastMousePos.y)) {	
+			node.button.mouseOver = true;
+			node.button.down = mouseInput.mouseDown;
+			if(released){
+				node.button.pressed = true;
+			}
+		}
+		
+		node.button.wasDown = mouseInput.mouseDown;
 	}
 }

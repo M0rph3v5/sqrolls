@@ -30,6 +30,20 @@ class NextLevelButtonS extends ListIteratingSystem<NextLevelButtonN>{
 	}
 	
 	function updateN(node:NextLevelButtonN, time:Float){
+		node.nextLevelButton.enabled.visible = node.gameCitizen.game.achieved;
+		node.nextLevelButton.disabled.visible = !node.gameCitizen.game.achieved;
 		
+		node.nextLevelButton.enabled.color = 0xffffff;
+		node.nextLevelButton.disabled.color = 0xffffff;
+		if(node.nextLevelButton.enabled.visible && node.button.mouseOver){
+			node.nextLevelButton.enabled.color = 0xc0c0c0;
+			node.nextLevelButton.disabled.color = 0xc0c0c0;
+		}
+		if(node.nextLevelButton.enabled.visible && node.button.down){
+			node.nextLevelButton.enabled.color = 0;
+			node.nextLevelButton.disabled.color = 0;
+		}
+		
+		node.gameCitizen.game.nextLevelButtonPressed = node.button.pressed;
 	}
 }

@@ -35,12 +35,12 @@ class GoalS extends ListIteratingSystem<GoalN>{
 			if (index == total) {
 				
 				if (achievedCount == total) {
-					if (!node.gameCitizen.game.goalsComplete) { // wasn't before
+					if (!node.gameCitizen.game.achieved) { // wasn't before
 						SoundManager.get_instance().levelComplete();
 					}
-					node.gameCitizen.game.goalsComplete = true;	
+					node.gameCitizen.game.achieved = true;	
 				} else {
-					node.gameCitizen.game.goalsComplete = false;	
+					node.gameCitizen.game.achieved = false;	
 				}
 				
 			}

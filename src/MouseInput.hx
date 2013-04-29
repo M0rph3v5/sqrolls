@@ -12,7 +12,7 @@ class MouseInput {
 	public var onMouseMove:Signal2<Vec2, Bool>;
 	public var lastMousePos:Vec2;
 	
-	var mouseDown:Bool = false;
+	public var mouseDown:Bool = false;
 	
 	public function new(stage:Stage){
 		onClick = new Signal1<Vec2>();
