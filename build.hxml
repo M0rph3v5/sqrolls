@@ -1,6 +1,7 @@
 -swf bin/site/Client.swf
-#-debug
-#-D fdb
+-debug
+-D fdb
+--no-inline
 -D no-swf-compress
 -D swf-directblit
 -swf-version 11.2
