@@ -23,9 +23,9 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		
 		var inventoryEntity = creator.createInventory(node.game);
 		var inventory:ScrollInventory = inventoryEntity.get(ScrollInventory);
-		creator.createInventoryItem(0, node.game, inventory, [1,2,3,4,5,0], 2, false);
-		creator.createInventoryItem(1, node.game, inventory, [5,4,3,2,1,0], 2, false);
-		creator.createInventoryItem(2, node.game, inventory, [0,0,0,0,0,0], 1, false);
+		creator.createInventoryItem(0, node.game, inventory, [1,2,3,4,5], 2, false);
+		creator.createInventoryItem(1, node.game, inventory, [5,4,3,2,1], 2, false);
+		creator.createInventoryItem(2, node.game, inventory, [0,0,0,0,0], 1, false);
 	}
 	
 	function genLevel(node:GameManagerN){

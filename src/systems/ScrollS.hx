@@ -48,7 +48,10 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var increment = xb ? new Vec2(xd, 0) : new Vec2(0, yd);
 		if (increment.length > 0)
 			increment.length = 1;
-		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(Math.abs(xd)) : Std.int(Math.abs(yd)));
+		
+		var xdistance = Math.min(Math.abs(xd),4);
+		var ydistance = Math.min(Math.abs(yd),4);
+		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(xdistance) : Std.int(ydistance) );
 
 		// keep track of tile items on scroll node
 		for (e in node.scroll.tileItems) {
@@ -59,13 +62,13 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		
 		// create new tileitems for the ones missing
 		var index = 0;
-		var lastIndex = coords.length-1;
+		//var lastIndex = coords.length-1;
 		for (coord in coords) {
 			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
 				if (!t.has(Tile))
 					continue;
-				
-				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), index == lastIndex ? 0 : node.scroll.data[index], coord);
+				//index == lastIndex ? 0 : 
+				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
 			}
 			index++;
