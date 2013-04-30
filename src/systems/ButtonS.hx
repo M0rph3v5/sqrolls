@@ -5,7 +5,6 @@ using Imports;
 class ButtonN extends Node<ButtonN>{
 	public var gameCitizen:GameCitizen;
 	public var button:Button;
-	public var nextLevelButton:NextLevelButton;
 }
 
 class ButtonS extends ListIteratingSystem<ButtonN>{

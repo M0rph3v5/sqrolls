@@ -100,7 +100,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		return positions;
 	}
 	
-	function add(node:ScrollN){
+	function add(node:ScrollN){		
 		activeScrollNode = node;
 		activeScrollNode.scroll.dragging = true;		
 	}
@@ -162,17 +162,21 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		}
 		
 		moved = false;
+		lastCoords = null;
 	}
 	
 	function onMouseMove(pos:Vec2, mouseDown:Bool) {
-		if (activeScrollNode == null || !activeScrollNode.scroll.dragging)
+		if (activeScrollNode == null || !activeScrollNode.scroll.dragging) {
 			return;
+		}
 			
 		moved = true;
 		
 		var targetEndPoint = Utils.coordForPosition(pos, activeScrollNode.scroll.grid);
-		if (targetEndPoint != null)
+		if (targetEndPoint != null) {
 			activeScrollNode.scroll.endPoint = targetEndPoint;
+		}
+			
 		if(Math.abs(activeScrollNode.scroll.endPoint.x - activeScrollNode.scroll.beginPoint.x) < Math.abs(activeScrollNode.scroll.endPoint.y - activeScrollNode.scroll.beginPoint.y)){
 			activeScrollNode.scroll.endPoint.x = activeScrollNode.scroll.beginPoint.x;
 		}else{

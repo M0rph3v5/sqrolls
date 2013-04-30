@@ -63,6 +63,8 @@ typedef NextLevelButton = components.NextLevelButton;
 typedef ButtonS = systems.ButtonS;
 typedef NextLevelButtonS = systems.NextLevelButtonS;
 typedef GameCitizenS = systems.GameCitizenS;
+typedef MuteButton = components.MuteButton;
+typedef MuteButtonS = systems.MuteButtonS;
 
 #if flash
 typedef Socket = flash.net.Socket;

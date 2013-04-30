@@ -21,31 +21,6 @@ class GoalS extends ListIteratingSystem<GoalN>{
 	
 	override public function update(time:Float) {
 		super.update(time);
-		
-		var total = Lambda.count(goalNodeList);
-		var index = 0;
-		
-		var achievedCount = 0;
-		for (node in goalNodeList) {
-			if (node.goal.achieved)
-				achievedCount++;
-			
-			index++;
-			
-			if (index == total) {
-				
-				if (achievedCount == total) {
-					if (!node.gameCitizen.game.achieved) { // wasn't before
-						SoundManager.get_instance().levelComplete();
-					}
-					node.gameCitizen.game.achieved = true;	
-				} else {
-					node.gameCitizen.game.achieved = false;	
-				}
-				
-			}
-		}
-		
 
 	}
 	

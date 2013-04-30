@@ -7,6 +7,7 @@ class TileItemRenderN extends Node<TileItemRenderN>{
 	public var tileItem:TileItem;
 	public var tileItemRender:TileItemRender;
 	public var transform:Transform;
+	public var gameCitizen:GameCitizen;
 }
 
 class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
@@ -41,6 +42,9 @@ class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
 	
 	public function updateN(node:TileItemRenderN, time:Float){
 		
+		if (node.tileItem.number == 0)
+			return;
+		
 		if ((node.tileItem.achieved && node.tileItemRender.animationState == 0) || (!node.tileItem.achieved && node.tileItemRender.animationState == 2)) {
 			node.tileItemRender.animationState = 1;
 			
@@ -49,6 +53,16 @@ class TileItemRenderS extends ListIteratingSystem<TileItemRenderN>{
 			Actuate.update(filter.setUniformColor, 0.3, [true, 0xffffff, achievedAtThisPoint?0.0:1.0], [true, 0xffffff, achievedAtThisPoint?1.0:0.0]).onComplete(function() {
 				node.tileItemRender.animationState = achievedAtThisPoint?2:0;
 			});
+		} 
+		else if ((node.gameCitizen.game.achieved && !node.tileItem.achieved && node.tileItemRender.animationState == 0) ||
+				 (!node.gameCitizen.game.achieved && !node.tileItem.achieved && node.tileItemRender.animationState == 3)) {
+			node.tileItemRender.animationState = 1;
+			
+			var filter = cast(node.tileItemRender.displayObjectContainer.filter, BlurFilter);
+			var notAchieved = node.gameCitizen.game.achieved;
+			Actuate.update(filter.setUniformColor, 1, [true, 0xff0000, notAchieved?0.0:1.0], [true, 0xff0000, notAchieved?1.0:0.0]).onComplete(function() {
+				node.tileItemRender.animationState = notAchieved?3:0;
+			});			
 		}
 	}
 	
