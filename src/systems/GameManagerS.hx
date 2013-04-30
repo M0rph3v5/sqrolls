@@ -91,14 +91,48 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			}
 		}
 		
-		if (!node.game.achieved && allGoalsComplete) { // wasn't before
+		var cleanAchieved = false;
+		if (allGoalsComplete) {
+			var clean = true;
+			node.game.grid.tiles.walk(function(current:Array<Entity>,x,y) {
+				var itam = getTileItem(node.game.grid, x, y);
+				if (itam == null)
+					return current;
+				
+				var tileItem:TileItem = itam.get(TileItem);
+				if (tileItem.number == 0) // don't count blank ones.
+					return current;
+				
+				if (!tileItem.achieved)
+					clean = false;
+				return current;
+			});
+			
+			cleanAchieved = clean;
+		}
+			
+		if (!node.game.cleanAchieved && cleanAchieved) { // wasn't before
 			SoundManager.get_instance().levelComplete();
 		}
 		node.game.achieved = allGoalsComplete;
-		
+		node.game.cleanAchieved = cleanAchieved;
+				
 		if(node.game.nextLevelButtonPressed){
 			engine.removeEntity(node.entity);
 			creator.createGame(node.game.level + 1);	
 		}
+	}
+	
+	// extra free funciton :D
+	function getTileItem(grid:Grid, x:Int, y:Int):Entity{
+		if (x < 0 || x >= grid.columns) return null;
+		if (y < 0 || y >= grid.rows) return null;
+		
+		var current = grid.tiles.get(x,y);
+		for(tile in current){
+			if(!tile.has(Tile)) continue;
+			return tile.get(Tile).stack[tile.get(Tile).stack.length-1];
+		}
+		return null;
 	}
 }

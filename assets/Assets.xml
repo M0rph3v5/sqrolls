@@ -1,85 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:edfc2d75ebd9c545610f0c1d645160c7$ -->
+<!-- $TexturePacker:SmartUpdate:76a92a1238d5cffb1859c02a01c47ad2$ -->
 <TextureAtlas imagePath="Assets.png">
-    <SubTexture name="Brown Block" x="213" y="888" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Character Boy" x="887" y="278" width="67" height="89" frameX="-17" frameY="-62" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Character Cat Girl" x="887" y="183" width="69" height="91" frameX="-16" frameY="-60" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Character Horn Girl" x="942" y="439" width="77" height="91" frameX="-7" frameY="-60" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Character Pink Girl" x="937" y="534" width="77" height="89" frameX="-12" frameY="-62" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Character Princess Girl" x="935" y="627" width="75" height="99" frameX="-13" frameY="-52" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Chest Closed" x="108" y="888" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Chest Lid" x="108" y="1124" width="101" height="85" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Chest Open" x="3" y="888" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Dirt Block" x="917" y="1207" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Door Tall Closed" x="887" y="764" width="101" height="151" frameX="0" frameY="-20" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Door Tall Open" x="3" y="1215" width="101" height="79" frameX="0" frameY="-92" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Enemy Bug" x="419" y="1229" width="99" height="77" frameX="0" frameY="-77" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Gem Blue" x="3" y="1013" width="101" height="113" frameX="0" frameY="-57" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Gem Green" x="843" y="1332" width="101" height="113" frameX="0" frameY="-57" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Gem Orange" x="738" y="1296" width="101" height="113" frameX="0" frameY="-57" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Grass Block" x="602" y="876" width="101" height="131" frameX="0" frameY="-40" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Heart" x="522" y="1261" width="89" height="91" frameX="-7" frameY="-47" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Key" x="961" y="179" width="59" height="99" frameX="-17" frameY="-56" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Plain Block" x="812" y="1171" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Ramp East" x="528" y="1138" width="101" height="119" frameX="0" frameY="-52" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Ramp North" x="108" y="1213" width="101" height="81" frameX="0" frameY="-90" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Ramp South" x="917" y="1082" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Ramp West" x="423" y="1017" width="101" height="119" frameX="0" frameY="-52" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Rock" x="316" y="1223" width="99" height="99" frameX="-1" frameY="-65" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof East" x="318" y="1011" width="101" height="119" frameX="0" frameY="-52" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof North East" x="423" y="1140" width="101" height="85" frameX="0" frameY="-86" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof North West" x="318" y="1134" width="101" height="85" frameX="0" frameY="-86" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof North" x="3" y="1130" width="101" height="81" frameX="0" frameY="-90" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof South East" x="602" y="1011" width="101" height="123" frameX="0" frameY="-48" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof South West" x="707" y="1007" width="101" height="123" frameX="0" frameY="-48" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof South" x="707" y="1134" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Roof West" x="318" y="888" width="101" height="119" frameX="0" frameY="-52" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Selector" x="782" y="111" width="101" height="171"/>
-    <SubTexture name="Shadow East" x="992" y="817" width="21" height="81" frameX="-80" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow North East" x="852" y="789" width="21" height="51" frameX="-80" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow North West" x="887" y="426" width="51" height="51" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow North" x="213" y="1118" width="101" height="91" frameX="0" frameY="-9" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow Side West" x="887" y="481" width="51" height="41" frameX="0" frameY="-130" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow South East" x="992" y="902" width="21" height="51" frameX="-80" frameY="-80" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow South West" x="887" y="371" width="51" height="51" frameX="0" frameY="-80" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow South" x="631" y="757" width="101" height="21" frameX="0" frameY="-79" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow West" x="958" y="354" width="51" height="81" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="SpeechBubble" x="108" y="1013" width="101" height="107" frameX="0" frameY="-64" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Star" x="213" y="1013" width="101" height="101" frameX="0" frameY="-51" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Stone Block Tall" x="782" y="457" width="101" height="163" frameX="0" frameY="-8" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Stone Block" x="812" y="919" width="101" height="123" frameX="0" frameY="-48" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Tree Short" x="213" y="1213" width="99" height="107" frameX="0" frameY="-55" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Tree Tall" x="497" y="876" width="101" height="137" frameX="0" frameY="-31" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Tree Ugly" x="633" y="1259" width="101" height="115" frameX="0" frameY="-54" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Wall Block Tall" x="782" y="286" width="101" height="167" frameX="0" frameY="-4" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Wall Block" x="707" y="876" width="101" height="127" frameX="0" frameY="-44" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Water Block" x="812" y="1046" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Window Tall" x="782" y="624" width="101" height="161" frameX="0" frameY="-10" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Wood Block" x="917" y="957" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
     <SubTexture name="bg" x="3" y="3" width="775" height="713"/>
-    <SubTexture name="button-mute-enabled" x="541" y="720" width="42" height="42"/>
-    <SubTexture name="button-mute" x="852" y="844" width="20" height="32" frameX="-8" frameY="-4" frameWidth="42" frameHeight="42"/>
+    <SubTexture name="button-mute-enabled" x="954" y="229" width="42" height="42"/>
+    <SubTexture name="button-mute" x="1000" y="229" width="20" height="32" frameX="-8" frameY="-4" frameWidth="42" frameHeight="42"/>
     <SubTexture name="button-nextlevel-disabled" x="782" y="57" width="177" height="50"/>
     <SubTexture name="button-nextlevel" x="782" y="3" width="177" height="50"/>
-    <SubTexture name="checkmark" x="669" y="720" width="32" height="31"/>
-    <SubTexture name="cross" x="631" y="720" width="34" height="33"/>
-    <SubTexture name="goal-item-bg" x="992" y="730" width="29" height="29"/>
-    <SubTexture name="inventory-available-scroll-indicator" x="992" y="790" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
-    <SubTexture name="inventory-unavailable-scroll-indicator" x="992" y="763" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
+    <SubTexture name="checkmark" x="918" y="205" width="32" height="31"/>
+    <SubTexture name="cross" x="880" y="183" width="34" height="33"/>
+    <SubTexture name="goal-item-bg" x="880" y="220" width="29" height="29"/>
+    <SubTexture name="inventory-available-scroll-indicator" x="874" y="253" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
+    <SubTexture name="inventory-unavailable-scroll-indicator" x="913" y="240" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
     <SubTexture name="logo" x="3" y="720" width="490" height="164"/>
-    <SubTexture name="not-allowed" x="887" y="718" width="42" height="42"/>
-    <SubTexture name="scroll-closed" x="887" y="111" width="70" height="68" frameX="0" frameY="-1" frameWidth="72" frameHeight="72"/>
-    <SubTexture name="scroll-open" x="497" y="789" width="351" height="83"/>
-    <SubTexture name="symbol-brush1" x="587" y="720" width="40" height="42" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-brush2" x="497" y="720" width="40" height="44" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-brush3" x="887" y="576" width="46" height="42" frameX="-1" frameY="-4" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-brush3old" x="887" y="670" width="42" height="44" frameX="-4" frameY="-3" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-brush4" x="887" y="622" width="44" height="44" frameX="-3" frameY="-2" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-brush5" x="887" y="526" width="46" height="46" frameX="-1" frameY="-2" frameWidth="50" frameHeight="50"/>
-    <SubTexture name="symbol-pips1" x="933" y="730" width="14" height="14" frameX="-33" frameY="-43" frameWidth="80" frameHeight="100"/>
-    <SubTexture name="symbol-pips2" x="958" y="336" width="58" height="14" frameX="-11" frameY="-43" frameWidth="80" frameHeight="100"/>
-    <SubTexture name="symbol-pips3" x="958" y="282" width="58" height="50" frameX="-11" frameY="-25" frameWidth="80" frameHeight="100"/>
+    <SubTexture name="not-allowed" x="828" y="231" width="42" height="42"/>
+    <SubTexture name="scroll-closed" x="782" y="111" width="70" height="68" frameX="0" frameY="-1" frameWidth="72" frameHeight="72"/>
+    <SubTexture name="scroll-open" x="3" y="888" width="351" height="83"/>
+    <SubTexture name="symbol-brush1" x="918" y="159" width="40" height="42" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush2" x="918" y="111" width="40" height="44" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush3" x="782" y="183" width="46" height="42" frameX="-1" frameY="-4" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush3old" x="782" y="229" width="42" height="44" frameX="-4" frameY="-3" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush4" x="832" y="183" width="44" height="44" frameX="-3" frameY="-2" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush5" x="962" y="179" width="46" height="46" frameX="-1" frameY="-2" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-pips1" x="1000" y="265" width="14" height="14" frameX="-33" frameY="-43" frameWidth="80" frameHeight="100"/>
+    <SubTexture name="symbol-pips2" x="856" y="165" width="58" height="14" frameX="-11" frameY="-43" frameWidth="80" frameHeight="100"/>
+    <SubTexture name="symbol-pips3" x="856" y="111" width="58" height="50" frameX="-11" frameY="-25" frameWidth="80" frameHeight="100"/>
     <SubTexture name="symbol-pips4" x="963" y="91" width="58" height="84" frameX="-11" frameY="-8" frameWidth="80" frameHeight="100"/>
     <SubTexture name="symbol-pips5" x="963" y="3" width="58" height="84" frameX="-11" frameY="-8" frameWidth="80" frameHeight="100"/>
 </TextureAtlas>

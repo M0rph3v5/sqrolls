@@ -73,7 +73,7 @@ class SoundManager {
 		if (mute)
 			return;
 			
-		sfxTransform.volume = 0.8;		
+		sfxTransform.volume = 0.6;		
 		goalCompleteChannel = s_goalcomplete.play(0,0,sfxTransform);
 	}
 	
