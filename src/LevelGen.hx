@@ -47,7 +47,6 @@ class LevelGen {
 
 	public function new(level:Int){
 		this.c = new GenConfig();
-		level = 2;
 		switch(level){
 			case 0:
 				c.width = 4;
