@@ -91,6 +91,9 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 			}
 		}
 		
+		if (!node.game.achieved && allGoalsComplete) { // wasn't before
+			SoundManager.get_instance().levelComplete();
+		}
 		node.game.achieved = allGoalsComplete;
 		
 		if(node.game.nextLevelButtonPressed){

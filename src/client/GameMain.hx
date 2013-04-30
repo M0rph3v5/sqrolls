@@ -45,7 +45,7 @@ class GameMain {
 		engine.addSystem(new CoordS(), priority++);
 		engine.addSystem(new RenderS(container), priority++);
 		
-		var g = creator.createGame(4);
+		var g = creator.createGame(0);
 	}
 	
 	function start(){
