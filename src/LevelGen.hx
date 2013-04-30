@@ -83,7 +83,7 @@ class LevelGen {
 				c.numBlanks = 1;
 				c.numConvenient = 0;
 				c.convenients = [1,2,3,4];
-				c.numInconvenient = 2;
+				c.numInconvenient = 3;
 				c.inconvenients = [2,3];
 			case 3:
 				c.width = 4;
