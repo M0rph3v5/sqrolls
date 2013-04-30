@@ -80,6 +80,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		}
 		lastCoords = coords;
 		
+		trace("last coords " + coords);
 		SoundManager.get_instance().unfurl();
 	}
 	
@@ -147,9 +148,11 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			}
 			
 			if (nodeToRemove != null) {	
+				trace("node to removed " + nodeToRemove);
 				nodeToRemove.gameCitizen.game.refund = nodeToRemove.scroll.data[0];
 				engine.removeEntity(nodeToRemove.entity);
 			}
+			
 		}
 		
 		if (activeScrollNode != null) {
@@ -157,6 +160,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			
 			if (moved) {
 				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;
+				trace("nulled dem active one");
 				SoundManager.get_instance().release();
 			}			
 		}
