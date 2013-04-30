@@ -36,8 +36,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	}
 			
 	function updateN(node:ScrollN, time:Float){
-		
-		if (!node.scroll.dragging)
+		if (!node.scroll.dragging && !node.scroll.justAdded)
 			return;
 		
 		// create tile items for everything in between begin & endpoint
@@ -55,7 +54,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(xdistance) : Std.int(ydistance) );
 		
 		if (lastCoords != null && coords.toString() == lastCoords.toString()) {
-			trace("not redrawing because same coords");
 			return;
 		}
 
@@ -80,8 +78,9 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		}
 		lastCoords = coords;
 		
-		trace("last coords " + coords);
 		SoundManager.get_instance().unfurl();
+		
+		node.scroll.justAdded = false;
 	}
 	
 	function ray(start:Vec2, increment:Vec2, length:Int) {
@@ -103,7 +102,8 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 	
 	function add(node:ScrollN){		
 		activeScrollNode = node;
-		activeScrollNode.scroll.dragging = true;		
+		activeScrollNode.scroll.dragging = true;
+		activeScrollNode.scroll.justAdded = true;		
 	}
 	
 	function remove(node:ScrollN){
@@ -148,7 +148,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			}
 			
 			if (nodeToRemove != null) {	
-				trace("node to removed " + nodeToRemove);
 				nodeToRemove.gameCitizen.game.refund = nodeToRemove.scroll.data[0];
 				engine.removeEntity(nodeToRemove.entity);
 			}
@@ -160,7 +159,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			
 			if (moved) {
 				activeScrollNode.gameCitizen.game.activeScrollInventoryItem = null;
-				trace("nulled dem active one");
 				SoundManager.get_instance().release();
 			}			
 		}
