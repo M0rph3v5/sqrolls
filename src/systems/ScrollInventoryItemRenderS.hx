@@ -189,6 +189,8 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.image.visible = node.scrollInventoryItem.count != 0;
 			node.scrollInventoryItemRender.notAllowedImage.visible = node.scrollInventoryItem.count == 0; 
 		} else {
+			
+			// this means you dropped the scroll 
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
 				trace("// null and active is dead, destroy mouseslave");
 				for (inode in itemList) {
