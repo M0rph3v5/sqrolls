@@ -11,6 +11,7 @@ class Scroll {
 	public var dragging:Bool;
 	
 	public var grid:Grid;
+	public var justAdded:Bool;
 			
 	public function new(grid:Grid, data:Array<Int>, ?beginPoint:Vec2){
 		if (beginPoint == null)
