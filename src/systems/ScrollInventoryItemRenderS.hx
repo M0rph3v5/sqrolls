@@ -28,7 +28,6 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		this.mouseInput.onMouseDown.add(onMouseDown);
 		this.mouseInput.onMouseUp.add(onMouseUp);
 		this.mouseInput.onMouseMove.add(onMouseMove);
-		
 	}
 	
 	override public function addToEngine(engine:Engine){
@@ -92,6 +91,7 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		
 		for (inode in itemList) {
 			if (inode.scrollInventoryItem.mouseSlave) {
+				trace("putting back in invtenory");
 				engine.removeEntity(inode.entity);
 				break;	
 			}
@@ -104,9 +104,24 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 		for (inode in itemList) {
 			if (inode.scrollInventoryItem.mouseSlave) {
 				inode.transform.position = pos;
-				break;
+			} else {
+				var rect = new Rectangle(inode.transform.position.x, inode.transform.position.y, 85, 85);
+				if(rect.contains(pos.x, pos.y)) {
+					inode.scrollInventoryItemRender.image.x = -5;
+					inode.scrollInventoryItemRender.image.y = -5;					
+					inode.scrollInventoryItemRender.image.scaleX = 1.1;
+					inode.scrollInventoryItemRender.image.scaleY = 1.1;
+				} else {
+					inode.scrollInventoryItemRender.image.x = 0;
+					inode.scrollInventoryItemRender.image.y = 0;
+					inode.scrollInventoryItemRender.image.scaleX = 1.0;
+					inode.scrollInventoryItemRender.image.scaleY = 1.0;
+				}
 			}
+			
 		}
+			
+			
 	}
 	
 	public function add(node:ScrollInventoryItemRenderN){
@@ -175,12 +190,13 @@ class ScrollInventoryItemRenderS extends ListIteratingSystem<ScrollInventoryItem
 			node.scrollInventoryItemRender.notAllowedImage.visible = node.scrollInventoryItem.count == 0; 
 		} else {
 			if (node.gameCitizen.game.activeScrollInventoryItem == null) { // null and active is dead, destroy mouseslave
+				trace("// null and active is dead, destroy mouseslave");
 				for (inode in itemList) {
 					if (inode.scrollInventoryItem.mouseSlave) {
-					engine.removeEntity(inode.entity);
-					break;	
+						engine.removeEntity(inode.entity);
+						break;	
+					}
 				}
-		}
 			}
 		}
 	}

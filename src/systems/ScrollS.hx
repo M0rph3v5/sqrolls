@@ -55,6 +55,7 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 		var coords = ray(node.scroll.beginPoint, increment, xb ? Std.int(xdistance) : Std.int(ydistance) );
 		
 		if (lastCoords != null && coords.toString() == lastCoords.toString()) {
+			trace("not redrawing because same coords");
 			return;
 		}
 
@@ -72,7 +73,6 @@ class ScrollS extends ListIteratingSystem<ScrollN>{
 			for (t in node.scroll.grid.tiles.get(Std.int(coord.x), Std.int(coord.y))) {
 				if (!t.has(Tile))
 					continue;
-				//index == lastIndex ? 0 : 
 				var tileItem = creator.createTileItem(node.gameCitizen.game, node.scroll.grid, t.get(Tile), node.scroll.data[index], coord);
 				node.scroll.tileItems.push(tileItem);
 			}
