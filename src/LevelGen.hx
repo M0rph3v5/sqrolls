@@ -64,10 +64,58 @@ class LevelGen {
 			case 1:
 				c.width = 4;
 				c.height = 4;
+				c.scrolls = [[4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 1;
+				c.numBlanks = 0;
+				c.numConvenient = 1;
+				c.convenients = [1];
+				c.numInconvenient = 1;
+				c.inconvenients = [2,3];
+			case 2:
+				c.width = 4;
+				c.height = 4;
 				c.scrolls = [[1,2,3,4], [4,3,2,1]];
 				c.zeroScroll = [0,0,0,0];
 				
 				c.numScrolls = 1;
+				c.numBlanks = 1;
+				c.numConvenient = 0;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 2;
+				c.inconvenients = [2,3];
+			case 3:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 2;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 1;
+				c.inconvenients = [2,3];
+			case 4:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 2;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 2;
+				c.inconvenients = [2,3];
+			case 5 | 6:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 3;
 				c.numBlanks = 1;
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
@@ -79,7 +127,7 @@ class LevelGen {
 				c.scrolls = [[1,2,3,4], [4,3,2,1]];
 				c.zeroScroll = [0,0,0,0];
 				
-				c.numScrolls = 2;
+				c.numScrolls = 4;
 				c.numBlanks = 1;
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
@@ -119,10 +167,18 @@ class LevelGen {
 			}else{
 				start = potentialScrollStarts[Random.randRange(0, potentialScrollStarts.length-1)];
 			}
-			
-			var r = Random.randRange(0, c.scrolls.length - 1);
-			var scroll = c.scrolls[r];
-			scrollAmounts[r]++;
+			var scroll = null;
+			if(scrollAmounts[0] == 2){
+				scroll = c.scrolls[1];
+				scrollAmounts[1]++;
+			}else if(scrollAmounts[1] == 2){
+				scroll = c.scrolls[0];
+				scrollAmounts[0]++;
+			}else{
+				var r = Random.randRange(0, c.scrolls.length - 1);
+				scroll = c.scrolls[r];
+				scrollAmounts[r]++;
+			}
 			addNextScroll(start, scroll);
 		}
 		
