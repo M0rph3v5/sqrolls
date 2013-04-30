@@ -49,6 +49,8 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		});
 		
 		SoundManager.get_instance();
+		
+		creator.createMuteButton(node.game, 700, 30, new Rectangle(700,30,40,40));
 	}
 	
 	function genLevel(node:GameManagerN){

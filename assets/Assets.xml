@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:4bb3f34368c8387969ccc0ab0feac8d8$ -->
+<!-- $TexturePacker:SmartUpdate:edfc2d75ebd9c545610f0c1d645160c7$ -->
 <TextureAtlas imagePath="Assets.png">
     <SubTexture name="Brown Block" x="213" y="888" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Character Boy" x="887" y="278" width="67" height="89" frameX="-17" frameY="-62" frameWidth="101" frameHeight="171"/>
@@ -43,7 +43,7 @@
     <SubTexture name="Shadow Side West" x="887" y="481" width="51" height="41" frameX="0" frameY="-130" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Shadow South East" x="992" y="902" width="21" height="51" frameX="-80" frameY="-80" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Shadow South West" x="887" y="371" width="51" height="51" frameX="0" frameY="-80" frameWidth="101" frameHeight="171"/>
-    <SubTexture name="Shadow South" x="585" y="757" width="101" height="21" frameX="0" frameY="-79" frameWidth="101" frameHeight="171"/>
+    <SubTexture name="Shadow South" x="631" y="757" width="101" height="21" frameX="0" frameY="-79" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Shadow West" x="958" y="354" width="51" height="81" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
     <SubTexture name="SpeechBubble" x="108" y="1013" width="101" height="107" frameX="0" frameY="-64" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Star" x="213" y="1013" width="101" height="101" frameX="0" frameY="-51" frameWidth="101" frameHeight="171"/>
@@ -58,10 +58,12 @@
     <SubTexture name="Window Tall" x="782" y="624" width="101" height="161" frameX="0" frameY="-10" frameWidth="101" frameHeight="171"/>
     <SubTexture name="Wood Block" x="917" y="957" width="101" height="121" frameX="0" frameY="-50" frameWidth="101" frameHeight="171"/>
     <SubTexture name="bg" x="3" y="3" width="775" height="713"/>
+    <SubTexture name="button-mute-enabled" x="541" y="720" width="42" height="42"/>
+    <SubTexture name="button-mute" x="852" y="844" width="20" height="32" frameX="-8" frameY="-4" frameWidth="42" frameHeight="42"/>
     <SubTexture name="button-nextlevel-disabled" x="782" y="57" width="177" height="50"/>
     <SubTexture name="button-nextlevel" x="782" y="3" width="177" height="50"/>
-    <SubTexture name="checkmark" x="623" y="720" width="32" height="31"/>
-    <SubTexture name="cross" x="585" y="720" width="34" height="33"/>
+    <SubTexture name="checkmark" x="669" y="720" width="32" height="31"/>
+    <SubTexture name="cross" x="631" y="720" width="34" height="33"/>
     <SubTexture name="goal-item-bg" x="992" y="730" width="29" height="29"/>
     <SubTexture name="inventory-available-scroll-indicator" x="992" y="790" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
     <SubTexture name="inventory-unavailable-scroll-indicator" x="992" y="763" width="23" height="23" frameX="-1" frameY="-1" frameWidth="25" frameHeight="25"/>
@@ -69,7 +71,7 @@
     <SubTexture name="not-allowed" x="887" y="718" width="42" height="42"/>
     <SubTexture name="scroll-closed" x="887" y="111" width="70" height="68" frameX="0" frameY="-1" frameWidth="72" frameHeight="72"/>
     <SubTexture name="scroll-open" x="497" y="789" width="351" height="83"/>
-    <SubTexture name="symbol-brush1" x="541" y="720" width="40" height="42" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
+    <SubTexture name="symbol-brush1" x="587" y="720" width="40" height="42" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
     <SubTexture name="symbol-brush2" x="497" y="720" width="40" height="44" frameX="-5" frameY="-3" frameWidth="50" frameHeight="50"/>
     <SubTexture name="symbol-brush3" x="887" y="576" width="46" height="42" frameX="-1" frameY="-4" frameWidth="50" frameHeight="50"/>
     <SubTexture name="symbol-brush3old" x="887" y="670" width="42" height="44" frameX="-4" frameY="-3" frameWidth="50" frameHeight="50"/>

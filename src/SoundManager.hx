@@ -29,19 +29,29 @@ class SoundManager {
 	public var s_unfurl:Sound;
 	
 	public var sfxvolume = 0.6;
+	public var mute(default, set):Bool;
+	function set_mute(mute:Bool) {
+		if (mute) {
+			musicChannel.stop();
+		} else {
+			musicChannel = bm.play(0, 999999999, musicTransform);			
+		}
+		return this.mute = mute;
+	}
 	
 	var sfxTransform:SoundTransform;
+	var musicTransform:SoundTransform;
 	
 	var unfurlChannel:SoundChannel;
 	var goalCompleteChannel:SoundChannel;
+	var musicChannel:SoundChannel;
 	
 	public function new () {
 		bm = new BackgroundMusic();
 		
 		sfxTransform = new SoundTransform(sfxvolume);
-		
-		var transform = new SoundTransform(0.1);
-		var channel = bm.play(0, 999999999, transform);
+		musicTransform = new SoundTransform(0.1);
+		musicChannel = bm.play(0, 999999999, musicTransform);
 		
 		s_error = new SfxError();
 		s_goalcomplete = new SfxGoalComplete();
@@ -52,16 +62,25 @@ class SoundManager {
 	}
 	
 	public function error() {
+		if (mute)
+			return;
+		
 		sfxTransform.volume = 0.5;
 		s_error.play(0,0,sfxTransform);
 	}
 	
 	public function goalComplete() {
+		if (mute)
+			return;
+			
 		sfxTransform.volume = 0.8;		
 		goalCompleteChannel = s_goalcomplete.play(0,0,sfxTransform);
 	}
 	
 	public function levelComplete() {
+		if (mute)
+			return;
+			
 		if (goalCompleteChannel != null)
 			goalCompleteChannel.stop();
 		
@@ -70,16 +89,25 @@ class SoundManager {
 	}
 	
 	public function release() {
+		if (mute)
+			return;
+			
 		sfxTransform.volume = 0.2;
 		s_release.play(0,0,sfxTransform);
 	}
 	
 	public function take() {
+		if (mute)
+			return;
+			
 		sfxTransform.volume = 0.2;
 		s_take.play(0,0,sfxTransform);
 	}
 	
 	public function unfurl() {
+		if (mute)
+			return;
+			
 		stopUnfurl();
 		unfurlChannel = s_unfurl.play(0,0,sfxTransform);
 	}
