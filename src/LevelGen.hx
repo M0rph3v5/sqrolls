@@ -167,18 +167,13 @@ class LevelGen {
 			}else{
 				start = potentialScrollStarts[Random.randRange(0, potentialScrollStarts.length-1)];
 			}
-			var scroll = null;
-			if(scrollAmounts[0] == 2){
-				scroll = c.scrolls[1];
-				scrollAmounts[1]++;
-			}else if(scrollAmounts[1] == 2){
-				scroll = c.scrolls[0];
-				scrollAmounts[0]++;
-			}else{
-				var r = Random.randRange(0, c.scrolls.length - 1);
-				scroll = c.scrolls[r];
-				scrollAmounts[r]++;
-			}
+
+			var r = Random.randRange(0, c.scrolls.length - 1);
+			var scroll = c.scrolls[r];
+			trace(scroll);
+			if(scroll[0] == 1) scrollAmounts[0]++;
+			if(scroll[0] == 4) scrollAmounts[1]++;
+			
 			addNextScroll(start, scroll);
 		}
 		
