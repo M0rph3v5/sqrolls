@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:76a92a1238d5cffb1859c02a01c47ad2$ -->
+<!-- $TexturePacker:SmartUpdate:523e8670a2a23657f043dd7f1436b407$ -->
 <TextureAtlas imagePath="Assets.png">
+    <SubTexture name="bg-level" x="3" y="975" width="350" height="44" frameX="0" frameY="-5" frameWidth="350" frameHeight="50"/>
     <SubTexture name="bg" x="3" y="3" width="775" height="713"/>
     <SubTexture name="button-mute-enabled" x="954" y="229" width="42" height="42"/>
     <SubTexture name="button-mute" x="1000" y="229" width="20" height="32" frameX="-8" frameY="-4" frameWidth="42" frameHeight="42"/>

@@ -23,7 +23,8 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 	function add(node:GameManagerN){
 		var levelgen = genLevel(node);
 		
-		creator.createBackgroundImage("bg", node.game);
+		creator.createBackgroundImage("bg", node.game,0,0);
+		creator.createBackgroundImage("bg-level", node.game, 36, 520);
 		node.game.grid = creator.createGrid(node.game).get(Grid);		
 		//creator.createScoreUI(node.game, node.game.grid);
 		
@@ -51,7 +52,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		SoundManager.get_instance();
 		
 		creator.createMuteButton(node.game, 700, 30, new Rectangle(700,30,40,40));
-		creator.createLevelRender(node.game, 540, 95);
+		creator.createLevelRender(node.game, 170, 530);
 	}
 	
 	function genLevel(node:GameManagerN){

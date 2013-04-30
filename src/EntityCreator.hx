@@ -11,12 +11,12 @@ class EntityCreator {
 		this.graphics = graphics;
 	}
 	
-	public function createBackgroundImage(textureId:String, game:Game){
+	public function createBackgroundImage(textureId:String, game:Game,x:Float, y:Float){
 		var image = new Image(graphics.getTexture(textureId));
 		
 		var e = new Entity()
 		.add(new GameCitizen(game))
-		.add(new Display(image, new Mat23()))
+		.add(new Display(image, Mat23.translation(x,y)))
 		.add(new Transform());
 		
 		engine.addEntity(e);
