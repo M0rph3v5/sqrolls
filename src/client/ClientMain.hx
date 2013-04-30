@@ -12,11 +12,13 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.geom.Rectangle;
 import flash.Lib;
-
+import flash.external.ExternalInterface;
 class ClientMain {
 	var starling : Starling;
 	
 	public function new(){
+		ExternalInterface.call("window.gameLoaded");
+						
 		Lib.current.stage.align = StageAlign.TOP_LEFT;
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		Lib.current.stage.addEventListener(Event.RESIZE, onResize);

@@ -52,13 +52,13 @@ class LevelGen {
 			case 0:
 				c.width = 4;
 				c.height = 4;
-				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.scrolls = [[1,2,3,4]];
 				c.zeroScroll = [0,0,0,0];
 				
 				c.numScrolls = 1;
 				c.numBlanks = 0;
 				c.numConvenient = 1;
-				c.convenients = [1,2,3,4];
+				c.convenients = [1];
 				c.numInconvenient = 0;
 				c.inconvenients = [2,3];
 			case 1:
