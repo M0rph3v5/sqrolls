@@ -170,7 +170,6 @@ class LevelGen {
 
 			var r = Random.randRange(0, c.scrolls.length - 1);
 			var scroll = c.scrolls[r];
-			trace(scroll);
 			if(scroll[0] == 1) scrollAmounts[0]++;
 			if(scroll[0] == 4) scrollAmounts[1]++;
 			

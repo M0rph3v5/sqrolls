@@ -51,6 +51,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		SoundManager.get_instance();
 		
 		creator.createMuteButton(node.game, 700, 30, new Rectangle(700,30,40,40));
+		creator.createLevelRender(node.game, 0, 0);
 	}
 	
 	function genLevel(node:GameManagerN){
@@ -117,7 +118,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		node.game.achieved = allGoalsComplete;
 		node.game.cleanAchieved = cleanAchieved;
 				
-		if(node.game.nextLevelButtonPressed){
+		if(cleanAchieved && node.game.nextLevelButtonPressed){
 			engine.removeEntity(node.entity);
 			creator.createGame(node.game.level + 1);	
 		}

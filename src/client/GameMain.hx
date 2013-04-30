@@ -37,6 +37,7 @@ class GameMain {
 		
 		engine.addSystem(new ScrollRenderS(graphics), priority++);
 		engine.addSystem(new GoalRenderS(graphics), priority++);
+		engine.addSystem(new LevelRenderS(), priority++);
 		engine.addSystem(new ScrollInventoryRenderS(graphics), priority++);
 		engine.addSystem(new ScrollInventoryItemRenderS(graphics, mouseInput, creator), priority++);
 		engine.addSystem(new ScrollInventoryCitizenS(), priority++);

@@ -175,4 +175,19 @@ class EntityCreator {
 		
 		engine.addEntity(e);
 	}
+	
+	public function createLevelRender(game:Game, x:Float, y:Float){
+		var tf = new TextField(200, 30, "");
+		tf.hAlign = starling.utils.HAlign.LEFT;
+		tf.vAlign = starling.utils.VAlign.TOP;
+		
+		var e = new Entity()
+		.add(new GameCitizen(game))
+		.add(new LevelRender(tf))
+		
+		.add(new Transform())
+		.add(new Display(tf, Mat23.translation(x,y), 1));
+		
+		engine.addEntity(e);
+	}
 }
