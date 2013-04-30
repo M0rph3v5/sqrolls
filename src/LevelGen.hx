@@ -95,7 +95,7 @@ class LevelGen {
 				c.numBlanks = 1;
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
-				c.numInconvenient = 1;
+				c.numInconvenient = 2;
 				c.inconvenients = [2,3];
 			case 4:
 				c.width = 4;
@@ -109,7 +109,7 @@ class LevelGen {
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
 				c.inconvenients = [2,3];
-			case 5 | 6:
+			case 5:
 				c.width = 4;
 				c.height = 4;
 				c.scrolls = [[1,2,3,4], [4,3,2,1]];
@@ -119,9 +119,9 @@ class LevelGen {
 				c.numBlanks = 1;
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
-				c.numInconvenient = 1;
+				c.numInconvenient = 2;
 				c.inconvenients = [2,3];
-			case _:
+			case 6:
 				c.width = 4;
 				c.height = 4;
 				c.scrolls = [[1,2,3,4], [4,3,2,1]];
@@ -131,8 +131,45 @@ class LevelGen {
 				c.numBlanks = 1;
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
-				c.numInconvenient = 1;
+				c.numInconvenient = 2;
 				c.inconvenients = [2,3];
+			case 7:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 5;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 2;
+				c.inconvenients = [2,3];
+			case 8:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = 6;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 2;
+				c.inconvenients = [2,3];
+			case _:
+				c.width = 4;
+				c.height = 4;
+				c.scrolls = [[1,2,3,4], [4,3,2,1]];
+				c.zeroScroll = [0,0,0,0];
+				
+				c.numScrolls = level - 2;
+				c.numBlanks = 1;
+				c.numConvenient = 1;
+				c.convenients = [1,2,3,4];
+				c.numInconvenient = 2;
+				c.inconvenients = [2,3];
+				
 		}
 		
 		goals = new Array();
@@ -180,6 +217,9 @@ class LevelGen {
 		
 		for(i in 0...c.numBlanks){
 			var start = empty[Random.randRange(0, empty.length-1)];
+			if(start == null){
+				start =  new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+			}
 			addNextScroll(start, c.zeroScroll, false);
 			zeroScrollAmount++;
 		}
@@ -256,6 +296,9 @@ class LevelGen {
 		//////
 		
 		var score:Float = 0;
+		if(goals.length == 0){
+			score -= 10;
+		}
 		for(goal in goals){
 			if(goal.length == 1){
 				score -= 1;
