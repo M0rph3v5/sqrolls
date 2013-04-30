@@ -13,12 +13,12 @@ class LevelRenderS extends ListIteratingSystem<LevelRenderN>{
 	}
 	
 	function add(node:LevelRenderN){
-		node.levelRender.tf.color = 0xffffff;
-		//node.levelRender.tf.fontSize = 13;
+		node.levelRender.tf.color = 0x3b290a;
+		node.levelRender.tf.fontSize = 25;
 		node.levelRender.tf.fontName = "Courgette Regular";
 	}
 	
 	function updateN(node:LevelRenderN, time:Float){
-		node.levelRender.tf.text = "Puzzle: " + (node.gameCitizen.game.level + 1);
+		node.levelRender.tf.text = "Puzzle " + (node.gameCitizen.game.level + 1);
 	}
 }
