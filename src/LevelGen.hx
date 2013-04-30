@@ -47,7 +47,7 @@ class LevelGen {
 
 	public function new(level:Int){
 		this.c = new GenConfig();
-		
+		level = 2;
 		switch(level){
 			case 0:
 				c.width = 4;
@@ -60,7 +60,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1];
 				c.numInconvenient = 0;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 1:
 				c.width = 4;
 				c.height = 4;
@@ -72,19 +72,19 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1];
 				c.numInconvenient = 1;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 2:
 				c.width = 4;
 				c.height = 4;
 				c.scrolls = [[1,2,3,4], [4,3,2,1]];
 				c.zeroScroll = [0,0,0,0];
 				
-				c.numScrolls = 1;
+				c.numScrolls = 0;
 				c.numBlanks = 1;
-				c.numConvenient = 0;
-				c.convenients = [1,2,3,4];
-				c.numInconvenient = 3;
-				c.inconvenients = [2,3];
+				c.numConvenient = 1;
+				c.convenients = [1,2];
+				c.numInconvenient = 4;
+				c.inconvenients = [3,4];
 			case 3:
 				c.width = 4;
 				c.height = 4;
@@ -96,7 +96,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 4:
 				c.width = 4;
 				c.height = 4;
@@ -108,7 +108,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 5:
 				c.width = 4;
 				c.height = 4;
@@ -120,7 +120,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 6:
 				c.width = 4;
 				c.height = 4;
@@ -132,7 +132,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 7:
 				c.width = 4;
 				c.height = 4;
@@ -144,7 +144,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case 8:
 				c.width = 4;
 				c.height = 4;
@@ -156,7 +156,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 			case _:
 				c.width = 4;
 				c.height = 4;
@@ -168,7 +168,7 @@ class LevelGen {
 				c.numConvenient = 1;
 				c.convenients = [1,2,3,4];
 				c.numInconvenient = 2;
-				c.inconvenients = [2,3];
+				c.inconvenients = [1,2,3,4];
 				
 		}
 		
@@ -224,19 +224,21 @@ class LevelGen {
 			zeroScrollAmount++;
 		}
 		
-		//trace(grid);
+		trace(grid);
+		trace(outGrid);
 		
 		for( i in 0...c.numInconvenient){
 			var p:Point;
 			if(occupied.length == 0){
-				p = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
+				//p = new Point(Random.randRange(0,c.width - 1), Random.randRange(0,c.height-1));
 			}else{
 				p = occupied[Random.randRange(0, occupied.length-1)];
+				outGrid.set(p.x,p.y,c.inconvenients[Random.randRange(0,c.inconvenients.length-1)]);
 			}
-			outGrid.set(p.x,p.y,grid.get(p.x,p.y));
 		}
-		
-		//trace(grid);
+
+		trace(grid);
+		trace(outGrid);
 		
 		for( i in 0...c.numConvenient){
 			var p:Point;

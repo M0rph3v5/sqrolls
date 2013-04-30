@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="com.powerflasher.fdt.ui.ViewerLaunchGroup">
 <booleanAttribute key="KILL_PREVIOUS_VIEWER" value="true"/>
-<stringAttribute key="MAIN_CLASS" value="bin/site/index.html"/>
+<stringAttribute key="MAIN_CLASS" value="bin/site/indexOld.html"/>
 <intAttribute key="PLAYER_HEIGHT" value="713"/>
 <intAttribute key="PLAYER_WIDTH" value="775"/>
 <stringAttribute key="PROJECT_NAME" value="Sqrolls"/>

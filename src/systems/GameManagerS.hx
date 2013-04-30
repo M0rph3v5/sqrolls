@@ -59,7 +59,7 @@ class GameManagerS extends ListIteratingSystem<GameManagerN>{
 		var levelgen : LevelGen = null;
 		var bestScore : Float = -9999;
 		trace(node.game.level);
-		for(i in 0...20){
+		for(i in 0...1){
 			var l = new LevelGen(node.game.level);
 			var s : Float = l.generate();
 						
